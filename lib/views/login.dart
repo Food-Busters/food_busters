@@ -32,6 +32,24 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  Widget welcomeText() {
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Text("WELCOME TO", style: smallStyle),
+            Text("FOOD", style: bigStyle),
+            Text("BUSTER", style: bigStyle),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget loginForm() {
     return Padding(
       padding: const EdgeInsets.all(24.0),
@@ -91,22 +109,4 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-}
-
-Widget welcomeText() {
-  return Align(
-    alignment: Alignment.centerLeft,
-    child: Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
-          Text("WELCOME TO", style: smallStyle),
-          Text("FOOD", style: bigStyle),
-          Text("BUSTER", style: bigStyle),
-        ],
-      ),
-    ),
-  );
 }
