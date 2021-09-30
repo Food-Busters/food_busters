@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:food_busters/views/login.dart";
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(),
+      home: const LoginPage(),
     );
   }
 }
@@ -31,11 +32,27 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: const Text("Food Busters"),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: const Text("Home", style: TextStyle(color: Colors.black)),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: () {
+              print("Settings");
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.info),
+            onPressed: () {
+              print("Info");
+            },
+          )
+        ],
       ),
-      body: const Center(child: Text("Home Page")),
+      body: const Center(
+        child: Text("Home Page"),
+      ),
     );
   }
 }

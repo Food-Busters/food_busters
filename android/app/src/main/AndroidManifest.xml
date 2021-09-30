@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.food_busters.food_busters">
    <application
-        android:label="food_busters"
+        android:label="Food Busters"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
