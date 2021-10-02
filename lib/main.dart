@@ -1,5 +1,7 @@
+import 'package:camera/camera.dart';
 import "package:flutter/material.dart";
 import "package:food_busters/views/login.dart";
+import "package:food_busters/views/scanfood.dart";
 
 void main() {
   runApp(const MyApp());
@@ -72,7 +74,19 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
-            bigBtn(onPressed: () {}, content: "SCAN!", padding: 20),
+            bigBtn(
+              onPressed: () async {
+                final cameras = await availableCameras();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ScanPage(cameras: cameras),
+                  ),
+                );
+              },
+              content: "SCAN!",
+              padding: 20,
+            ),
             bigBtn(onPressed: () {}, content: "MY POINTS", padding: 15),
             bigBtn(onPressed: () {}, content: "MY RECORD", padding: 15),
           ],
