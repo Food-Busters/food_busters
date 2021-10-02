@@ -1,4 +1,4 @@
-import 'package:camera/camera.dart';
+import "package:camera/camera.dart";
 import "package:flutter/material.dart";
 import "package:food_busters/views/login.dart";
 import "package:food_busters/views/scanfood.dart";
@@ -69,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 image: DecorationImage(
                   fit: BoxFit.fill,
                   image: NetworkImage(
-                    "https://i.pinimg.com/originals/a9/f8/9e/a9f89e792c741ce4d5b6be989fcb16ba.png",
+                    "https://external-preview.redd.it/4PE-nlL_PdMD5PrFNLnjurHQ1QKPnCvg368LTDnfM-M.png?auto=webp&s=ff4c3fbc1cce1a1856cff36b5d2a40a6d02cc1c3",
                   ),
                 ),
               ),

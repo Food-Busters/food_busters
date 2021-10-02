@@ -40,6 +40,10 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<key>NSCameraUsageDescription</key>
+	<string>Need to Scan your Food</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Idk why I need mic but Library will kill me if I don't</string>
 	<false/>
 </dict>
 </plist>

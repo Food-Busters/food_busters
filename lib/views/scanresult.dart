@@ -12,15 +12,15 @@ class ScanResultPage extends StatefulWidget {
 }
 
 class _ScanResultPageState extends State<ScanResultPage> {
-  String quote = "Loading...";
-
   @override
   void initState() {
     super.initState();
-    setQuote();
   }
 
-  Future<void> setQuote() async {
+  Future<String> getQuote() async {
+    // * SIMULATE SERVER PROCESSING
+    await Future.delayed(const Duration(seconds: 2));
+
     final url = Uri.parse(
       "https://food-waste-quotes.vercel.app/api/quote?percent=${widget.percent}",
     );
@@ -29,13 +29,9 @@ class _ScanResultPageState extends State<ScanResultPage> {
     final resobj = quoteFromJson(response.body);
 
     if (response.statusCode >= 400) {
-      setState(() {
-        quote = "${response.statusCode} ${resobj.error}";
-      });
+      return "${response.statusCode} ${resobj.error}";
     } else {
-      setState(() {
-        quote = resobj.quote ?? "Impossible Error";
-      });
+      return resobj.quote ?? "Impossible Error";
     }
   }
 
@@ -46,16 +42,34 @@ class _ScanResultPageState extends State<ScanResultPage> {
         title: const Text("Scan Result"),
       ),
       body: Center(
-        child: Column(
-          children: [
-            Text(widget.percent < 80 ? "OH NO!" : "WOW!"),
-            Text(
-              "You have eaten${widget.percent < 80 ? " only" : ""} "
-              "${widget.percent}% of this Food!",
-            ),
-            Text(quote),
-          ],
+        child: FutureBuilder<String>(
+          future: getQuote(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              final isBad = widget.percent < 80;
+              final quote = snapshot.data ?? "Impossible Error";
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    isBad ? "Oh no!" : "Wow!",
+                    style: const TextStyle(fontSize: 28),
+                  ),
+                  Text(
+                    quote,
+                    style: const TextStyle(fontSize: 24),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              );
+            }
+            return const CircularProgressIndicator();
+          },
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.share),
+        onPressed: () {},
       ),
     );
   }

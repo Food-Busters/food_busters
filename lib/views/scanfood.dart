@@ -20,7 +20,7 @@ class _ScanPageState extends State<ScanPage> {
   @override
   void initState() {
     super.initState();
-    controller = CameraController(widget.cameras[0], ResolutionPreset.medium);
+    controller = CameraController(widget.cameras[0], ResolutionPreset.veryHigh);
     controller.initialize().then((_) {
       setState(() {});
     });
@@ -38,16 +38,18 @@ class _ScanPageState extends State<ScanPage> {
       appBar: AppBar(
         title: const Text("Scan your Food"),
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(24.0),
-            child: controller.value.isInitialized
-                ? CameraPreview(controller)
-                : const Text("LOADING"),
-          ),
-        ],
-      ),
+      body: controller.value.isInitialized
+          ? Padding(
+              padding: const EdgeInsets.all(24.0),
+              child: CameraPreview(controller),
+            )
+          : Image.asset(
+              "assets/images/loading.png",
+              fit: BoxFit.cover,
+              height: double.infinity,
+              width: double.infinity,
+              alignment: Alignment.center,
+            ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.camera),
         onPressed: () {
