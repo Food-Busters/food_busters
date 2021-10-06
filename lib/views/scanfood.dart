@@ -1,9 +1,7 @@
 import "package:camera/camera.dart";
 import "package:flutter/material.dart";
+import "package:food_busters/components/background.dart";
 import "package:food_busters/views/scanresult.dart";
-
-// ! Temporary, as in production we don't random user's result
-import "dart:math";
 
 class ScanPage extends StatefulWidget {
   const ScanPage({Key? key, required this.cameras}) : super(key: key);
@@ -50,30 +48,20 @@ class _ScanPageState extends State<ScanPage> {
                   padding: const EdgeInsets.all(24.0),
                   child: Center(child: CameraPreview(controller)),
                 ),
-                Image.asset(
-                  "assets/images/clouds/surrounding.png",
-                  fit: BoxFit.cover,
-                  width: double.infinity,
-                  alignment: Alignment.center,
-                ),
+                bgImage("assets/images/clouds/surrounding.png"),
               ],
             )
-          : Image.asset(
-              "assets/images/loading.png",
-              fit: BoxFit.cover,
-              height: double.infinity,
-              width: double.infinity,
-              alignment: Alignment.center,
-            ),
+          : bgImage("assets/images/loading.png"),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.camera),
         onPressed: cameraReady
-            ? () {
+            ? () async {
+                if (controller.value.isTakingPicture) return;
+                final XFile image = await controller.takePicture();
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>
-                        ScanResultPage(percent: Random().nextInt(100) + 1),
+                    builder: (context) => ScanResultPage(image: image),
                   ),
                 );
               }

@@ -70,9 +70,7 @@ flutter:
   assets:
     - assets/images/loading.png
     - assets/images/logo_white.jpg
-    - assets/images/clouds/bottom_Tan.png
-    - assets/images/clouds/surrounding.png
-    - assets/images/clouds/top_Green.png
+    - assets/images/clouds/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

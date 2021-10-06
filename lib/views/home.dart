@@ -1,10 +1,13 @@
 import "package:camera/camera.dart";
 import "package:flutter/material.dart";
+import "package:food_busters/components/background.dart";
 import "package:food_busters/views/scanfood.dart";
 import "package:package_info_plus/package_info_plus.dart";
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key, required this.username}) : super(key: key);
+
+  final String username;
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -53,18 +56,8 @@ class _HomePageState extends State<HomePage> {
       body: Stack(
         children: [
           // * Background
-          Image.asset(
-            "assets/images/clouds/top_Green.png",
-            fit: BoxFit.cover,
-            height: double.infinity,
-            width: double.infinity,
-          ),
-          Image.asset(
-            "assets/images/clouds/bottom_Tan.png",
-            fit: BoxFit.cover,
-            height: double.infinity,
-            width: double.infinity,
-          ),
+          bgImage("assets/images/clouds/top_green.png"),
+          bgImage("assets/images/clouds/bottom_tan.png"),
           // * Actual Contents
           Center(
             child: Column(
@@ -74,13 +67,28 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(16.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.baseline,
-                        textBaseline: TextBaseline.alphabetic,
-                        children: const [
-                          Text("\"GREETINGS, ", style: TextStyle(fontSize: 18)),
-                          Text("USER01\"", style: TextStyle(fontSize: 24)),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.baseline,
+                            textBaseline: TextBaseline.alphabetic,
+                            children: [
+                              const Text(
+                                "\"GREETINGS, ",
+                                style: TextStyle(fontSize: 18),
+                              ),
+                              Text(
+                                "${widget.username}\"",
+                                style: const TextStyle(fontSize: 26),
+                              ),
+                            ],
+                          ),
+                          const Text(
+                            "Have a nice Meal!",
+                            style: TextStyle(fontSize: 16),
+                          ),
                         ],
                       ),
                     ),
@@ -136,7 +144,10 @@ class _HomePageState extends State<HomePage> {
       child: ElevatedButton(
         onPressed: onPressed,
         child: Text(content, style: const TextStyle(fontSize: 26)),
-        style: ElevatedButton.styleFrom(padding: EdgeInsets.all(padding)),
+        style: ElevatedButton.styleFrom(
+          padding: EdgeInsets.all(padding),
+          primary: const Color(0xFFFFC478),
+        ),
       ),
     );
   }

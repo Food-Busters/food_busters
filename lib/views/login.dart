@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:food_busters/components/background.dart";
 import "package:food_busters/views/home.dart";
 import "package:form_field_validator/form_field_validator.dart";
 
@@ -22,12 +23,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: Stack(
         children: [
-          Image.asset(
-            "assets/images/clouds/surrounding.png",
-            fit: BoxFit.cover,
-            width: double.infinity,
-            alignment: Alignment.center,
-          ),
+          bgImage("assets/images/clouds/surrounding.png"),
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -53,7 +49,7 @@ class _LoginPageState extends State<LoginPage> {
           children: const [
             Text("WELCOME TO", style: smallStyle),
             Text("FOOD", style: bigStyle),
-            Text("BUSTER", style: bigStyle),
+            Text("BUSTERS", style: bigStyle),
           ],
         ),
       ),
@@ -79,7 +75,8 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     TextFormField(
                       validator: RequiredValidator(
-                          errorText: "Username cannot be null"),
+                        errorText: "Username cannot be null",
+                      ),
                       onSaved: (String? uname) {
                         username = uname ?? "";
                       },
@@ -91,7 +88,8 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     TextFormField(
                       validator: RequiredValidator(
-                          errorText: "Password cannot be null"),
+                        errorText: "Password cannot be null",
+                      ),
                       obscureText: true,
                       onSaved: (String? pw) {
                         password = pw ?? "";
@@ -115,7 +113,9 @@ class _LoginPageState extends State<LoginPage> {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const HomePage()),
+                              builder: (context) =>
+                                  HomePage(username: username),
+                            ),
                           );
                         }
                       },
