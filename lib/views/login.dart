@@ -20,14 +20,24 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            welcomeText(),
-            loginForm(),
-          ],
-        ),
+      body: Stack(
+        children: [
+          Image.asset(
+            "assets/images/clouds/surrounding.png",
+            fit: BoxFit.cover,
+            width: double.infinity,
+            alignment: Alignment.center,
+          ),
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                welcomeText(),
+                loginForm(),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -52,59 +62,81 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget loginForm() {
     return Padding(
-      padding: const EdgeInsets.all(24.0),
-      child: Form(
-        key: formKey,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              "Username",
-              style: TextStyle(fontSize: 20),
-            ),
-            TextFormField(
-              validator:
-                  RequiredValidator(errorText: "Username cannot be null"),
-              onSaved: (String? uname) {
-                username = uname ?? "";
-              },
-            ),
-            const SizedBox(height: 12),
-            const Text(
-              "Password",
-              style: TextStyle(fontSize: 20),
-            ),
-            TextFormField(
-              validator:
-                  RequiredValidator(errorText: "Password cannot be null"),
-              obscureText: true,
-              onSaved: (String? pw) {
-                password = pw ?? "";
-              },
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 8.0),
-              child: Text(
-                "Forget Password?",
-                style: TextStyle(fontSize: 12),
+      padding: const EdgeInsets.all(12.0),
+      child: Container(
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Column(
+            children: [
+              Form(
+                key: formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "Username",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    TextFormField(
+                      validator: RequiredValidator(
+                          errorText: "Username cannot be null"),
+                      onSaved: (String? uname) {
+                        username = uname ?? "";
+                      },
+                    ),
+                    const SizedBox(height: 12),
+                    const Text(
+                      "Password",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    TextFormField(
+                      validator: RequiredValidator(
+                          errorText: "Password cannot be null"),
+                      obscureText: true,
+                      onSaved: (String? pw) {
+                        password = pw ?? "";
+                      },
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      child: Text(
+                        "Forget Password?",
+                        style: TextStyle(fontSize: 12),
+                      ),
+                    ),
+                    ElevatedButton(
+                      child: const Text(
+                        ">",
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      onPressed: () async {
+                        if (formKey.currentState?.validate() ?? false) {
+                          formKey.currentState?.save();
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const HomePage()),
+                          );
+                        }
+                      },
+                    ),
+                  ],
+                ),
               ),
-            ),
-            ElevatedButton(
-              child: const Text(
-                ">",
-                style: TextStyle(fontSize: 20),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: Container(color: Colors.grey, height: 2),
               ),
-              onPressed: () async {
-                if (formKey.currentState?.validate() ?? false) {
-                  formKey.currentState?.save();
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => const HomePage()),
-                  );
-                }
-              },
-            ),
-          ],
+              ElevatedButton(
+                onPressed: () {},
+                child: const Text("Create new Account"),
+              ),
+            ],
+          ),
+        ),
+        decoration: const BoxDecoration(
+          color: Color(0xFFBBDFC8),
+          borderRadius: BorderRadius.all(Radius.circular(16)),
         ),
       ),
     );

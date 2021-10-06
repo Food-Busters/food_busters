@@ -39,6 +39,12 @@ class _HomePageState extends State<HomePage> {
                   "assets/images/logo_white.jpg",
                   height: 80,
                 ),
+                children: [
+                  const FlutterLogo(
+                    style: FlutterLogoStyle.horizontal,
+                    size: 30,
+                  ),
+                ],
               );
             },
           )
@@ -59,7 +65,7 @@ class _HomePageState extends State<HomePage> {
             height: double.infinity,
             width: double.infinity,
           ),
-          // * Contents
+          // * Actual Contents
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
