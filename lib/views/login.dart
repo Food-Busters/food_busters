@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import "package:food_busters/main.dart";
+import "package:food_busters/views/home.dart";
 import "package:form_field_validator/form_field_validator.dart";
 
 const smallStyle = TextStyle(fontSize: 20);
@@ -99,7 +99,7 @@ class _LoginPageState extends State<LoginPage> {
                   formKey.currentState?.save();
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => const MyHomePage()),
+                    MaterialPageRoute(builder: (context) => const HomePage()),
                   );
                 }
               },

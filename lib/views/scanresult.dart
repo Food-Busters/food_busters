@@ -22,16 +22,15 @@ class _ScanResultPageState extends State<ScanResultPage> {
     await Future.delayed(const Duration(seconds: 2));
 
     final url = Uri.parse(
-      "https://food-waste-quotes.vercel.app/api/quote?percent=${widget.percent}",
+      "https://food-waste-quotes.vercel.app/api/quote?percent=${widget.percent}&lang=en",
     );
     final response = await http.get(url);
 
-    final resobj = quoteFromJson(response.body);
-
     if (response.statusCode >= 400) {
-      return "${response.statusCode} ${resobj.error}";
+      return "${response.statusCode} ${response.body}";
     } else {
-      return resobj.quote ?? "Impossible Error";
+      final resobj = quoteFromJson(response.body);
+      return resobj.quote;
     }
   }
 

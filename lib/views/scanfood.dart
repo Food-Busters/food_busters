@@ -17,6 +17,8 @@ class ScanPage extends StatefulWidget {
 class _ScanPageState extends State<ScanPage> {
   late CameraController controller;
 
+  bool get cameraReady => controller.value.isInitialized;
+
   @override
   void initState() {
     super.initState();
@@ -35,13 +37,26 @@ class _ScanPageState extends State<ScanPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         title: const Text("Scan your Food"),
       ),
-      body: controller.value.isInitialized
-          ? Padding(
-              padding: const EdgeInsets.all(24.0),
-              child: CameraPreview(controller),
+      body: cameraReady
+          ? Stack(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(24.0),
+                  child: Center(child: CameraPreview(controller)),
+                ),
+                Image.asset(
+                  "assets/images/clouds/surrounding.png",
+                  fit: BoxFit.cover,
+                  width: double.infinity,
+                  alignment: Alignment.center,
+                ),
+              ],
             )
           : Image.asset(
               "assets/images/loading.png",
@@ -52,17 +67,17 @@ class _ScanPageState extends State<ScanPage> {
             ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.camera),
-        onPressed: () {
-          if (controller.value.isInitialized) {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) =>
-                    ScanResultPage(percent: Random().nextInt(100) + 1),
-              ),
-            );
-          }
-        },
+        onPressed: cameraReady
+            ? () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        ScanResultPage(percent: Random().nextInt(100) + 1),
+                  ),
+                );
+              }
+            : null,
       ),
     );
   }
