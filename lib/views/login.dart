@@ -105,9 +105,9 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     ElevatedButton(
-                      child: const Text(
-                        ">",
-                        style: TextStyle(fontSize: 20),
+                      child: Text(
+                        text.login,
+                        style: const TextStyle(fontSize: 20),
                       ),
                       style: loginRegisterBtn,
                       onPressed: () async {

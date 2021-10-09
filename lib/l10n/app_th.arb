@@ -9,5 +9,22 @@
     "password_fail": "โปรดใส่รหัสผ่าน",
     "forget_password": "ลืมรหัสผ่าน?",
     "create_new_account": "สร้างบัญชีใหม่",
-    "register": "ลงทะเบียน"
+    "login": "เข้าสู่ระบบ",
+    "register": "ลงทะเบียน",
+    "home": "หน้าหลัก",
+    "greetings": "สวัสดี",
+    "have_a_nice_meal": "ทานอาหารให้อร่อยนะ!",
+    "settings": "การตั้งค่า",
+    "language": "ภาษา",
+    "current_language": "ภาษาไทย",
+    "english": "ภาษาอังกฤษ",
+    "thai": "ภาษาไทย",
+    "scan_your_food": "สแกนอาหารของคุณ",
+    "scan_result": "ผลลัพธ์การสแกน",
+    "you_have_eaten": "คุณได้กินไป",
+    "of_the_dish": "ของทั้งจาน",
+    "oh_no": "ไม่นะ!",
+    "wow": "ว้าว",
+    "learn_more": "เรียนรู้เพิ่มเติม",
+    "pollution_produced": "มลพิษที่เกิดขึ้นคือคาร์บอนไดออกไซต์ {pollution} กรัม!"
 }

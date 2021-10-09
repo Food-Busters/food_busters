@@ -1,4 +1,6 @@
 import "package:flutter/material.dart";
+import "package:flutter_gen/gen_l10n/app_localizations.dart";
+import "package:food_busters/main.dart";
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -8,29 +10,36 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  String language = "English";
-  final languageOptions = ["English", "Thai"];
-
   @override
   Widget build(BuildContext context) {
+    final text = AppLocalizations.of(context)!;
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Settings"),
+        title: Text(text.settings),
         backgroundColor: const Color(0xFF42AE93),
       ),
       body: ListView(
         children: [
           ListTile(
-            title: const Text("Language"),
+            title: Text(text.language),
             trailing: DropdownButton(
-              value: language,
-              items: languageOptions
-                  .map((item) =>
-                      DropdownMenuItem(value: item, child: Text(item)))
+              value: text.current_language,
+              items: [text.english, text.thai]
+                  .map(
+                    (item) => DropdownMenuItem(value: item, child: Text(item)),
+                  )
                   .toList(),
               onChanged: (value) {
+                if (value == text.current_language) return;
                 setState(() {
-                  language = value as String;
+                  if (value == "Thai") {
+                    MyApp.of(context).setLocale("th");
+                  } else if (value == "ภาษาอังกฤษ") {
+                    MyApp.of(context).setLocale("en");
+                  } else {
+                    throw "ERROR: Unknown Language";
+                  }
                 });
               },
             ),

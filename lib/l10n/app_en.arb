@@ -9,5 +9,22 @@
     "password_fail": "Please Input Password",
     "forget_password": "Forget Password?",
     "create_new_account": "Create New Account",
-    "register": "REGISTER"
+    "login": "Login",
+    "register": "REGISTER",
+    "home": "Home",
+    "greetings": "GREETINGS",
+    "have_a_nice_meal": "Have a nice Meal!",
+    "settings": "Settings",
+    "language": "Language",
+    "current_language": "English",
+    "english": "English",
+    "thai": "Thai",
+    "scan_your_food": "Scan your Food",
+    "scan_result": "Scan Result",
+    "you_have_eaten": "You have eaten",
+    "of_the_dish": "of the dish",
+    "oh_no": "Oh no!",
+    "wow": "Wow!",
+    "learn_more": "Learn more",
+    "pollution_produced": "Pollution produced is {pollution} grams of CO2!"
 }

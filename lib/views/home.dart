@@ -4,6 +4,7 @@ import "package:food_busters/components/background.dart";
 import "package:food_busters/views/scanfood.dart";
 import "package:food_busters/views/settings.dart";
 import "package:package_info_plus/package_info_plus.dart";
+import "package:flutter_gen/gen_l10n/app_localizations.dart";
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, required this.username}) : super(key: key);
@@ -17,13 +18,15 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    final text = AppLocalizations.of(context)!;
+
     return Scaffold(
       backgroundColor: const Color(0xFFBCDFCB),
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: const Text("Home", style: TextStyle(color: Colors.black)),
+        title: Text(text.home, style: const TextStyle(color: Colors.black)),
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),
@@ -83,9 +86,9 @@ class _HomePageState extends State<HomePage> {
                             crossAxisAlignment: CrossAxisAlignment.baseline,
                             textBaseline: TextBaseline.alphabetic,
                             children: [
-                              const Text(
-                                "\"GREETINGS, ",
-                                style: TextStyle(fontSize: 18),
+                              Text(
+                                "\"${text.greetings}, ",
+                                style: const TextStyle(fontSize: 18),
                               ),
                               Text(
                                 "${widget.username}\"",
@@ -93,9 +96,9 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ],
                           ),
-                          const Text(
-                            "Have a nice Meal!",
-                            style: TextStyle(fontSize: 16),
+                          Text(
+                            text.have_a_nice_meal,
+                            style: const TextStyle(fontSize: 16),
                           ),
                         ],
                       ),

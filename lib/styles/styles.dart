@@ -5,5 +5,5 @@ final loginRegisterBtn = ElevatedButton.styleFrom(
   primary: const Color(0xFFF0E5D8),
 );
 
-const smallStyle = TextStyle(fontSize: 20);
-const bigStyle = TextStyle(fontSize: 28);
+const smallStyle = TextStyle(fontSize: 20, fontWeight: FontWeight.bold);
+const bigStyle = TextStyle(fontSize: 28, fontWeight: FontWeight.bold);

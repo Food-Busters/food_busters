@@ -5,6 +5,7 @@ import "package:food_busters/components/background.dart";
 import "package:food_busters/models/quote.dart";
 import "package:food_busters/views/pollution_info.dart";
 import "package:http/http.dart" as http;
+import "package:flutter_gen/gen_l10n/app_localizations.dart";
 
 // ! Temporary, as in production we don't random user's result
 import "dart:math";
@@ -46,11 +47,13 @@ class _ScanResultPageState extends State<ScanResultPage> {
 
   @override
   Widget build(BuildContext context) {
+    final text = AppLocalizations.of(context)!;
+
     return Scaffold(
       backgroundColor: const Color(0xFFF1E5D9),
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: const Text("Scan Result"),
+        title: Text(text.scan_result),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
@@ -75,11 +78,11 @@ class _ScanResultPageState extends State<ScanResultPage> {
                         ),
                       ),
                       Text(
-                        "You have eaten${percent < 40 ? " only" : ""} "
-                        "$percent% of the dish...",
+                        "${text.you_have_eaten}${percent < 40 ? " only" : ""} "
+                        "$percent% ${text.of_the_dish}...",
                       ),
                       Text(
-                        isBad ? "Oh no!" : "Wow!",
+                        isBad ? text.oh_no : text.wow,
                         style: const TextStyle(fontSize: 28),
                       ),
                       Text(
@@ -99,9 +102,9 @@ class _ScanResultPageState extends State<ScanResultPage> {
                               ),
                             );
                           },
-                          child: const Text(
-                            "Learn more",
-                            style: TextStyle(fontSize: 22),
+                          child: Text(
+                            text.learn_more,
+                            style: const TextStyle(fontSize: 22),
                           ),
                           style: ElevatedButton.styleFrom(
                             padding: const EdgeInsets.all(12.0),

@@ -7,8 +7,36 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  _MyAppState createState() => _MyAppState();
+
+  // https://stackoverflow.com/questions/65307961/button-to-change-the-language-flutter
+  static _MyAppState of(BuildContext context) =>
+      context.findAncestorStateOfType<_MyAppState>()!;
+}
+
+class _MyAppState extends State<MyApp> {
+  Locale _locale =
+      // https://stackoverflow.com/questions/50923906/how-to-get-timezone-language-and-county-id-in-flutter-by-the-location-of-device
+      WidgetsBinding.instance?.window.locales[0] ?? const Locale("en");
+
+  late String _localeStr;
+
+  @override
+  void initState() {
+    super.initState();
+    _localeStr = _locale.toString();
+  }
+
+  void setLocale(String value) {
+    setState(() {
+      _localeStr = value;
+      _locale = Locale(value);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +45,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.orange,
         scaffoldBackgroundColor: const Color(0xFFF4E3D8),
+        fontFamily: _localeStr.contains("th") ? "Anakotmai" : null,
       ),
       home: const LoginPage(),
       localizationsDelegates: const [
@@ -29,6 +58,7 @@ class MyApp extends StatelessWidget {
         Locale("en"),
         Locale("th"),
       ],
+      locale: _locale,
     );
   }
 }

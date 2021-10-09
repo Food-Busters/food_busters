@@ -2,6 +2,7 @@ import "package:camera/camera.dart";
 import "package:flutter/material.dart";
 import "package:food_busters/components/background.dart";
 import "package:food_busters/views/scanresult.dart";
+import "package:flutter_gen/gen_l10n/app_localizations.dart";
 
 class ScanPage extends StatefulWidget {
   const ScanPage({Key? key, required this.cameras}) : super(key: key);
@@ -34,12 +35,14 @@ class _ScanPageState extends State<ScanPage> {
 
   @override
   Widget build(BuildContext context) {
+    final text = AppLocalizations.of(context)!;
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: const Text("Scan your Food"),
+        title: Text(text.scan_your_food),
       ),
       body: cameraReady
           ? Stack(
