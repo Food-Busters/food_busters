@@ -2,6 +2,7 @@ import "package:camera/camera.dart";
 import "package:flutter/material.dart";
 import "package:food_busters/components/background.dart";
 import "package:food_busters/views/scanfood.dart";
+import "package:food_busters/views/settings.dart";
 import "package:package_info_plus/package_info_plus.dart";
 
 class HomePage extends StatefulWidget {
@@ -26,7 +27,14 @@ class _HomePageState extends State<HomePage> {
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SettingsPage(),
+                ),
+              );
+            },
           ),
           IconButton(
             icon: const Icon(Icons.info),

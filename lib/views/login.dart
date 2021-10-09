@@ -106,6 +106,7 @@ class _LoginPageState extends State<LoginPage> {
                         ">",
                         style: TextStyle(fontSize: 20),
                       ),
+                      style: loginRegisterBtn,
                       onPressed: () async {
                         if (formKey.currentState?.validate() ?? false) {
                           formKey.currentState?.save();

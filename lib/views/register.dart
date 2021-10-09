@@ -20,6 +20,11 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
       body: Stack(
         children: [
           bgImage("assets/images/clouds/surrounding.png"),
@@ -125,6 +130,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       onPressed: () async {
                         if (formKey.currentState?.validate() ?? false) {
                           formKey.currentState?.save();
+                          Navigator.of(context).pop();
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
