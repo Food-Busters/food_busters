@@ -2,19 +2,19 @@ import "package:flutter/material.dart";
 import "package:food_busters/components/background.dart";
 import "package:food_busters/styles/styles.dart";
 import "package:food_busters/views/home.dart";
-import "package:food_busters/views/register.dart";
 import "package:form_field_validator/form_field_validator.dart";
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({Key? key}) : super(key: key);
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _RegisterPageState createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   final formKey = GlobalKey<FormState>();
   String username = "";
+  String email = "";
   String password = "";
 
   @override
@@ -27,8 +27,8 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                welcomeText(),
-                loginForm(),
+                headerText(),
+                registerForm(),
               ],
             ),
           ),
@@ -37,7 +37,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget welcomeText() {
+  Widget headerText() {
     return Align(
       alignment: Alignment.centerLeft,
       child: Padding(
@@ -45,17 +45,23 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            Text("WELCOME TO", style: smallStyle),
-            Text("FOOD", style: bigStyle),
-            Text("BUSTERS", style: bigStyle),
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.baseline,
+              textBaseline: TextBaseline.alphabetic,
+              children: const [
+                Text("FOOD BUSTERS", style: bigStyle),
+                Text("'s", style: smallStyle),
+              ],
+            ),
+            const Text("Application", style: smallStyle),
           ],
         ),
       ),
     );
   }
 
-  Widget loginForm() {
+  Widget registerForm() {
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: Container(
@@ -68,6 +74,21 @@ class _LoginPageState extends State<LoginPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    const Text(
+                      "Email",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    TextFormField(
+                      validator: MultiValidator([
+                        RequiredValidator(errorText: "Please input Email"),
+                        EmailValidator(errorText: "Invalid Email")
+                      ]),
+                      keyboardType: TextInputType.emailAddress,
+                      onSaved: (String? em) {
+                        email = em ?? "";
+                      },
+                    ),
+                    const SizedBox(height: 12),
                     const Text(
                       "Username",
                       style: TextStyle(fontSize: 20),
@@ -94,18 +115,13 @@ class _LoginPageState extends State<LoginPage> {
                         password = pw ?? "";
                       },
                     ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 8.0),
-                      child: Text(
-                        "Forget Password?",
-                        style: TextStyle(fontSize: 12),
-                      ),
-                    ),
+                    const SizedBox(height: 12),
                     ElevatedButton(
                       child: const Text(
-                        ">",
+                        "REGISTER",
                         style: TextStyle(fontSize: 20),
                       ),
+                      style: loginRegisterBtn,
                       onPressed: () async {
                         if (formKey.currentState?.validate() ?? false) {
                           formKey.currentState?.save();
@@ -121,22 +137,6 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ],
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8),
-                child: Container(color: Colors.grey, height: 2),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const RegisterPage(),
-                    ),
-                  );
-                },
-                style: loginRegisterBtn,
-                child: const Text("Create new Account"),
               ),
             ],
           ),
