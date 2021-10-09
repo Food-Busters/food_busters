@@ -1,0 +1,13 @@
+{
+    "helloWorld": "สวัสดีชาวโลก!",
+    "username": "ชื่อผู้ใช้",
+    "email": "อีเมล",
+    "password": "รหัสผ่าน",
+    "username_fail": "โปรดใส่ชื่อผู้ใช้",
+    "email_null": "โปรดใส่อีเมล",
+    "email_invalid": "รูปแบบอีเมลไม่ถูกต้อง",
+    "password_fail": "โปรดใส่รหัสผ่าน",
+    "forget_password": "ลืมรหัสผ่าน?",
+    "create_new_account": "สร้างบัญชีใหม่",
+    "register": "ลงทะเบียน"
+}

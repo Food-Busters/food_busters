@@ -3,6 +3,7 @@ import "package:food_busters/components/background.dart";
 import "package:food_busters/styles/styles.dart";
 import "package:food_busters/views/home.dart";
 import "package:form_field_validator/form_field_validator.dart";
+import "package:flutter_gen/gen_l10n/app_localizations.dart";
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -67,6 +68,8 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   Widget registerForm() {
+    final text = AppLocalizations.of(context)!;
+
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: Container(
@@ -79,14 +82,18 @@ class _RegisterPageState extends State<RegisterPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      "Email",
-                      style: TextStyle(fontSize: 20),
+                    Text(
+                      text.email,
+                      style: const TextStyle(fontSize: 20),
                     ),
                     TextFormField(
                       validator: MultiValidator([
-                        RequiredValidator(errorText: "Please input Email"),
-                        EmailValidator(errorText: "Invalid Email")
+                        RequiredValidator(
+                          errorText: text.email_null,
+                        ),
+                        EmailValidator(
+                          errorText: text.email_invalid,
+                        )
                       ]),
                       keyboardType: TextInputType.emailAddress,
                       onSaved: (String? em) {
@@ -94,26 +101,25 @@ class _RegisterPageState extends State<RegisterPage> {
                       },
                     ),
                     const SizedBox(height: 12),
-                    const Text(
-                      "Username",
-                      style: TextStyle(fontSize: 20),
+                    Text(
+                      text.username,
+                      style: const TextStyle(fontSize: 20),
                     ),
                     TextFormField(
-                      validator: RequiredValidator(
-                        errorText: "Username cannot be null",
-                      ),
+                      validator:
+                          RequiredValidator(errorText: text.username_fail),
                       onSaved: (String? uname) {
                         username = uname ?? "";
                       },
                     ),
                     const SizedBox(height: 12),
-                    const Text(
-                      "Password",
-                      style: TextStyle(fontSize: 20),
+                    Text(
+                      text.password,
+                      style: const TextStyle(fontSize: 20),
                     ),
                     TextFormField(
                       validator: RequiredValidator(
-                        errorText: "Password cannot be null",
+                        errorText: text.password_fail,
                       ),
                       obscureText: true,
                       onSaved: (String? pw) {
@@ -122,9 +128,9 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     const SizedBox(height: 12),
                     ElevatedButton(
-                      child: const Text(
-                        "REGISTER",
-                        style: TextStyle(fontSize: 20),
+                      child: Text(
+                        text.register,
+                        style: const TextStyle(fontSize: 20),
                       ),
                       style: loginRegisterBtn,
                       onPressed: () async {

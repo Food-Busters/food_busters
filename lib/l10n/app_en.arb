@@ -1,0 +1,13 @@
+{
+    "helloWorld": "Hello World!",
+    "username": "Username",
+    "email": "Email",
+    "password": "Password",
+    "username_fail": "Please Input Username",
+    "email_null": "Please Input Email",
+    "email_invalid": "Invalid Email",
+    "password_fail": "Please Input Password",
+    "forget_password": "Forget Password?",
+    "create_new_account": "Create New Account",
+    "register": "REGISTER"
+}

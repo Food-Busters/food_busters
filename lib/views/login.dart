@@ -4,6 +4,7 @@ import "package:food_busters/styles/styles.dart";
 import "package:food_busters/views/home.dart";
 import "package:food_busters/views/register.dart";
 import "package:form_field_validator/form_field_validator.dart";
+import "package:flutter_gen/gen_l10n/app_localizations.dart";
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -56,6 +57,8 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget loginForm() {
+    final text = AppLocalizations.of(context)!;
+
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: Container(
@@ -68,37 +71,37 @@ class _LoginPageState extends State<LoginPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      "Username",
-                      style: TextStyle(fontSize: 20),
+                    Text(
+                      text.username,
+                      style: const TextStyle(fontSize: 20),
                     ),
                     TextFormField(
                       validator: RequiredValidator(
-                        errorText: "Username cannot be null",
+                        errorText: text.username_fail,
                       ),
                       onSaved: (String? uname) {
                         username = uname ?? "";
                       },
                     ),
                     const SizedBox(height: 12),
-                    const Text(
-                      "Password",
-                      style: TextStyle(fontSize: 20),
+                    Text(
+                      text.password,
+                      style: const TextStyle(fontSize: 20),
                     ),
                     TextFormField(
                       validator: RequiredValidator(
-                        errorText: "Password cannot be null",
+                        errorText: text.password_fail,
                       ),
                       obscureText: true,
                       onSaved: (String? pw) {
                         password = pw ?? "";
                       },
                     ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Text(
-                        "Forget Password?",
-                        style: TextStyle(fontSize: 12),
+                        text.forget_password,
+                        style: const TextStyle(fontSize: 12),
                       ),
                     ),
                     ElevatedButton(
@@ -137,7 +140,7 @@ class _LoginPageState extends State<LoginPage> {
                   );
                 },
                 style: loginRegisterBtn,
-                child: const Text("Create new Account"),
+                child: Text(text.create_new_account),
               ),
             ],
           ),
