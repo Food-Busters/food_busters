@@ -28,7 +28,7 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
       body: Stack(
         children: [
-          bgImage("assets/images/clouds/surrounding.png"),
+          bgImage("clouds/surrounding_orange.png"),
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

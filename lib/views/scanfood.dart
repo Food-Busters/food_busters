@@ -51,10 +51,10 @@ class _ScanPageState extends State<ScanPage> {
                   padding: const EdgeInsets.all(24.0),
                   child: Center(child: CameraPreview(controller)),
                 ),
-                bgImage("assets/images/clouds/surrounding.png"),
+                bgImage("clouds/surrounding_orange.png"),
               ],
             )
-          : bgImage("assets/images/loading.png"),
+          : bgImage("loading.png"),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.camera),
         onPressed: cameraReady

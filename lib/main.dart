@@ -24,6 +24,7 @@ class _MyAppState extends State<MyApp> {
       WidgetsBinding.instance?.window.locales[0] ?? const Locale("en");
 
   late String _localeStr;
+  String get localeStrSimp => _localeStr.contains("en") ? "en" : "th";
 
   @override
   void initState() {
@@ -45,7 +46,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.orange,
         scaffoldBackgroundColor: const Color(0xFFF4E3D8),
-        fontFamily: _localeStr.contains("th") ? "Anakotmai" : null,
+        fontFamily: "Kanit",
       ),
       home: const LoginPage(),
       localizationsDelegates: const [

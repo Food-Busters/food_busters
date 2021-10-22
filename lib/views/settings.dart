@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:food_busters/main.dart";
+import "package:food_busters/views/login.dart";
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -22,6 +23,7 @@ class _SettingsPageState extends State<SettingsPage> {
       body: ListView(
         children: [
           ListTile(
+            leading: const Icon(Icons.language),
             title: Text(text.language),
             trailing: DropdownButton(
               value: text.current_language,
@@ -43,6 +45,19 @@ class _SettingsPageState extends State<SettingsPage> {
                 });
               },
             ),
+          ),
+          ListTile(
+            leading: const Icon(Icons.logout),
+            title: Text(text.logout),
+            onTap: () {
+              Navigator.of(context).pop();
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const LoginPage(),
+                ),
+              );
+            },
           ),
         ],
       ),

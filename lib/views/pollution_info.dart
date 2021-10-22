@@ -26,7 +26,7 @@ class _PollutionInfoState extends State<PollutionInfo> {
       ),
       body: Stack(
         children: [
-          bgImage("assets/images/clouds/top_orange.png"),
+          bgImage("clouds/top_orange.png"),
           Center(
             child: Padding(
               padding: const EdgeInsets.all(16.0),

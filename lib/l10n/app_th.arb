@@ -19,6 +19,7 @@
     "current_language": "ภาษาไทย",
     "english": "ภาษาอังกฤษ",
     "thai": "ภาษาไทย",
+    "logout": "ล็อกเอาท์",
     "scan_your_food": "สแกนอาหารของคุณ",
     "scan_result": "ผลลัพธ์การสแกน",
     "you_have_eaten": "คุณได้กินไป",
@@ -26,5 +27,12 @@
     "oh_no": "ไม่นะ!",
     "wow": "ว้าว",
     "learn_more": "เรียนรู้เพิ่มเติม",
-    "pollution_produced": "มลพิษที่เกิดขึ้นคือคาร์บอนไดออกไซต์ {pollution} กรัม!"
+    "pollution_produced": "มลพิษที่เกิดขึ้นคือคาร์บอนไดออกไซต์ {pollution} กรัม!",
+    "points": "แต้ม",
+    "promotion": "โปรโมชั่น",
+    "premium": "พรีเมี่ยม",
+    "oops": "อ๊ะ!",
+    "premium_only": "ฟีเจอร์นี้มีเฉพาะผู้ใช้พรีเมี่ยมเท่านั้น ;)",
+    "what_is_premium": "อะไรคือพรีเมี่ยม?",
+    "window_close": "ปิด"
 }

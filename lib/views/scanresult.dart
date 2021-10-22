@@ -2,6 +2,7 @@ import "dart:io";
 import "package:camera/camera.dart";
 import "package:flutter/material.dart";
 import "package:food_busters/components/background.dart";
+import "package:food_busters/main.dart";
 import "package:food_busters/models/quote.dart";
 import "package:food_busters/views/pollution_info.dart";
 import "package:http/http.dart" as http;
@@ -33,7 +34,7 @@ class _ScanResultPageState extends State<ScanResultPage> {
     percent = Random().nextInt(100) + 1;
 
     final url = Uri.parse(
-      "https://food-waste-quotes.vercel.app/api/quote?percent=${percent}&lang=en",
+      "https://food-waste-quotes.vercel.app/api/quote?percent=${percent}&lang=${MyApp.of(context).localeStrSimp}",
     );
     final response = await http.get(url);
 
@@ -59,7 +60,7 @@ class _ScanResultPageState extends State<ScanResultPage> {
       ),
       body: Stack(
         children: [
-          bgImage("assets/images/clouds/top_orange.png"),
+          bgImage("clouds/top_orange.png"),
           Center(
             child: FutureBuilder<String>(
               future: getQuote(),

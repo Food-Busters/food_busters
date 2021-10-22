@@ -19,6 +19,7 @@
     "current_language": "English",
     "english": "English",
     "thai": "Thai",
+    "logout": "Logout",
     "scan_your_food": "Scan your Food",
     "scan_result": "Scan Result",
     "you_have_eaten": "You have eaten",
@@ -26,5 +27,12 @@
     "oh_no": "Oh no!",
     "wow": "Wow!",
     "learn_more": "Learn more",
-    "pollution_produced": "Pollution produced is {pollution} grams of CO2!"
+    "pollution_produced": "Pollution produced is {pollution} grams of CO2!",
+    "points": "pts",
+    "promotion": "Promotion",
+    "premium": "Premium",
+    "oops": "OOPS!",
+    "premium_only": "This feature only available for premium users ;)",
+    "what_is_premium": "What's premium?",
+    "window_close": "Close"
 }

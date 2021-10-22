@@ -1,6 +1,7 @@
 import "package:camera/camera.dart";
 import "package:flutter/material.dart";
 import "package:food_busters/components/background.dart";
+import "package:food_busters/views/points/points.dart";
 import "package:food_busters/views/scanfood.dart";
 import "package:food_busters/views/settings.dart";
 import "package:package_info_plus/package_info_plus.dart";
@@ -67,8 +68,8 @@ class _HomePageState extends State<HomePage> {
       body: Stack(
         children: [
           // * Background
-          bgImage("assets/images/clouds/top_green.png"),
-          bgImage("assets/images/clouds/bottom_tan.png"),
+          bgImage("clouds/top_green.png"),
+          bgImage("clouds/bottom_tan.png"),
           // * Actual Contents
           Center(
             child: Column(
@@ -133,7 +134,19 @@ class _HomePageState extends State<HomePage> {
                       content: "SCAN!",
                       padding: 20,
                     ),
-                    bigBtn(onPressed: () {}, content: "MY POINTS", padding: 15),
+                    bigBtn(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                const MyPoints(userID: "1234567890"),
+                          ),
+                        );
+                      },
+                      content: "MY POINTS",
+                      padding: 15,
+                    ),
                     bigBtn(onPressed: () {}, content: "MY RECORD", padding: 15),
                   ],
                 ),

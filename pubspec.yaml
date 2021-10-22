@@ -15,7 +15,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.0+6
+version: 1.0.0+10
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -41,6 +41,7 @@ dependencies:
   http: ^0.13.3
   package_info_plus: ^1.3.0
   intl: ^0.17.0
+  flutter_toggle_tab: ^1.1.7
 
 dev_dependencies:
   flutter_test:
@@ -89,16 +90,25 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Anakotmai
+    # - family: Anakotmai
+    #   fonts:
+    #     - asset: assets/fonts/Anakotmai-Light.ttf
+    #       weight: 300
+    #     - asset: assets/fonts/Anakotmai-Medium.ttf
+    #       weight: 400
+    #     - asset: assets/fonts/Anakotmai-Bold.ttf
+    #       weight: 700
+    - family: Kanit
       fonts:
-        - asset: assets/fonts/Anakotmai-Light.ttf
+        - asset: assets/fonts/Kanit-Light.ttf
           weight: 300
-        - asset: assets/fonts/Anakotmai-Medium.ttf
+        - asset: assets/fonts/Kanit-Medium.ttf
           weight: 400
-        - asset: assets/fonts/Anakotmai-Bold.ttf
+        - asset: assets/fonts/Kanit-Bold.ttf
           weight: 700
 
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
 
+  # intl
   generate: true
