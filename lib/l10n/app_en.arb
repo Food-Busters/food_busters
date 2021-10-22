@@ -29,10 +29,17 @@
     "learn_more": "Learn more",
     "pollution_produced": "Pollution produced is {pollution} grams of CO2!",
     "points": "pts",
+    "my_points": "MY POINTS",
     "promotion": "Promotion",
     "premium": "Premium",
     "oops": "OOPS!",
     "premium_only": "This feature only available for premium users ;)",
     "what_is_premium": "What's premium?",
-    "window_close": "Close"
+    "window_close": "Close",
+    "for_you": "For You",
+    "search": "Search",
+    "exchange": "Exchange",
+    "exchange_complete": "Completed! Time to enjoy.",
+    "n_days_pass": "{n} days pass",
+    "press_to_exchange": "Press to Exchange"
 }
