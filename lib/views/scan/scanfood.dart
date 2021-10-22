@@ -1,7 +1,7 @@
 import "package:camera/camera.dart";
 import "package:flutter/material.dart";
 import "package:food_busters/components/background.dart";
-import "package:food_busters/views/scanresult.dart";
+import "package:food_busters/views/scan/scanresult.dart";
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
 
 class ScanPage extends StatefulWidget {

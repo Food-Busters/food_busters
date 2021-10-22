@@ -2,7 +2,7 @@ import "package:camera/camera.dart";
 import "package:flutter/material.dart";
 import "package:food_busters/components/background.dart";
 import "package:food_busters/views/points/points.dart";
-import "package:food_busters/views/scanfood.dart";
+import "package:food_busters/views/scan/scanfood.dart";
 import "package:food_busters/views/settings.dart";
 import "package:package_info_plus/package_info_plus.dart";
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
