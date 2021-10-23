@@ -1,9 +1,9 @@
-import "dart:io";
 import "package:camera/camera.dart";
 import "package:flutter/material.dart";
 import "package:food_busters/components/background.dart";
 import "package:food_busters/main.dart";
 import "package:food_busters/models/quote.dart";
+import "package:food_busters/styles/styles.dart";
 import "package:food_busters/views/scan/pollution_info.dart";
 import "package:http/http.dart" as http;
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
@@ -71,15 +71,16 @@ class _ScanResultPageState extends State<ScanResultPage> {
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 24.0),
-                        child: SizedBox(
-                          child: Image.file(File(widget.image.path)),
-                          height: 300,
+                      Text(
+                        "${(percent * percent / 100).floor()} ${text.points}",
+                        style: const TextStyle(
+                          color: green,
+                          fontSize: 30,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                       Text(
-                        "${text.you_have_eaten}${percent < 40 ? " only" : ""} "
+                        "${text.you_have_eaten}${percent < 40 ? text.sp_only : ""} "
                         "$percent% ${text.of_the_dish}...",
                       ),
                       Text(
@@ -88,29 +89,8 @@ class _ScanResultPageState extends State<ScanResultPage> {
                       ),
                       Text(
                         quote,
-                        style: const TextStyle(fontSize: 24),
+                        style: const TextStyle(fontSize: 24, color: green),
                         textAlign: TextAlign.center,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 16.0),
-                        child: ElevatedButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    PollutionInfo(percent: percent),
-                              ),
-                            );
-                          },
-                          child: Text(
-                            text.learn_more,
-                            style: const TextStyle(fontSize: 22),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            padding: const EdgeInsets.all(12.0),
-                          ),
-                        ),
                       ),
                     ],
                   );
