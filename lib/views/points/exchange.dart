@@ -3,6 +3,7 @@ import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:food_busters/components/background.dart";
 import "package:food_busters/data/dummy_restaurant.dart";
 import "package:food_busters/models/restaurant_menu.dart";
+import "package:food_busters/styles/styles.dart";
 import "package:food_busters/utils/string.dart";
 
 class ExchangePage extends StatefulWidget {
@@ -28,6 +29,14 @@ class _ExchangePageState extends State<ExchangePage> {
         title: Text(text.my_points),
         backgroundColor: Colors.transparent,
         elevation: 0,
+        actions: [
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text("18 ${text.points}"),
+            ),
+          ),
+        ],
       ),
       body: Stack(
         children: [
@@ -132,6 +141,8 @@ class _ExchangePageState extends State<ExchangePage> {
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size(300, 30),
+                  primary: lightOrange,
+                  padding: const EdgeInsets.symmetric(vertical: 6.0),
                 ),
                 onPressed: () {
                   showDialog(
@@ -176,10 +187,10 @@ class _ExchangePageState extends State<ExchangePage> {
 }
 
 final leaf = Container(
-  height: 20,
-  width: 20,
+  height: 100,
+  width: 100,
   decoration: const BoxDecoration(
-    shape: BoxShape.circle,
+    shape: BoxShape.rectangle,
     image: DecorationImage(
       fit: BoxFit.cover,
       image: AssetImage("assets/images/leaf.png"),

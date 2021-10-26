@@ -50,5 +50,7 @@
     "exchange": "แลก",
     "exchange_complete": "สำเร็จ! ได้เวลาอร่อย",
     "n_days_pass": "{n} วัน",
-    "press_to_exchange": "กดเพื่อแลก"
+    "press_to_exchange": "กดเพื่อแลก",
+    "points_shop": "ร้านค้าแต้ม",
+    "buy": "ซื้อ"
 }

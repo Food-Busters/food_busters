@@ -50,5 +50,7 @@
     "exchange": "Exchange",
     "exchange_complete": "Completed! Time to enjoy.",
     "n_days_pass": "{n} days pass",
-    "press_to_exchange": "Press to Exchange"
+    "press_to_exchange": "Press to Exchange",
+    "points_shop": "Points Shop",
+    "buy": "BUY"
 }

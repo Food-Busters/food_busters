@@ -4,6 +4,7 @@ import "package:food_busters/components/background.dart";
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:food_busters/styles/styles.dart";
 import "package:food_busters/views/points/exchange.dart";
+import "package:food_busters/views/points/points_shop.dart";
 import "package:form_field_validator/form_field_validator.dart";
 
 class MyPoints extends StatefulWidget {
@@ -23,12 +24,23 @@ class _MyPointsState extends State<MyPoints> {
     final text = AppLocalizations.of(context)!;
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF4E4D8),
+      backgroundColor: tan,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         title: Text(text.my_points),
         backgroundColor: Colors.transparent,
         elevation: 0,
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const PointsShopPage()),
+              );
+            },
+            child: const Icon(Icons.attach_money),
+          )
+        ],
       ),
       body: Stack(
         children: [
@@ -232,7 +244,7 @@ class _MyPointsState extends State<MyPoints> {
               Expanded(
                 flex: 1,
                 child: ElevatedButton(
-                  child: exchangePointsButtonLabel(text, 30, 7),
+                  child: exchangePointsButtonLabel(text, 150, 7),
                   style: tanBtn,
                   onPressed: () {
                     showDialog(
@@ -246,7 +258,7 @@ class _MyPointsState extends State<MyPoints> {
               Expanded(
                 flex: 1,
                 child: ElevatedButton(
-                  child: exchangePointsButtonLabel(text, 55, 14),
+                  child: exchangePointsButtonLabel(text, 299, 14),
                   style: tanBtn,
                   onPressed: () {
                     showDialog(
@@ -269,14 +281,17 @@ class _MyPointsState extends State<MyPoints> {
       Column(
         children: [
           Text(
+            text.n_days_pass.replaceAll("{n}", "$days"),
+            style: const TextStyle(fontSize: 22),
+          ),
+          Text(
             "$points",
-            style: const TextStyle(color: green, fontSize: 30),
+            style: const TextStyle(color: green, fontSize: 30, height: 1),
           ),
           Text(
             text.points.toUpperCase(),
-            style: const TextStyle(color: green, fontSize: 20, height: 0.6),
+            style: const TextStyle(color: green, fontSize: 20, height: 1),
           ),
-          Text(text.n_days_pass.replaceAll("{n}", "$days")),
           Text(text.press_to_exchange),
         ],
       );

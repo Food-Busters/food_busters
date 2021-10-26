@@ -26,7 +26,7 @@ Future<List<RestaurantMenu>> getRestaurantData() async {
       healthiness: 2,
     ),
     RestaurantMenu(
-      menuName: "Caffe Cappuccino",
+      menuName: "Caffè Cappuccino",
       restaurantName: "Rabbit House",
       menuPicture:
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHgwfgYIN2UMP3_auhwsJnOAow2lmXlj_7EQ&usqp=CAU",
