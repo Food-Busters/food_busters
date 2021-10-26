@@ -4,6 +4,7 @@ import "package:food_busters/components/background.dart";
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:food_busters/styles/styles.dart";
 import "package:food_busters/views/points/exchange.dart";
+import "package:form_field_validator/form_field_validator.dart";
 
 class MyPoints extends StatefulWidget {
   const MyPoints({Key? key, required this.userID}) : super(key: key);
@@ -150,7 +151,67 @@ class _MyPointsState extends State<MyPoints> {
                     ],
                   ),
                   style: tanBtn,
-                  onPressed: () {},
+                  onPressed: () {
+                    final formKey = GlobalKey<FormState>();
+                    String searchQuery = "";
+                    showDialog(
+                      barrierDismissible: false,
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        backgroundColor: lightGreen,
+                        title: Text(
+                          text.search.toUpperCase(),
+                          textAlign: TextAlign.center,
+                        ),
+                        content: Form(
+                          key: formKey,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(text.search_message),
+                              TextFormField(
+                                validator: RequiredValidator(
+                                  errorText: text.search_query_empty,
+                                ),
+                                onSaved: (String? sQ) {
+                                  searchQuery = sQ ?? "";
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                        actions: [
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text(text.window_close),
+                            style:
+                                ElevatedButton.styleFrom(primary: lightOrange),
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
+                              if (formKey.currentState?.validate() ?? false) {
+                                formKey.currentState?.save();
+                                Navigator.of(context).pop();
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ExchangePage(
+                                      userID: widget.userID,
+                                      searchQuery: searchQuery,
+                                    ),
+                                  ),
+                                );
+                              }
+                            },
+                            child: Text(text.confirm),
+                            style: ElevatedButton.styleFrom(primary: green),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
                 ),
               ),
             ],

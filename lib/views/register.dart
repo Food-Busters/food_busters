@@ -83,6 +83,18 @@ class _RegisterPageState extends State<RegisterPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
+                      text.username,
+                      style: const TextStyle(fontSize: 20),
+                    ),
+                    TextFormField(
+                      validator:
+                          RequiredValidator(errorText: text.username_fail),
+                      onSaved: (String? uname) {
+                        username = uname ?? "";
+                      },
+                    ),
+                    const SizedBox(height: 12),
+                    Text(
                       text.email,
                       style: const TextStyle(fontSize: 20),
                     ),
@@ -98,18 +110,6 @@ class _RegisterPageState extends State<RegisterPage> {
                       keyboardType: TextInputType.emailAddress,
                       onSaved: (String? em) {
                         email = em ?? "";
-                      },
-                    ),
-                    const SizedBox(height: 12),
-                    Text(
-                      text.username,
-                      style: const TextStyle(fontSize: 20),
-                    ),
-                    TextFormField(
-                      validator:
-                          RequiredValidator(errorText: text.username_fail),
-                      onSaved: (String? uname) {
-                        username = uname ?? "";
                       },
                     ),
                     const SizedBox(height: 12),

@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:food_busters/main.dart";
+import "package:food_busters/styles/styles.dart";
 import "package:food_busters/views/login.dart";
 
 class SettingsPage extends StatefulWidget {
@@ -11,6 +12,9 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  // * Stateful Stateless State
+  bool notification = true;
+
   @override
   Widget build(BuildContext context) {
     final text = AppLocalizations.of(context)!;
@@ -45,6 +49,17 @@ class _SettingsPageState extends State<SettingsPage> {
                 });
               },
             ),
+          ),
+          SwitchListTile(
+            value: notification,
+            onChanged: (newValue) {
+              setState(() {
+                notification = newValue;
+              });
+            },
+            secondary: const Icon(Icons.notifications),
+            title: Text(text.notification),
+            activeColor: green,
           ),
           ListTile(
             leading: const Icon(Icons.logout),

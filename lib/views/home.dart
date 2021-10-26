@@ -1,6 +1,8 @@
 import "package:camera/camera.dart";
 import "package:flutter/material.dart";
 import "package:food_busters/components/background.dart";
+import "package:food_busters/main.dart";
+import "package:food_busters/styles/styles.dart";
 import "package:food_busters/views/points/points.dart";
 import "package:food_busters/views/scan/scanfood.dart";
 import "package:food_busters/views/settings.dart";
@@ -46,15 +48,18 @@ class _HomePageState extends State<HomePage> {
               PackageInfo packageInfo = await PackageInfo.fromPlatform();
               String appName = packageInfo.appName;
               String version = packageInfo.version;
+              String buildNo = packageInfo.buildNumber;
               showAboutDialog(
                 context: context,
                 applicationName: appName,
-                applicationVersion: version,
+                applicationVersion: "$version+$buildNo",
                 applicationIcon: Image.asset(
                   "assets/images/logo_white.jpg",
                   height: 80,
                 ),
                 children: [
+                  const Text("BRANCH: $appBranch", textAlign: TextAlign.center),
+                  const SizedBox(height: 24),
                   const FlutterLogo(
                     style: FlutterLogoStyle.horizontal,
                     size: 30,
@@ -131,10 +136,10 @@ class _HomePageState extends State<HomePage> {
                           ),
                         );
                       },
-                      content: "SCAN!",
+                      content: text.scan,
                       padding: 20,
                     ),
-                    bigBtn(
+                    smallBtn(
                       onPressed: () {
                         Navigator.push(
                           context,
@@ -144,10 +149,16 @@ class _HomePageState extends State<HomePage> {
                           ),
                         );
                       },
-                      content: "MY POINTS",
-                      padding: 15,
+                      content: text.my_points,
                     ),
-                    bigBtn(onPressed: () {}, content: "MY RECORD", padding: 15),
+                    smallBtn(
+                      onPressed: () {},
+                      content: text.my_record,
+                    ),
+                    smallBtn(
+                      onPressed: () {},
+                      content: text.mission,
+                    )
                   ],
                 ),
               ],
@@ -170,7 +181,26 @@ class _HomePageState extends State<HomePage> {
         child: Text(content, style: const TextStyle(fontSize: 26)),
         style: ElevatedButton.styleFrom(
           padding: EdgeInsets.all(padding),
-          primary: const Color(0xFFFFC478),
+          primary: lightOrange,
+          minimumSize: const Size(275, 0),
+        ),
+      ),
+    );
+  }
+
+  Widget smallBtn({
+    required void Function() onPressed,
+    required String content,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: ElevatedButton(
+        onPressed: onPressed,
+        child: Text(content, style: const TextStyle(fontSize: 18)),
+        style: ElevatedButton.styleFrom(
+          padding: const EdgeInsets.all(15),
+          primary: lightGreen,
+          minimumSize: const Size(200, 0),
         ),
       ),
     );

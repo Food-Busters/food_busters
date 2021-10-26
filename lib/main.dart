@@ -4,6 +4,10 @@ import "package:food_busters/views/login.dart";
 import "package:flutter_localizations/flutter_localizations.dart";
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
 
+// * BEGIN OF APP PROPS
+const appBranch = "BETA";
+// * END OF APP PROPS
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
@@ -29,7 +33,7 @@ class _MyAppState extends State<MyApp> {
       WidgetsBinding.instance?.window.locales[0] ?? const Locale("en");
 
   late String _localeStr;
-  String get localeStrSimp => _localeStr.contains("en") ? "en" : "th";
+  String get localeStrSimp => _localeStr.contains("th") ? "th" : "en";
 
   @override
   void initState() {
