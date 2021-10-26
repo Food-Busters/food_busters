@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import "package:food_busters/models/points_price.dart";
 
 Future<List<PointsPrice>> getPointsPriceData() async {

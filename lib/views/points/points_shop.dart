@@ -39,18 +39,56 @@ class _PointsShopPageState extends State<PointsShopPage> {
                     itemCount: data.length,
                     itemBuilder: (context, index) {
                       final menu = data[index];
-                      return Row(
-                        children: [
-                          Container(
-                            height: 50,
-                            decoration: const BoxDecoration(color: lightGreen),
-                            child: Text("${menu.points} ${text.points}"),
-                          ),
-                          ElevatedButton(
-                            onPressed: () {},
-                            child: Text("${menu.price} THB"),
-                          ),
-                        ],
+                      return Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              height: 50,
+                              decoration: BoxDecoration(
+                                color: lightGreen,
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  "${menu.points} ${text.points}",
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 22,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            ElevatedButton(
+                              onPressed: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                    title: Text(text.purchase_success),
+                                    content: Text(text.purchase_thanks),
+                                    backgroundColor: lightGreen,
+                                    actions: [
+                                      ElevatedButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: Text(text.window_close),
+                                        style: ElevatedButton.styleFrom(
+                                          primary: lightOrange,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                );
+                              },
+                              child: Text("${menu.price} THB"),
+                              style: ElevatedButton.styleFrom(
+                                  primary: lightOrange),
+                            ),
+                          ],
+                        ),
                       );
                     },
                   );

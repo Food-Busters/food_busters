@@ -38,7 +38,7 @@ class _MyPointsState extends State<MyPoints> {
                 MaterialPageRoute(builder: (context) => const PointsShopPage()),
               );
             },
-            child: const Icon(Icons.attach_money),
+            child: const Icon(Icons.attach_money, color: green),
           )
         ],
       ),

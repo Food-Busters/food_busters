@@ -52,5 +52,6 @@
     "n_days_pass": "{n} days pass",
     "press_to_exchange": "Press to Exchange",
     "points_shop": "Points Shop",
-    "buy": "BUY"
+    "purchase_success": "Purchase Success",
+    "purchase_thanks": "Thank you for your purchase! Enjoy!"
 }

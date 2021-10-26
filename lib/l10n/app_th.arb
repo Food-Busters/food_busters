@@ -52,5 +52,6 @@
     "n_days_pass": "{n} วัน",
     "press_to_exchange": "กดเพื่อแลก",
     "points_shop": "ร้านค้าแต้ม",
-    "buy": "ซื้อ"
+    "purchase_success": "การซื้อสำเร็จ",
+    "purchase_thanks": "ขอบคุณสำหรับการสั่งซื้อ! ขอให้สนุก!"
 }
