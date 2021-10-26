@@ -48,11 +48,10 @@ class _HomePageState extends State<HomePage> {
               PackageInfo packageInfo = await PackageInfo.fromPlatform();
               String appName = packageInfo.appName;
               String version = packageInfo.version;
-              String buildNo = packageInfo.buildNumber;
               showAboutDialog(
                 context: context,
                 applicationName: appName,
-                applicationVersion: "$version+$buildNo",
+                applicationVersion: version,
                 applicationIcon: Image.asset(
                   "assets/images/logo_white.jpg",
                   height: 80,

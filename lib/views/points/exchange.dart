@@ -187,8 +187,8 @@ class _ExchangePageState extends State<ExchangePage> {
 }
 
 final leaf = Container(
-  height: 100,
-  width: 100,
+  height: 30,
+  width: 30,
   decoration: const BoxDecoration(
     shape: BoxShape.rectangle,
     image: DecorationImage(
