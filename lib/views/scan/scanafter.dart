@@ -4,23 +4,22 @@ import "package:food_busters/components/background.dart";
 import "package:food_busters/main.dart";
 import "package:food_busters/models/quote.dart";
 import "package:food_busters/styles/styles.dart";
-import "package:food_busters/views/scan/pollution_info.dart";
 import "package:http/http.dart" as http;
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
 
 // ! Temporary, as in production we don't random user's result
 import "dart:math";
 
-class ScanResultPage extends StatefulWidget {
-  const ScanResultPage({Key? key, required this.image}) : super(key: key);
+class ScanAfterPage extends StatefulWidget {
+  const ScanAfterPage({Key? key, required this.image}) : super(key: key);
 
   final XFile image;
 
   @override
-  _ScanResultPageState createState() => _ScanResultPageState();
+  _ScanAfterPageState createState() => _ScanAfterPageState();
 }
 
-class _ScanResultPageState extends State<ScanResultPage> {
+class _ScanAfterPageState extends State<ScanAfterPage> {
   @override
   void initState() {
     super.initState();
@@ -34,7 +33,7 @@ class _ScanResultPageState extends State<ScanResultPage> {
     percent = Random().nextInt(100) + 1;
 
     final url = Uri.parse(
-      "https://food-waste-quotes.vercel.app/api/quote?percent=${percent}&lang=${MyApp.of(context).localeStrSimp}",
+      "https://food-waste-quotes.vercel.app/api/quote?percent=$percent&lang=${MyApp.of(context).localeStrSimp}",
     );
     final response = await http.get(url);
 
@@ -80,7 +79,8 @@ class _ScanResultPageState extends State<ScanResultPage> {
                         ),
                       ),
                       Text(
-                        "${text.you_have_eaten}${percent < 40 ? text.sp_only : ""} "
+                        "${text.you_have_eaten}"
+                        "${percent < 40 ? text.sp_only : ""} "
                         "$percent% ${text.of_the_dish}...",
                       ),
                       Text(

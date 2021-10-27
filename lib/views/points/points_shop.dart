@@ -85,7 +85,8 @@ class _PointsShopPageState extends State<PointsShopPage> {
                               },
                               child: Text("${menu.price} THB"),
                               style: ElevatedButton.styleFrom(
-                                  primary: lightOrange),
+                                primary: lightOrange,
+                              ),
                             ),
                           ],
                         ),

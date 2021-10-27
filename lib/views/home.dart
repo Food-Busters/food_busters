@@ -1,10 +1,9 @@
-import "package:camera/camera.dart";
 import "package:flutter/material.dart";
 import "package:food_busters/components/background.dart";
 import "package:food_busters/main.dart";
 import "package:food_busters/styles/styles.dart";
 import "package:food_busters/views/points/points.dart";
-import "package:food_busters/views/scan/scanfood.dart";
+import "package:food_busters/views/scan/scanportal.dart";
 import "package:food_busters/views/settings.dart";
 import "package:package_info_plus/package_info_plus.dart";
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
@@ -126,16 +125,15 @@ class _HomePageState extends State<HomePage> {
                 Column(
                   children: [
                     bigBtn(
-                      onPressed: () async {
-                        final cameras = await availableCameras();
+                      onPressed: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => ScanPage(cameras: cameras),
+                            builder: (context) => const ScanPortalPage(),
                           ),
                         );
                       },
-                      content: text.scan,
+                      content: text.scan + "!",
                       padding: 20,
                     ),
                     smallBtn(
