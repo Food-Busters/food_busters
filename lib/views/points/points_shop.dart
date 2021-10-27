@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:food_busters/components/background.dart";
 import "package:food_busters/data/dummy_points.dart";
+import "package:food_busters/main.dart";
 import "package:food_busters/models/points_price.dart";
 import "package:food_busters/styles/styles.dart";
 
@@ -16,6 +17,7 @@ class _PointsShopPageState extends State<PointsShopPage> {
   @override
   Widget build(BuildContext context) {
     final text = AppLocalizations.of(context)!;
+    final appState = MyApp.of(context).state;
 
     return Scaffold(
       backgroundColor: tan,
@@ -63,6 +65,7 @@ class _PointsShopPageState extends State<PointsShopPage> {
                             ),
                             ElevatedButton(
                               onPressed: () {
+                                appState.addPoints(menu.points);
                                 showDialog(
                                   context: context,
                                   builder: (context) => AlertDialog(

@@ -17,3 +17,5 @@ const lightOrange = Color(0xFFFFC068);
 const lightGreen = Color(0xFFBBDFC8);
 const green = Color(0xFF5DC7AB);
 const tan = Color(0xFFF4E4D8);
+const brown = Color(0xFF533F2C);
+const rose = Color(0xFFF1D0C5);

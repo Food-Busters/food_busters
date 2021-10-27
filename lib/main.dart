@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
+import "package:food_busters/models/app_state.dart";
 import "package:food_busters/views/login.dart";
 import "package:flutter_localizations/flutter_localizations.dart";
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
@@ -35,17 +36,19 @@ class _MyAppState extends State<MyApp> {
   late String _localeStr;
   String get localeStrSimp => _localeStr.contains("th") ? "th" : "en";
 
-  @override
-  void initState() {
-    super.initState();
-    _localeStr = _locale.toString();
-  }
-
   void setLocale(String value) {
     setState(() {
       _localeStr = value;
       _locale = Locale(value);
     });
+  }
+
+  final state = AppState();
+
+  @override
+  void initState() {
+    super.initState();
+    _localeStr = _locale.toString();
   }
 
   @override

@@ -1,4 +1,3 @@
-import "package:camera/camera.dart";
 import "package:flutter/material.dart";
 import "package:food_busters/components/background.dart";
 import "package:food_busters/main.dart";
@@ -11,9 +10,7 @@ import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "dart:math";
 
 class ScanAfterPage extends StatefulWidget {
-  const ScanAfterPage({Key? key, required this.image}) : super(key: key);
-
-  final XFile image;
+  const ScanAfterPage({Key? key}) : super(key: key);
 
   @override
   _ScanAfterPageState createState() => _ScanAfterPageState();
@@ -27,7 +24,12 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
 
   int percent = 0;
 
-  Future<String> getQuote() async {
+  Future<String> getAnalysis(BuildContext context) async {
+    final appState = MyApp.of(context).state;
+    if (!appState.imageReady) {
+      return "Image lost in state";
+    }
+
     // * SIMULATE IMAGE PROCESSING
     await Future.delayed(const Duration(milliseconds: 500));
     percent = Random().nextInt(100) + 1;
@@ -62,37 +64,18 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
           bgImage("clouds/top_orange.png"),
           Center(
             child: FutureBuilder<String>(
-              future: getQuote(),
+              future: getAnalysis(context),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
-                  final isBad = percent < 80;
-                  final quote = snapshot.data ?? "Impossible Error";
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "${(percent * percent / 100).floor()} ${text.points}",
-                        style: const TextStyle(
-                          color: green,
-                          fontSize: 30,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      Text(
-                        "${text.you_have_eaten}"
-                        "${percent < 40 ? text.sp_only : ""} "
-                        "$percent% ${text.of_the_dish}...",
-                      ),
-                      Text(
-                        isBad ? text.oh_no : text.wow,
-                        style: const TextStyle(fontSize: 28),
-                      ),
-                      Text(
-                        quote,
-                        style: const TextStyle(fontSize: 24, color: green),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
+                  final quote = snapshot.data ?? "Internal Flutter Error";
+                  return DefaultTabController(
+                    length: 2,
+                    child: TabBarView(
+                      children: [
+                        infoPage1(text, quote),
+                        infoPage2(text),
+                      ],
+                    ),
                   );
                 }
                 return const CircularProgressIndicator();
@@ -107,4 +90,60 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
       ),
     );
   }
+
+  Widget infoPage1(AppLocalizations text, String quote) => Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            "${(percent * percent / 100).floor()} ${text.points}",
+            style: const TextStyle(
+              color: green,
+              fontSize: 30,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          Text(
+            "${text.you_have_eaten}"
+            "${percent < 40 ? text.sp_only : ""} "
+            "$percent% ${text.of_the_dish}...",
+          ),
+          Text(
+            percent < 80 ? text.oh_no : text.wow,
+            style: const TextStyle(fontSize: 28),
+          ),
+          Text(
+            quote,
+            style: const TextStyle(fontSize: 24, color: green),
+            textAlign: TextAlign.center,
+          ),
+        ],
+      );
+
+  Widget infoPage2(AppLocalizations text) => Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset("assets/images/money.png", width: 150, height: 150),
+          Text(
+            "${50 - percent / 2} THB",
+            style: const TextStyle(
+              color: green,
+              fontSize: 26,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          Text(
+            text.save_money_1,
+            style: const TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          Text(
+            text.save_money_2,
+            style: const TextStyle(
+              fontSize: 18,
+            ),
+          ),
+        ],
+      );
 }

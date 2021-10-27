@@ -1,7 +1,10 @@
 import "package:flutter/material.dart";
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:food_busters/components/background.dart";
+import "package:food_busters/components/exchange_dialog.dart";
 import "package:food_busters/data/dummy_restaurant.dart";
+import "package:food_busters/main.dart";
+import "package:food_busters/models/app_state.dart";
 import "package:food_busters/models/restaurant_menu.dart";
 import "package:food_busters/styles/styles.dart";
 import "package:food_busters/utils/string.dart";
@@ -21,6 +24,7 @@ class _ExchangePageState extends State<ExchangePage> {
   @override
   Widget build(BuildContext context) {
     final text = AppLocalizations.of(context)!;
+    final appState = MyApp.of(context).state;
 
     return Scaffold(
       backgroundColor: const Color(0xFFF4E4D8),
@@ -33,7 +37,7 @@ class _ExchangePageState extends State<ExchangePage> {
           Center(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Text("18 ${text.points}"),
+              child: Text("${appState.points} ${text.points}"),
             ),
           ),
         ],
@@ -62,7 +66,7 @@ class _ExchangePageState extends State<ExchangePage> {
                 return Padding(
                   padding: const EdgeInsets.symmetric(vertical: 30.0),
                   child: data.isNotEmpty
-                      ? foodList(data, text)
+                      ? foodList(data, text, appState)
                       : Center(
                           child: Text(
                             text.no_data_found,
@@ -83,7 +87,11 @@ class _ExchangePageState extends State<ExchangePage> {
     );
   }
 
-  Widget foodList(List<RestaurantMenu> data, AppLocalizations text) =>
+  Widget foodList(
+    List<RestaurantMenu> data,
+    AppLocalizations text,
+    AppState state,
+  ) =>
       ListView.builder(
         itemCount: data.length,
         itemBuilder: (context, index) {
@@ -148,27 +156,12 @@ class _ExchangePageState extends State<ExchangePage> {
                   showDialog(
                     context: context,
                     builder: (context) {
-                      // * Do Something
-                      return AlertDialog(
-                        title: Text(text.exchange.toUpperCase()),
-                        content: Text(text.exchange_complete),
-                        backgroundColor: const Color(0xFFBBDFC8),
-                        actions: [
-                          TextButton(
-                            child: Text(
-                              text.window_close,
-                              style: const TextStyle(
-                                color: Colors.black,
-                              ),
-                            ),
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                          ),
-                        ],
-                      );
+                      return state.usePoints(res.price)
+                          ? exchangeSuccess(text, context)
+                          : exchangeFailed(text, context);
                     },
                   );
+                  setState(() {});
                 },
                 child: Text(text.exchange),
               ),

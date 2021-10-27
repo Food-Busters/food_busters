@@ -2,6 +2,9 @@ import "package:flutter/material.dart";
 import "package:flutter_toggle_tab/flutter_toggle_tab.dart";
 import "package:food_busters/components/background.dart";
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
+import "package:food_busters/components/exchange_dialog.dart";
+import "package:food_busters/main.dart";
+import "package:food_busters/models/app_state.dart";
 import "package:food_busters/styles/styles.dart";
 import "package:food_busters/views/points/exchange.dart";
 import "package:food_busters/views/points/points_shop.dart";
@@ -22,6 +25,7 @@ class _MyPointsState extends State<MyPoints> {
   @override
   Widget build(BuildContext context) {
     final text = AppLocalizations.of(context)!;
+    final appState = MyApp.of(context).state;
 
     return Scaffold(
       backgroundColor: tan,
@@ -32,11 +36,12 @@ class _MyPointsState extends State<MyPoints> {
         elevation: 0,
         actions: [
           TextButton(
-            onPressed: () {
-              Navigator.push(
+            onPressed: () async {
+              await Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const PointsShopPage()),
               );
+              setState(() {});
             },
             child: const Icon(Icons.attach_money, color: green),
           )
@@ -64,12 +69,12 @@ class _MyPointsState extends State<MyPoints> {
                   ),
                   child: Column(
                     children: [
-                      const Text(
-                        "18",
-                        style: TextStyle(
-                          fontSize: 100,
+                      Text(
+                        appState.points.toString(),
+                        style: const TextStyle(
+                          fontSize: 64,
                           fontWeight: FontWeight.w500,
-                          height: 1.2,
+                          height: 1.6,
                         ),
                       ),
                       Text(
@@ -110,8 +115,9 @@ class _MyPointsState extends State<MyPoints> {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
-                child:
-                    _panel ? exchangePremiumPanel(text) : promotionPanel(text),
+                child: _panel
+                    ? exchangePremiumPanel(text, appState)
+                    : promotionPanel(text),
               ),
             ],
           ),
@@ -140,8 +146,8 @@ class _MyPointsState extends State<MyPoints> {
                     ],
                   ),
                   style: tanBtn,
-                  onPressed: () {
-                    Navigator.push(
+                  onPressed: () async {
+                    await Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => ExchangePage(
@@ -149,6 +155,7 @@ class _MyPointsState extends State<MyPoints> {
                         ),
                       ),
                     );
+                    setState(() {});
                   },
                 ),
               ),
@@ -202,11 +209,10 @@ class _MyPointsState extends State<MyPoints> {
                                 ElevatedButton.styleFrom(primary: lightOrange),
                           ),
                           ElevatedButton(
-                            onPressed: () {
+                            onPressed: () async {
                               if (formKey.currentState?.validate() ?? false) {
                                 formKey.currentState?.save();
-                                Navigator.of(context).pop();
-                                Navigator.push(
+                                await Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => ExchangePage(
@@ -215,6 +221,7 @@ class _MyPointsState extends State<MyPoints> {
                                     ),
                                   ),
                                 );
+                                setState(() {});
                               }
                             },
                             child: Text(text.confirm),
@@ -231,7 +238,8 @@ class _MyPointsState extends State<MyPoints> {
         ),
       );
 
-  Widget exchangePremiumPanel(AppLocalizations text) => Container(
+  Widget exchangePremiumPanel(AppLocalizations text, AppState state) =>
+      Container(
         decoration: BoxDecoration(
           color: lightGreen,
           borderRadius: BorderRadius.circular(10.0),
@@ -249,8 +257,11 @@ class _MyPointsState extends State<MyPoints> {
                   onPressed: () {
                     showDialog(
                       context: context,
-                      builder: (context) => exchangeSuccess(text, context),
+                      builder: (context) => state.usePoints(150)
+                          ? exchangeSuccess(text, context)
+                          : exchangeFailed(text, context),
                     );
+                    setState(() {});
                   },
                 ),
               ),
@@ -263,8 +274,11 @@ class _MyPointsState extends State<MyPoints> {
                   onPressed: () {
                     showDialog(
                       context: context,
-                      builder: (context) => exchangeSuccess(text, context),
+                      builder: (context) => state.usePoints(299)
+                          ? exchangeSuccess(text, context)
+                          : exchangeFailed(text, context),
                     );
+                    setState(() {});
                   },
                 ),
               ),
@@ -293,26 +307,6 @@ class _MyPointsState extends State<MyPoints> {
             style: const TextStyle(color: green, fontSize: 20, height: 1),
           ),
           Text(text.press_to_exchange),
-        ],
-      );
-
-  AlertDialog exchangeSuccess(AppLocalizations text, BuildContext context) =>
-      AlertDialog(
-        title: Text(text.exchange.toUpperCase(), textAlign: TextAlign.center),
-        backgroundColor: lightGreen,
-        content: Text(text.exchange_complete),
-        actions: [
-          TextButton(
-            child: Text(
-              text.window_close,
-              style: const TextStyle(
-                color: Colors.black,
-              ),
-            ),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
         ],
       );
 }
