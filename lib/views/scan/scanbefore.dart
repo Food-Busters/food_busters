@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:food_busters/components/background.dart";
+import "package:food_busters/components/buttons.dart";
 import "package:food_busters/styles/styles.dart";
 
 class ScanBeforePage extends StatefulWidget {
@@ -47,16 +48,7 @@ class _ScanBeforePageState extends State<ScanBeforePage> {
                   textAlign: TextAlign.center,
                 ),
               ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text(
-                  text.back_to_home,
-                  style: const TextStyle(fontSize: 18),
-                ),
-                style: loginRegisterBtn,
-              ),
+              backHomeBtn(context, text),
             ],
           ),
         ],

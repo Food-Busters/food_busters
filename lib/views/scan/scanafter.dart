@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:food_busters/components/background.dart";
+import "package:food_busters/components/buttons.dart";
 import "package:food_busters/main.dart";
 import "package:food_busters/models/quote.dart";
 import "package:food_busters/styles/styles.dart";
@@ -72,8 +73,8 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
                     length: 2,
                     child: TabBarView(
                       children: [
-                        infoPage1(text, quote),
-                        infoPage2(text),
+                        tabPageWrapper(infoPage1, context, text, quote),
+                        tabPageWrapper(infoPage2, context, text, quote),
                       ],
                     ),
                   );
@@ -90,6 +91,21 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
       ),
     );
   }
+
+  Widget tabPageWrapper(
+    Function widget,
+    BuildContext context,
+    AppLocalizations text,
+    String quote,
+  ) =>
+      Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Text(text.swipe_hint),
+          widget(text, quote),
+          backHomeBtn(context, text)
+        ],
+      );
 
   Widget infoPage1(AppLocalizations text, String quote) => Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -119,7 +135,7 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
         ],
       );
 
-  Widget infoPage2(AppLocalizations text) => Column(
+  Widget infoPage2(AppLocalizations text, String quote) => Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset("assets/images/money.png", width: 150, height: 150),
