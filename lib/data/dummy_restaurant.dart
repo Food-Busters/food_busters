@@ -13,7 +13,7 @@ Future<List<RestaurantMenu>> getRestaurantData() async {
       menuPicture:
           "https://hips.hearstapps.com/hmg-prod/images/avocado-salad-1524672116.png",
       price: 170,
-      points: 10,
+      points: 399,
       healthiness: 2,
     ),
     RestaurantMenu(
@@ -22,7 +22,7 @@ Future<List<RestaurantMenu>> getRestaurantData() async {
       menuPicture:
           "https://img.wongnai.com/p/1920x0/2017/10/23/baa1e676f2604bef87d2d984103e7e8a.jpg",
       price: 200,
-      points: 15,
+      points: 429,
       healthiness: 2,
     ),
     RestaurantMenu(
@@ -31,7 +31,7 @@ Future<List<RestaurantMenu>> getRestaurantData() async {
       menuPicture:
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHgwfgYIN2UMP3_auhwsJnOAow2lmXlj_7EQ&usqp=CAU",
       price: 290,
-      points: 100,
+      points: 690,
       healthiness: 1,
     ),
   ];

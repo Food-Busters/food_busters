@@ -2,7 +2,22 @@ import "package:flutter/material.dart";
 
 final loginRegisterBtn = ElevatedButton.styleFrom(
   padding: const EdgeInsets.all(12.0),
-  primary: const Color(0xFFF0E5D8),
+  primary: tan,
+);
+
+final lightOrangeBtn = ElevatedButton.styleFrom(
+  padding: const EdgeInsets.all(12.0),
+  primary: lightOrange,
+);
+
+final lightGreenBtn = ElevatedButton.styleFrom(
+  padding: const EdgeInsets.all(12.0),
+  primary: lightGreen,
+);
+
+final greenBtn = ElevatedButton.styleFrom(
+  padding: const EdgeInsets.all(12.0),
+  primary: green,
 );
 
 final tanBtn = ElevatedButton.styleFrom(

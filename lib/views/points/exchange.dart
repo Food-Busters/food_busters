@@ -156,7 +156,7 @@ class _ExchangePageState extends State<ExchangePage> {
                   showDialog(
                     context: context,
                     builder: (context) {
-                      return state.usePoints(res.price)
+                      return state.usePoints(res.points)
                           ? exchangeSuccess(text, context)
                           : exchangeFailed(text, context);
                     },

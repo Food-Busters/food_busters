@@ -9,6 +9,7 @@ Future<List<PointsPrice>> getPointsPriceData() async {
   return [
     PointsPrice(points: 50, price: 30),
     PointsPrice(points: 149, price: 75),
-    PointsPrice(points: 280, price: 120)
+    PointsPrice(points: 280, price: 120),
+    PointsPrice(points: 4999, price: 1499),
   ];
 }

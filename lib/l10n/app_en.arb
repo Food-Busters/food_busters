@@ -62,5 +62,21 @@
     "press_to_exchange": "Press to Exchange",
     "points_shop": "Points Shop",
     "purchase_success": "Purchase Success",
-    "purchase_thanks": "Thank you for your purchase! Enjoy!"
+    "purchase_thanks": "Thank you for your purchase! Enjoy!",
+    "record_header_1": "You've brought out",
+    "record_header_2": "food waste this month",
+    "record_header_3": "And produced methane",
+    "record_header_4": "less than last month!",
+    "health_status": "Health Status",
+    "other_busters": "Other Busters",
+    "thanks_buster_1": "Looks like you've done a great job!",
+    "thanks_buster_2": "Thanks, Our Food Buster!",
+    "leaderboard": "LEADERBOARD",
+    "you_produced": "You produced",
+    "less_carbon": "less carbon footprint than others",
+    "less_methane": "less methane produced by using vehicle",
+    "less_calories": "less calories you consumed",
+    "more_carbon": "more carbon footprint than others",
+    "more_methane": "more methane produced by using vehicle",
+    "more_calories": "more calories you consumed"
 }

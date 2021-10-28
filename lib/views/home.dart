@@ -3,6 +3,7 @@ import "package:food_busters/components/background.dart";
 import "package:food_busters/main.dart";
 import "package:food_busters/styles/styles.dart";
 import "package:food_busters/views/points/points.dart";
+import "package:food_busters/views/record/record.dart";
 import "package:food_busters/views/scan/scanportal.dart";
 import "package:food_busters/views/settings.dart";
 import "package:package_info_plus/package_info_plus.dart";
@@ -149,7 +150,14 @@ class _HomePageState extends State<HomePage> {
                       content: text.my_points,
                     ),
                     smallBtn(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const MyRecordPage(),
+                          ),
+                        );
+                      },
                       content: text.my_record,
                     ),
                     smallBtn(

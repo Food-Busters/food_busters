@@ -255,9 +255,13 @@ class _MyPointsState extends State<MyPoints> {
                   child: exchangePointsButtonLabel(text, 150, 7),
                   style: tanBtn,
                   onPressed: () {
+                    final tscStatus = state.usePoints(150);
+                    if (tscStatus) {
+                      state.assignPremium();
+                    }
                     showDialog(
                       context: context,
-                      builder: (context) => state.usePoints(150)
+                      builder: (context) => tscStatus
                           ? exchangeSuccess(text, context)
                           : exchangeFailed(text, context),
                     );
@@ -269,12 +273,16 @@ class _MyPointsState extends State<MyPoints> {
               Expanded(
                 flex: 1,
                 child: ElevatedButton(
-                  child: exchangePointsButtonLabel(text, 299, 14),
+                  child: exchangePointsButtonLabel(text, 289, 14),
                   style: tanBtn,
                   onPressed: () {
+                    final tscStatus = state.usePoints(289);
+                    if (tscStatus) {
+                      state.assignPremium();
+                    }
                     showDialog(
                       context: context,
-                      builder: (context) => state.usePoints(299)
+                      builder: (context) => tscStatus
                           ? exchangeSuccess(text, context)
                           : exchangeFailed(text, context),
                     );

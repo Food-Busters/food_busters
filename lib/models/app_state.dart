@@ -38,4 +38,12 @@ class AppState {
     _points -= points;
     return true;
   }
+
+  bool _premium = false;
+
+  bool get isPremiumUser => _premium;
+
+  void assignPremium() {
+    _premium = true;
+  }
 }
