@@ -2,7 +2,7 @@ import "package:flutter/material.dart";
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:food_busters/components/background.dart";
 import "package:food_busters/data/dummy_busters.dart";
-import 'package:food_busters/models/buster.dart';
+import "package:food_busters/models/buster.dart";
 import "package:food_busters/styles/styles.dart";
 
 class LeaderboardPage extends StatefulWidget {
@@ -33,16 +33,78 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 8.0,
+                    horizontal: 28,
+                  ),
                   child: Container(
-                    height: 240,
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: lightGreen,
                       borderRadius: BorderRadius.circular(16.0),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: topBusters(text),
+                      padding: const EdgeInsets.all(24.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            height: 100,
+                            width: 100,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                fit: BoxFit.fill,
+                                image: NetworkImage(discordPfp),
+                              ),
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Text(
+                                "78",
+                                style: TextStyle(
+                                  fontSize: 36,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              Text("th"),
+                            ],
+                          ),
+                          Text("30% ${text.less_than_avg}"),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Container(
+                    height: 320,
+                    decoration: BoxDecoration(
+                      color: lightGreen,
+                      borderRadius: BorderRadius.circular(16.0),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 8.0,
+                        horizontal: 4.0,
+                      ),
+                      child: Column(
+                        children: [
+                          const Text(
+                            "TOP 3 BUSTERS",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 24,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 240,
+                            child: topBusters(text),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -66,7 +128,10 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
             itemBuilder: (context, index) {
               final buster = data[index];
               return ListTile(
-                title: Text(buster.username),
+                title: Text(
+                  buster.username,
+                  style: const TextStyle(fontSize: 14),
+                ),
                 leading: Container(
                   height: 50,
                   width: 50,
@@ -79,6 +144,18 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                       ),
                     ),
                   ),
+                ),
+                trailing: Column(
+                  children: [
+                    Text(
+                      "${buster.percentileRank}%",
+                      style: const TextStyle(fontSize: 14),
+                    ),
+                    Text(
+                      text.less_than_avg,
+                      style: const TextStyle(fontSize: 8),
+                    ),
+                  ],
                 ),
               );
             },

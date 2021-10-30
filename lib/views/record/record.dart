@@ -101,7 +101,10 @@ class _MyRecordPageState extends State<MyRecordPage> {
                     backgroundColor: rose,
                     actions: [
                       TextButton(
-                        child: Text(text.what_is_premium),
+                        child: Text(
+                          text.what_is_premium,
+                          style: const TextStyle(color: green),
+                        ),
                         onPressed: () {},
                       ),
                       TextButton(

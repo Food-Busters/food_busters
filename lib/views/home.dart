@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import "package:food_busters/components/background.dart";
 import "package:food_busters/main.dart";
 import "package:food_busters/styles/styles.dart";
+import "package:food_busters/views/mission/mission.dart";
 import "package:food_busters/views/points/points.dart";
 import "package:food_busters/views/record/record.dart";
 import "package:food_busters/views/scan/scanportal.dart";
@@ -115,9 +116,7 @@ class _HomePageState extends State<HomePage> {
                         shape: BoxShape.circle,
                         image: DecorationImage(
                           fit: BoxFit.fill,
-                          image: NetworkImage(
-                            "https://external-preview.redd.it/4PE-nlL_PdMD5PrFNLnjurHQ1QKPnCvg368LTDnfM-M.png?auto=webp&s=ff4c3fbc1cce1a1856cff36b5d2a40a6d02cc1c3",
-                          ),
+                          image: NetworkImage(discordPfp),
                         ),
                       ),
                     ),
@@ -161,7 +160,14 @@ class _HomePageState extends State<HomePage> {
                       content: text.my_record,
                     ),
                     smallBtn(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const MyMissionPage(),
+                          ),
+                        );
+                      },
                       content: text.mission,
                     )
                   ],
