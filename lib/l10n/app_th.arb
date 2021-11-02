@@ -58,6 +58,7 @@
     "exchange": "แลก",
     "exchange_complete": "สำเร็จ! ได้เวลาอร่อย",
     "exchange_failed": "การแลกล้มเหลว โปรดตรวจสอบว่าคุณมีแต้มเพียงพอ",
+    "use_this_qr": "กรุณาแสดง QR Code นี้ให้กับร้านอาหารเพื่อแลกใช้งาน",
     "n_days_pass": "{n} วัน",
     "press_to_exchange": "กดเพื่อแลก",
     "points_shop": "ร้านค้าแต้ม",

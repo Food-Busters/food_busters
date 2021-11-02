@@ -24,6 +24,7 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
   }
 
   int percent = 0;
+  int pointRecieved = 0;
 
   Future<String> getAnalysis(BuildContext context) async {
     final appState = MyApp.of(context).state;
@@ -34,6 +35,8 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
     // * SIMULATE IMAGE PROCESSING
     await Future.delayed(const Duration(milliseconds: 500));
     percent = Random().nextInt(100) + 1;
+    pointRecieved = (percent * percent / 100).floor();
+    appState.addPoints(pointRecieved);
 
     final url = Uri.parse(
       "https://food-waste-quotes.vercel.app/api/quote?percent=$percent&lang=${MyApp.of(context).localeStrSimp}",
@@ -111,7 +114,7 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            "${(percent * percent / 100).floor()} ${text.points}",
+            "$pointRecieved ${text.points}",
             style: const TextStyle(
               color: green,
               fontSize: 30,

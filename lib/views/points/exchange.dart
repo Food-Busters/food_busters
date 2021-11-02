@@ -157,7 +157,7 @@ class _ExchangePageState extends State<ExchangePage> {
                     context: context,
                     builder: (context) {
                       return state.usePoints(res.points)
-                          ? exchangeSuccess(text, context)
+                          ? exchangeSuccess(text, context, showQR: true)
                           : exchangeFailed(text, context);
                     },
                   );

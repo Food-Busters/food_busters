@@ -58,6 +58,7 @@
     "exchange": "Exchange",
     "exchange_complete": "Completed! Time to enjoy.",
     "exchange_failed": "Exchange Failed, Please verify you have enough points",
+    "use_this_qr": "Please show this QR Code to restaurant to redeem this",
     "n_days_pass": "{n} days pass",
     "press_to_exchange": "Press to Exchange",
     "points_shop": "Points Shop",

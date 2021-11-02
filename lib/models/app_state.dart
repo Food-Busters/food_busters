@@ -24,8 +24,9 @@ class AppState {
   }
 
   // * Points Part
-  // ! Subjected to be change to server-based rather than local, ephemeral
-  int _points = 18;
+  // ! Subjected to be change to server-based rather than local
+  // ! for prototype demonstration only
+  int _points = 398;
 
   int get points => _points;
 
