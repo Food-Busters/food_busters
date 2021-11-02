@@ -38,6 +38,8 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
     pointRecieved = (percent * percent / 100).floor();
     appState.addPoints(pointRecieved);
 
+    appState.resetAllImages();
+
     final url = Uri.parse(
       "https://food-waste-quotes.vercel.app/api/quote?percent=$percent&lang=${MyApp.of(context).localeStrSimp}",
     );

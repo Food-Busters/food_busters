@@ -23,6 +23,11 @@ class AppState {
     _imageAfter = image;
   }
 
+  void resetAllImages() {
+    _imageBefore = null;
+    _imageAfter = null;
+  }
+
   // * Points Part
   // ! Subjected to be change to server-based rather than local
   // ! for prototype demonstration only
