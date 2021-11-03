@@ -80,5 +80,8 @@
     "more_carbon": "more carbon footprint than others",
     "more_methane": "more methane produced by using vehicle",
     "more_calories": "more calories you consumed",
-    "less_than_avg": "less than average"
+    "less_than_avg": "less than average",
+    "easy": "EASY",
+    "hard": "HARD",
+    "current_missions": "Current Missions"
 }
