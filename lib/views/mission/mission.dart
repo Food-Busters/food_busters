@@ -49,7 +49,7 @@ class _MyMissionPageState extends State<MyMissionPage> {
   }
 
   Widget currentMission(AppLocalizations text) => Container(
-        height: 200,
+        height: 370,
         width: double.infinity,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.0),
@@ -60,33 +60,65 @@ class _MyMissionPageState extends State<MyMissionPage> {
           child: Column(
             children: [
               Text(text.current_missions),
-              FutureBuilder<List<OngoingMission>>(
-                future: getCurrentMissions(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.done) {
-                    final data = snapshot.data!;
-                    final loc = MyApp.of(context).localeStrSimp;
-                    return SingleChildScrollView(
-                      child: ListView.builder(
+              Container(
+                height: 300,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+                child: FutureBuilder<List<OngoingMission>>(
+                  future: getCurrentMissions(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.done) {
+                      final data = snapshot.data!;
+                      final loc = MyApp.of(context).localeStrSimp;
+                      return ListView.builder(
+                        padding: EdgeInsets.zero,
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
                         itemCount: data.length,
                         itemBuilder: (context, index) {
                           final ms = data[index];
                           return ListTile(
-                            title: Text(ms.obj.toStr(loc)),
-                            trailing: Row(
+                            title: Column(
                               children: [
-                                Text(ms.deadlineDate.toString()),
-                                Text(ms.deadlineMonth)
+                                Text(ms.obj.toStr(loc)),
+                                Text(
+                                  "${ms.award.toString()} ${text.points}",
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            trailing: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  ms.deadlineDate.toString(),
+                                  style: const TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.w500,
+                                    height: 1,
+                                  ),
+                                ),
+                                Text(
+                                  ms.deadlineMonth,
+                                  style: const TextStyle(
+                                    fontSize: 12,
+                                    height: 0.5,
+                                  ),
+                                ),
                               ],
                             ),
                           );
                         },
-                      ),
-                    );
-                  } else {
-                    return const CircularProgressIndicator();
-                  }
-                },
+                      );
+                    } else {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                  },
+                ),
               )
             ],
           ),

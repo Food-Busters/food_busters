@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
+import "package:flutter_toggle_tab/flutter_toggle_tab.dart";
 import "package:food_busters/components/background.dart";
 import "package:food_busters/data/dummy_busters.dart";
 import "package:food_busters/models/buster.dart";
@@ -13,6 +14,8 @@ class LeaderboardPage extends StatefulWidget {
 }
 
 class _LeaderboardPageState extends State<LeaderboardPage> {
+  bool _panel = false;
+
   @override
   Widget build(BuildContext context) {
     final text = AppLocalizations.of(context)!;
@@ -32,6 +35,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                const SizedBox(height: 50),
                 Padding(
                   padding: const EdgeInsets.symmetric(
                     vertical: 8.0,
@@ -80,7 +84,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Container(
-                    height: 320,
+                    height: 350,
                     decoration: BoxDecoration(
                       color: lightGreen,
                       borderRadius: BorderRadius.circular(16.0),
@@ -92,15 +96,34 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                       ),
                       child: Column(
                         children: [
-                          const Text(
-                            "TOP 3 BUSTERS",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 24,
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: FlutterToggleTab(
+                              width: 80,
+                              borderRadius: 30,
+                              height: 50,
+                              selectedIndex: _panel ? 1 : 0,
+                              selectedTextStyle: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w700,
+                              ),
+                              unSelectedTextStyle: const TextStyle(
+                                color: Colors.black87,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              labels: [text.top_busters, text.friends],
+                              selectedLabelIndex: (index) {
+                                setState(() {
+                                  _panel = index == 0 ? false : true;
+                                });
+                              },
+                              selectedBackgroundColors: const [tan],
                             ),
                           ),
                           SizedBox(
-                            height: 240,
+                            height: 260,
                             child: topBusters(text),
                           ),
                         ],
@@ -118,11 +141,12 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
 
   Widget topBusters(AppLocalizations text) {
     return FutureBuilder<List<Buster>>(
-      future: getTopBustersData(),
+      future: _panel ? getFriendsData() : getTopBustersData(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           final data = snapshot.data!;
           return ListView.builder(
+            padding: EdgeInsets.zero,
             scrollDirection: Axis.vertical,
             itemCount: data.length,
             itemBuilder: (context, index) {
@@ -142,6 +166,14 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                       image: NetworkImage(
                         buster.pfp,
                       ),
+                    ),
+                  ),
+                  child: Text(
+                    buster.actualRank.toString(),
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16,
+                      height: 0.8,
                     ),
                   ),
                 ),
