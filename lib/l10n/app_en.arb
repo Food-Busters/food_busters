@@ -84,7 +84,7 @@
     "more_methane": "more methane produced by using vehicle",
     "more_calories": "more calories you consumed",
     "less_than_avg": "less than average",
-    "easy": "EASY",
-    "hard": "HARD",
-    "current_missions": "Current Missions"
+    "current_missions": "Current Missions",
+    "craving_missions": "Craving missions?",
+    "hard_missions_desc": "Attempt hard missions to get more awesome prices!"
 }

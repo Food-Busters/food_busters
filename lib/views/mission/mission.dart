@@ -49,7 +49,7 @@ class _MyMissionPageState extends State<MyMissionPage> {
   }
 
   Widget currentMission(AppLocalizations text) => Container(
-        height: 370,
+        height: 300,
         width: double.infinity,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.0),
@@ -61,7 +61,7 @@ class _MyMissionPageState extends State<MyMissionPage> {
             children: [
               Text(text.current_missions),
               Container(
-                height: 300,
+                height: 230,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(12.0),
@@ -131,26 +131,43 @@ class _MyMissionPageState extends State<MyMissionPage> {
           color: lightGreen,
         ),
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
             children: [
-              Expanded(
-                flex: 1,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  child: Text(text.easy, style: const TextStyle(fontSize: 36)),
-                  style: tanBtn,
+              Text(text.craving_missions),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 12.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        child:
+                            const Text("FOOD", style: TextStyle(fontSize: 24)),
+                        style: tanBtn,
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      flex: 1,
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        child: const Text(
+                          "CARBON FOOTPRINT",
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        style: tanBtn,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              const SizedBox(width: 10),
-              Expanded(
-                flex: 1,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  child: Text(text.hard, style: const TextStyle(fontSize: 36)),
-                  style: tanBtn,
-                ),
+              Text(
+                text.hard_missions_desc,
+                style: const TextStyle(fontSize: 12),
+                textAlign: TextAlign.center,
               ),
             ],
           ),
