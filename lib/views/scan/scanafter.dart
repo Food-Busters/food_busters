@@ -1,3 +1,4 @@
+import "dart:io";
 import "package:flutter/material.dart";
 import "package:food_busters/components/background.dart";
 import "package:food_busters/components/buttons.dart";
@@ -9,6 +10,7 @@ import "package:food_busters/views/scan/recommend_food.dart";
 import "package:http/http.dart" as http;
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:pie_chart/pie_chart.dart";
+import "package:tflite/tflite.dart";
 
 // ! Temporary, as in production we don't random user's result
 import "dart:math";
@@ -39,6 +41,26 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
 
     // * SIMULATE IMAGE PROCESSING
     await Future.delayed(const Duration(milliseconds: 500));
+
+    await Tflite.loadModel(
+      model: "assets/tfmodel/food_detect.tflite",
+      labels: "assets/tfmodel/labels.txt",
+    );
+
+    final imagePath = appState.imageBefore!.path;
+    final imageData = await File(imagePath).readAsBytes();
+
+    final recognitions = await Tflite.detectObjectOnBinary(
+      binary: imageData,
+      model: "SSDMobileNet",
+      threshold: 0.4,
+      numResultsPerClass: 1,
+    );
+
+    print(recognitions);
+
+    Tflite.close();
+
     percent = Random().nextInt(100) + 1;
     pointRecieved = (percent * percent / 100).floor();
     appState.addPoints(pointRecieved);
