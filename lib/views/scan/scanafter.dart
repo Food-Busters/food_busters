@@ -1,11 +1,13 @@
 import "package:flutter/material.dart";
 import "package:food_busters/components/background.dart";
 import "package:food_busters/components/buttons.dart";
+import "package:food_busters/data/food_data.dart";
 import "package:food_busters/main.dart";
 import "package:food_busters/models/quote.dart";
 import "package:food_busters/styles/styles.dart";
 import "package:http/http.dart" as http;
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
+import "package:pie_chart/pie_chart.dart";
 
 // ! Temporary, as in production we don't random user's result
 import "dart:math";
@@ -26,6 +28,8 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
   int percent = 0;
   int pointRecieved = 0;
 
+  Map<String, double> foodData = {};
+
   Future<String> getAnalysis(BuildContext context) async {
     final appState = MyApp.of(context).state;
     if (!appState.imageReady) {
@@ -44,6 +48,8 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
       "https://food-waste-quotes.vercel.app/api/quote?percent=$percent&lang=${MyApp.of(context).localeStrSimp}",
     );
     final response = await http.get(url);
+
+    foodData = await getChickenRiceData();
 
     if (response.statusCode >= 400) {
       return "${response.statusCode} ${response.body}";
@@ -75,11 +81,12 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
                 if (snapshot.connectionState == ConnectionState.done) {
                   final quote = snapshot.data ?? "Internal Flutter Error";
                   return DefaultTabController(
-                    length: 2,
+                    length: 3,
                     child: TabBarView(
                       children: [
                         tabPageWrapper(infoPage1, context, text, quote),
                         tabPageWrapper(infoPage2, context, text, quote),
+                        tabPageWrapper(infoPage3, context, text, quote),
                       ],
                     ),
                   );
@@ -106,7 +113,7 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
       Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Text(text.swipe_hint),
+          Text("—${text.swipe_hint}—"),
           widget(text, quote),
           backHomeBtn(context, text)
         ],
@@ -166,5 +173,30 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
             ),
           ),
         ],
+      );
+
+  Widget infoPage3(AppLocalizations text, String quote) => Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            Text(
+              text.your_data,
+              style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 28),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 24.0),
+              child: PieChart(
+                dataMap: foodData,
+                chartType: ChartType.ring,
+              ),
+            ),
+            Text(text.take_home_recommendation),
+            ElevatedButton(
+              onPressed: () {},
+              child: Text(text.any_menu_suits_me),
+              style: greenBtn,
+            ),
+          ],
+        ),
       );
 }

@@ -129,7 +129,10 @@ class _MyRecordPageState extends State<MyRecordPage> {
                           Expanded(
                             flex: 1,
                             child: smallFoodTile(
-                                context, "dessert", record.dessert),
+                              context,
+                              "dessert",
+                              record.dessert,
+                            ),
                           ),
                         ],
                       ),
