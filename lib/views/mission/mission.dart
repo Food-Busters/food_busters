@@ -5,6 +5,7 @@ import "package:food_busters/data/dummy_current_missions.dart";
 import "package:food_busters/main.dart";
 import "package:food_busters/models/mission.dart";
 import "package:food_busters/styles/styles.dart";
+import "package:food_busters/views/mission/new_mission.dart";
 
 class MyMissionPage extends StatefulWidget {
   const MyMissionPage({Key? key}) : super(key: key);
@@ -143,7 +144,16 @@ class _MyMissionPageState extends State<MyMissionPage> {
                     Expanded(
                       flex: 1,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const NewMissionPage(
+                                missionType: MissionType.food,
+                              ),
+                            ),
+                          );
+                        },
                         child:
                             const Text("FOOD", style: TextStyle(fontSize: 24)),
                         style: tanBtn,
@@ -153,7 +163,16 @@ class _MyMissionPageState extends State<MyMissionPage> {
                     Expanded(
                       flex: 1,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const NewMissionPage(
+                                missionType: MissionType.carbonFoodprint,
+                              ),
+                            ),
+                          );
+                        },
                         child: const Text(
                           "CARBON FOOTPRINT",
                           style: TextStyle(fontSize: 16),
