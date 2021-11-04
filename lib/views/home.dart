@@ -4,6 +4,7 @@ import "package:food_busters/main.dart";
 import "package:food_busters/styles/styles.dart";
 import "package:food_busters/views/mission/mission.dart";
 import "package:food_busters/views/points/points.dart";
+import "package:food_busters/views/record/leaderboard.dart";
 import "package:food_busters/views/record/record.dart";
 import "package:food_busters/views/scan/scanportal.dart";
 import "package:food_busters/views/settings.dart";
@@ -122,55 +123,97 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ],
                 ),
-                Column(
-                  children: [
-                    bigBtn(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const ScanPortalPage(),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    children: [
+                      bigBtn(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const ScanPortalPage(),
+                            ),
+                          );
+                        },
+                        content: text.scan + "!",
+                        padding: 20,
+                        icon: Icons.camera_alt,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: smallBtn(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const MyPoints(userID: "1234567890"),
+                                  ),
+                                );
+                              },
+                              content: text.my_points,
+                              icon: Icons.monetization_on_outlined,
+                            ),
                           ),
-                        );
-                      },
-                      content: text.scan + "!",
-                      padding: 20,
-                    ),
-                    smallBtn(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                const MyPoints(userID: "1234567890"),
+                          Expanded(
+                            flex: 1,
+                            child: smallBtn(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const MyRecordPage(),
+                                  ),
+                                );
+                              },
+                              content: text.my_record,
+                              icon: Icons.timeline,
+                            ),
                           ),
-                        );
-                      },
-                      content: text.my_points,
-                    ),
-                    smallBtn(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const MyRecordPage(),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: smallBtn(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const MyMissionPage(),
+                                  ),
+                                );
+                              },
+                              content: text.mission,
+                              icon: Icons.notification_important,
+                            ),
                           ),
-                        );
-                      },
-                      content: text.my_record,
-                    ),
-                    smallBtn(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const MyMissionPage(),
-                          ),
-                        );
-                      },
-                      content: text.mission,
-                    )
-                  ],
+                          Expanded(
+                            flex: 1,
+                            child: smallBtn(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const LeaderboardPage(),
+                                  ),
+                                );
+                              },
+                              content: text.leaderboard,
+                              icon: Icons.badge,
+                            ),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -184,12 +227,19 @@ class _HomePageState extends State<HomePage> {
     required void Function() onPressed,
     required String content,
     required double padding,
+    required IconData icon,
   }) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: ElevatedButton(
         onPressed: onPressed,
-        child: Text(content, style: const TextStyle(fontSize: 26)),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon),
+            Text(content, style: const TextStyle(fontSize: 26)),
+          ],
+        ),
         style: ElevatedButton.styleFrom(
           padding: EdgeInsets.all(padding),
           primary: lightOrange,
@@ -202,16 +252,21 @@ class _HomePageState extends State<HomePage> {
   Widget smallBtn({
     required void Function() onPressed,
     required String content,
+    required IconData icon,
   }) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: ElevatedButton(
         onPressed: onPressed,
-        child: Text(content, style: const TextStyle(fontSize: 18)),
+        child: Column(
+          children: [
+            Icon(icon),
+            Text(content, style: const TextStyle(fontSize: 14)),
+          ],
+        ),
         style: ElevatedButton.styleFrom(
           padding: const EdgeInsets.all(15),
           primary: lightGreen,
-          minimumSize: const Size(200, 0),
         ),
       ),
     );

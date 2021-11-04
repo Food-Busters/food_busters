@@ -44,7 +44,6 @@ class _ExchangePageState extends State<ExchangePage> {
       ),
       body: Stack(
         children: [
-          bgImage("clouds/bottom_aqua.png"),
           bgImage("clouds/top_orange.png"),
           FutureBuilder<List<RestaurantMenu>>(
             future: getRestaurantData(),
