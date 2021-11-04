@@ -1,4 +1,4 @@
 // * Simulate Server Request
-final serverRequest = Future.delayed(
-  const Duration(milliseconds: 1000),
-);
+Future<void> serverRequest() async {
+  await Future.delayed(const Duration(milliseconds: 1000));
+}

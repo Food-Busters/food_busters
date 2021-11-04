@@ -2,7 +2,7 @@ import "package:food_busters/data/delay.dart";
 import "package:food_busters/models/points_price.dart";
 
 Future<List<PointsPrice>> getPointsPriceData() async {
-  await serverRequest;
+  await serverRequest();
 
   return [
     PointsPrice(points: 50, price: 30),

@@ -2,7 +2,7 @@ import "package:food_busters/data/delay.dart";
 import "package:food_busters/models/food_record.dart";
 
 Future<FoodRecord> getFoodRecord() async {
-  await serverRequest;
+  await serverRequest();
 
   return FoodRecord(
     dessert: 10,

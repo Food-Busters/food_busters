@@ -2,7 +2,7 @@ import "package:food_busters/data/delay.dart";
 import "package:food_busters/models/buster.dart";
 
 Future<List<Buster>> getTopBustersData() async {
-  await serverRequest;
+  await serverRequest();
 
   return [
     Buster(

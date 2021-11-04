@@ -1,8 +1,10 @@
 import "package:flutter/material.dart";
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:food_busters/components/background.dart";
+import "package:food_busters/data/dummy_record.dart";
 import "package:food_busters/main.dart";
 import "package:food_busters/models/app_state.dart";
+import "package:food_busters/models/food_record.dart";
 import "package:food_busters/styles/styles.dart";
 import "package:food_busters/views/record/other_busters.dart";
 
@@ -40,7 +42,11 @@ class _MyRecordPageState extends State<MyRecordPage> {
                 padding: const EdgeInsets.all(32.0),
                 child: recordHeader(text),
               ),
-              btnGroup(context, text, appState),
+              foodChart(text),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                child: btnGroup(context, text, appState),
+              ),
             ],
           ),
         ],
@@ -58,7 +64,13 @@ class _MyRecordPageState extends State<MyRecordPage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(text.record_header_1),
-                  Text(" $foodwaste kg", style: const TextStyle(color: green)),
+                  Text(
+                    " $foodwaste kg",
+                    style: const TextStyle(
+                      color: green,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
                 ],
               ),
               Text(text.record_header_2),
@@ -71,13 +83,135 @@ class _MyRecordPageState extends State<MyRecordPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text("$lessmethane% ", style: const TextStyle(color: green)),
+                  Text(
+                    "$lessmethane% ",
+                    style: const TextStyle(
+                      color: green,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
                   Text(text.record_header_4),
                 ],
               ),
             ],
           ),
         ],
+      );
+
+  Widget foodChart(AppLocalizations text) => Column(
+        children: [
+          Text(
+            "${text.what_you_eaten}...",
+            style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 25),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: FutureBuilder<FoodRecord>(
+              future: getFoodRecord(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  final record = snapshot.data!;
+                  final tiles = <Widget>[];
+
+                  tiles.addAll(
+                    [
+                      bigFoodTile(context, "vegetable", record.vegetable),
+                      bigFoodTile(context, "meat", record.meat),
+                      bigFoodTile(context, "starch", record.starch),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child:
+                                smallFoodTile(context, "fruit", record.fruit),
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: smallFoodTile(
+                                context, "dessert", record.dessert),
+                          ),
+                        ],
+                      ),
+                    ],
+                  );
+
+                  return Column(
+                    children: tiles,
+                  );
+                } else {
+                  return const CircularProgressIndicator();
+                }
+              },
+            ),
+          ),
+        ],
+      );
+
+  Widget bigFoodTile(BuildContext context, String label, int percent) =>
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 18.0,
+                vertical: 12.0,
+              ),
+              child: Container(
+                width: MediaQuery.of(context).size.width * percent / 100,
+                height: 35,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(6.0),
+                  color: lightOrange,
+                ),
+                child: const Text(""),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Image.asset("assets/images/foods/$label.png", height: 50),
+                Text("$percent%", style: const TextStyle(height: 2.5)),
+              ],
+            ),
+          ],
+        ),
+      );
+
+  Widget smallFoodTile(
+    BuildContext context,
+    String label,
+    int percent,
+  ) =>
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 18.0,
+                vertical: 12.0,
+              ),
+              child: Container(
+                width: MediaQuery.of(context).size.width * percent / 100,
+                height: 28,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(6.0),
+                  color: Colors.grey,
+                ),
+                child: const Text(""),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Image.asset("assets/images/foods/$label.png", height: 50),
+                Text("$percent%"),
+              ],
+            ),
+          ],
+        ),
       );
 
   Widget btnGroup(

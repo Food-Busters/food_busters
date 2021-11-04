@@ -3,7 +3,7 @@ import "package:food_busters/models/label10n.dart";
 import "package:food_busters/models/mission.dart";
 
 Future<List<OngoingMission>> getCurrentMissions() async {
-  await serverRequest;
+  await serverRequest();
 
   return [
     OngoingMission(
