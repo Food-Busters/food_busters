@@ -13,6 +13,8 @@ Future<List<RestaurantMenu>> getRestaurantData() async {
       price: 170,
       points: 399,
       healthiness: 2,
+      cheaper: 25,
+      lessCarbon: 41,
     ),
     RestaurantMenu(
       menuName: "MEGA SALAD",
@@ -22,6 +24,8 @@ Future<List<RestaurantMenu>> getRestaurantData() async {
       price: 200,
       points: 429,
       healthiness: 2,
+      cheaper: 18,
+      lessCarbon: 20,
     ),
     RestaurantMenu(
       menuName: "Caffè Cappuccino",
@@ -31,6 +35,8 @@ Future<List<RestaurantMenu>> getRestaurantData() async {
       price: 290,
       points: 690,
       healthiness: 1,
+      cheaper: -69,
+      lessCarbon: -420,
     ),
   ];
 }

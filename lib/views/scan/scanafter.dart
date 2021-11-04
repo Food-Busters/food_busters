@@ -5,6 +5,7 @@ import "package:food_busters/data/food_data.dart";
 import "package:food_busters/main.dart";
 import "package:food_busters/models/quote.dart";
 import "package:food_busters/styles/styles.dart";
+import "package:food_busters/views/scan/recommend_food.dart";
 import "package:http/http.dart" as http;
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:pie_chart/pie_chart.dart";
@@ -192,7 +193,14 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
             ),
             Text(text.take_home_recommendation),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const RecommendFoodPage(),
+                  ),
+                );
+              },
               child: Text(text.any_menu_suits_me),
               style: greenBtn,
             ),

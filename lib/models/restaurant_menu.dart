@@ -1,8 +1,3 @@
-import "dart:convert";
-
-RestaurantMenu restaurantMenuFromJson(String str) =>
-    RestaurantMenu.fromJson(json.decode(str));
-
 class RestaurantMenu {
   String menuName;
   String restaurantName;
@@ -10,6 +5,8 @@ class RestaurantMenu {
   int price;
   int points;
   int healthiness;
+  int cheaper;
+  int lessCarbon;
 
   RestaurantMenu({
     required this.menuName,
@@ -18,14 +15,7 @@ class RestaurantMenu {
     required this.price,
     required this.points,
     required this.healthiness,
+    required this.cheaper,
+    required this.lessCarbon,
   });
-
-  factory RestaurantMenu.fromJson(Map<String, dynamic> json) => RestaurantMenu(
-        menuName: json["menuName"],
-        restaurantName: json["restaurantName"],
-        menuPicture: json["menuPicture"],
-        price: json["price"],
-        points: json["points"],
-        healthiness: json["healthiness"],
-      );
 }
