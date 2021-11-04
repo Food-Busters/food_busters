@@ -52,4 +52,9 @@ class AppState {
   void assignPremium() {
     _premium = true;
   }
+
+  // * God Mode
+  String menu = "Chicken";
+  int get menuIndex => menu == "Chicken" ? 0 : 1;
+  int percent = 50;
 }

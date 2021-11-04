@@ -28,6 +28,7 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
 
   int percent = 0;
   int pointRecieved = 0;
+  String food = "";
 
   Map<String, double> foodData = {};
 
@@ -39,7 +40,9 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
 
     // * SIMULATE IMAGE PROCESSING
     await Future.delayed(const Duration(milliseconds: 500));
-    percent = Random().nextInt(100) + 1;
+    percent = appState.percent;
+    food = appState.menu;
+
     pointRecieved = (percent * percent / 100).floor();
     appState.addPoints(pointRecieved);
 
