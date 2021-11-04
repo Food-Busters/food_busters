@@ -1,10 +1,8 @@
+import "package:food_busters/data/delay.dart";
 import "package:food_busters/models/restaurant_menu.dart";
 
 Future<List<RestaurantMenu>> getRestaurantData() async {
-  // * Simulate Server Request
-  await Future.delayed(
-    const Duration(milliseconds: 1000),
-  );
+  await serverRequest;
 
   return [
     RestaurantMenu(

@@ -1,11 +1,9 @@
+import "package:food_busters/data/delay.dart";
 import "package:food_busters/models/label10n.dart";
 import "package:food_busters/models/mission.dart";
 
 Future<List<OngoingMission>> getCurrentMissions() async {
-  // * Simulate Server Request
-  await Future.delayed(
-    const Duration(milliseconds: 1000),
-  );
+  await serverRequest;
 
   return [
     OngoingMission(
