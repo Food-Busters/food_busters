@@ -44,10 +44,7 @@ Future<List<Buster>> getTopBustersData() async {
 }
 
 Future<List<Buster>> getFriendsData() async {
-  // * Simulate Server Request
-  await Future.delayed(
-    const Duration(milliseconds: 1000),
-  );
+  await serverRequest();
 
   return [
     Buster(
