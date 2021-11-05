@@ -95,5 +95,13 @@
     "current_missions": "Current Missions",
     "craving_missions": "Craving missions?",
     "hard_missions_desc": "Attempt hard missions to get more awesome prices!",
-    "eat_less": "Eat less..."
+    "eat_less": "Eat less...",
+    "no_data_this_day": "No Data found for this day",
+    "recorded_menu": "Recorded Menu",
+    "breakfast": "Breakfast",
+    "lunch": "Lunch",
+    "dinner": "Dinner",
+    "easy_guide": "Easy Guide for you",
+    "guide_vegetable_header": "Left over VEGETABLE = METHANE",
+    "guide_vegetable_content": "Don't like vegetables? If you don't like it, tell chef to not put in becaus 30% of your food waste are vegetables!"
 }

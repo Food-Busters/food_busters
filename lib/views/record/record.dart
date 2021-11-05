@@ -6,6 +6,7 @@ import "package:food_busters/main.dart";
 import "package:food_busters/models/app_state.dart";
 import "package:food_busters/models/food_record.dart";
 import "package:food_busters/styles/styles.dart";
+import "package:food_busters/views/record/health_status.dart";
 import "package:food_busters/views/record/other_busters.dart";
 
 class MyRecordPage extends StatefulWidget {
@@ -228,7 +229,12 @@ class _MyRecordPageState extends State<MyRecordPage> {
           ElevatedButton(
             onPressed: () {
               if (state.isPremiumUser) {
-                // TODO smth
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const HealthStatusPage(),
+                  ),
+                );
               } else {
                 showDialog(
                   context: context,

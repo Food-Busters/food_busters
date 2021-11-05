@@ -31,7 +31,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   Locale _locale =
       // https://stackoverflow.com/questions/50923906/how-to-get-timezone-language-and-county-id-in-flutter-by-the-location-of-device
-      WidgetsBinding.instance?.window.locales[0] ?? const Locale("en");
+      WidgetsBinding.instance?.window.locales[0] ?? const Locale("en", "US");
+  Locale get locale => _locale;
 
   late String _localeStr;
   String get localeStrSimp => _localeStr.contains("th") ? "th" : "en";
