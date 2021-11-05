@@ -47,104 +47,55 @@ class _NewMissionPageState extends State<NewMissionPage> {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              missionBlock(text, text.eat_less, lightOrange),
+              missionBlock(text, text.eat_more, lightGreen),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget missionBlock(AppLocalizations text, String title, Color color) =>
+      Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Container(
+          decoration: BoxDecoration(
+            color: color,
+            borderRadius: BorderRadius.circular(12.0),
+          ),
+          child: Column(
+            children: [
+              Text(title),
               Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(8.0),
                 child: Container(
                   decoration: BoxDecoration(
-                    color: lightOrange,
-                    borderRadius: BorderRadius.circular(12.0),
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(6.0),
                   ),
                   child: Column(
                     children: [
-                      Text(text.eat_less),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: missionButtons(),
+                      ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: color,
                             borderRadius: BorderRadius.circular(6.0),
                           ),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 8.0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    ElevatedButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          selected = 0;
-                                        });
-                                      },
-                                      child: Image.asset(
-                                        "assets/images/foods/starch.png",
-                                        height: 60,
-                                      ),
-                                      style: ElevatedButton.styleFrom(
-                                        primary: selected == 0
-                                            ? lightGreen
-                                            : lightOrange,
-                                      ),
-                                    ),
-                                    ElevatedButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          selected = 1;
-                                        });
-                                      },
-                                      child: Image.asset(
-                                        "assets/images/foods/meat.png",
-                                        height: 60,
-                                      ),
-                                      style: ElevatedButton.styleFrom(
-                                        primary: selected == 1
-                                            ? lightGreen
-                                            : lightOrange,
-                                      ),
-                                    ),
-                                    ElevatedButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          selected = 2;
-                                        });
-                                      },
-                                      child: Image.asset(
-                                        "assets/images/foods/dessert.png",
-                                        height: 60,
-                                      ),
-                                      style: ElevatedButton.styleFrom(
-                                        primary: selected == 2
-                                            ? lightGreen
-                                            : lightOrange,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: lightOrange,
-                                    borderRadius: BorderRadius.circular(6.0),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: const [
-                                        Text("within"),
-                                        Text("days"),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: const [
+                                Text("within"),
+                                Text("days"),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -154,8 +105,54 @@ class _NewMissionPageState extends State<NewMissionPage> {
               ),
             ],
           ),
+        ),
+      );
+
+  Widget missionButtons() => Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              setState(() {
+                selected = 0;
+              });
+            },
+            child: Image.asset(
+              "assets/images/foods/starch.png",
+              height: 60,
+            ),
+            style: ElevatedButton.styleFrom(
+              primary: selected == 0 ? lightGreen : lightOrange,
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              setState(() {
+                selected = 1;
+              });
+            },
+            child: Image.asset(
+              "assets/images/foods/meat.png",
+              height: 60,
+            ),
+            style: ElevatedButton.styleFrom(
+              primary: selected == 1 ? lightGreen : lightOrange,
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              setState(() {
+                selected = 2;
+              });
+            },
+            child: Image.asset(
+              "assets/images/foods/dessert.png",
+              height: 60,
+            ),
+            style: ElevatedButton.styleFrom(
+              primary: selected == 2 ? lightGreen : lightOrange,
+            ),
+          ),
         ],
-      ),
-    );
-  }
+      );
 }
