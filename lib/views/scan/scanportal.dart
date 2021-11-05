@@ -100,6 +100,7 @@ class _ScanPortalPageState extends State<ScanPortalPage> {
                   style: ElevatedButton.styleFrom(
                     primary: lightGreen,
                     padding: const EdgeInsets.all(8.0),
+                    minimumSize: const Size(220, 0),
                   ),
                 ),
               ],

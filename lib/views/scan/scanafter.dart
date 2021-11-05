@@ -125,7 +125,7 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            "$pointRecieved ${text.points}",
+            "+$pointRecieved ${text.points}",
             style: const TextStyle(
               color: green,
               fontSize: 30,
