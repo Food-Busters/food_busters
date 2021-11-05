@@ -7,6 +7,7 @@ class RestaurantMenu {
   int healthiness;
   int cheaper;
   int lessCarbon;
+  int match;
 
   RestaurantMenu({
     required this.menuName,
@@ -17,5 +18,6 @@ class RestaurantMenu {
     required this.healthiness,
     required this.cheaper,
     required this.lessCarbon,
+    required this.match,
   });
 }

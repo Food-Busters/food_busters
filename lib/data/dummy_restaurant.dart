@@ -15,6 +15,7 @@ Future<List<RestaurantMenu>> getRestaurantData() async {
       healthiness: 2,
       cheaper: 25,
       lessCarbon: 41,
+      match: 98,
     ),
     RestaurantMenu(
       menuName: "MEGA SALAD",
@@ -23,9 +24,10 @@ Future<List<RestaurantMenu>> getRestaurantData() async {
           "https://img.wongnai.com/p/1920x0/2017/10/23/baa1e676f2604bef87d2d984103e7e8a.jpg",
       price: 200,
       points: 429,
-      healthiness: 2,
+      healthiness: 3,
       cheaper: 18,
       lessCarbon: 20,
+      match: 80,
     ),
     RestaurantMenu(
       menuName: "Caffè Cappuccino",
@@ -37,6 +39,7 @@ Future<List<RestaurantMenu>> getRestaurantData() async {
       healthiness: 1,
       cheaper: -69,
       lessCarbon: -420,
+      match: 420,
     ),
   ];
 }

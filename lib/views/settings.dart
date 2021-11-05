@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:flutter_toggle_tab/flutter_toggle_tab.dart";
 import "package:food_busters/main.dart";
+import "package:food_busters/models/app_state.dart";
 import "package:food_busters/styles/styles.dart";
 import "package:food_busters/views/login.dart";
 
@@ -88,7 +89,7 @@ class _SettingsPageState extends State<SettingsPage> {
             labels: const ["Chicken", "Omelet"],
             selectedLabelIndex: (index) {
               setState(() {
-                appState.menu = index == 0 ? "Chicken" : "Omelet";
+                appState.menu = index == 0 ? Food.chicken : Food.omelet;
               });
             },
             selectedIndex: appState.menuIndex,

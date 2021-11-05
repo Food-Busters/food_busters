@@ -54,7 +54,12 @@ class AppState {
   }
 
   // * God Mode
-  String menu = "Chicken";
-  int get menuIndex => menu == "Chicken" ? 0 : 1;
+  Food menu = Food.chicken;
+  int get menuIndex => menu == Food.chicken ? 0 : 1;
   int percent = 50;
+}
+
+enum Food {
+  chicken,
+  omelet,
 }

@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:food_busters/components/background.dart";
 import "package:food_busters/components/exchange_dialog.dart";
+import "package:food_busters/components/green_leaves.dart";
 import "package:food_busters/data/dummy_restaurant.dart";
 import "package:food_busters/main.dart";
 import "package:food_busters/models/app_state.dart";
@@ -168,24 +169,4 @@ class _ExchangePageState extends State<ExchangePage> {
           );
         },
       );
-
-  List<Widget> greenLeaves(int count) {
-    List<Widget> widgets = [];
-    for (int i = 0; i < count; i++) {
-      widgets.add(leaf);
-    }
-    return widgets;
-  }
 }
-
-final leaf = Container(
-  height: 30,
-  width: 30,
-  decoration: const BoxDecoration(
-    shape: BoxShape.rectangle,
-    image: DecorationImage(
-      fit: BoxFit.cover,
-      image: AssetImage("assets/images/leaf.png"),
-    ),
-  ),
-);

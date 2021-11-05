@@ -3,15 +3,13 @@ import "package:food_busters/components/background.dart";
 import "package:food_busters/components/buttons.dart";
 import "package:food_busters/data/food_data.dart";
 import "package:food_busters/main.dart";
+import "package:food_busters/models/app_state.dart";
 import "package:food_busters/models/quote.dart";
 import "package:food_busters/styles/styles.dart";
 import "package:food_busters/views/scan/recommend_food.dart";
 import "package:http/http.dart" as http;
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:pie_chart/pie_chart.dart";
-
-// ! Temporary, as in production we don't random user's result
-import "dart:math";
 
 class ScanAfterPage extends StatefulWidget {
   const ScanAfterPage({Key? key}) : super(key: key);
@@ -28,7 +26,7 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
 
   int percent = 0;
   int pointRecieved = 0;
-  String food = "";
+  Food food = Food.chicken;
 
   Map<String, double> foodData = {};
 
@@ -192,6 +190,7 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
               child: PieChart(
                 dataMap: foodData,
                 chartType: ChartType.ring,
+                centerText: food == Food.chicken ? text.chicken : text.omelet,
               ),
             ),
             Text(text.take_home_recommendation),
