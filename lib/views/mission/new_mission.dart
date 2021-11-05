@@ -44,69 +44,115 @@ class _NewMissionPageState extends State<NewMissionPage> {
       body: Stack(
         children: [
           bgImage("clouds/top_orange.png"),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              missionBlock(text, text.eat_less, lightOrange),
-              missionBlock(text, text.eat_more, lightGreen),
-            ],
+          Center(
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  missionBlock(text, text.eat_less, lightOrange),
+                  missionBlock(text, text.eat_more, lightGreen),
+                ],
+              ),
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget missionBlock(AppLocalizations text, String title, Color color) =>
-      Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Container(
-          decoration: BoxDecoration(
-            color: color,
-            borderRadius: BorderRadius.circular(12.0),
-          ),
-          child: Column(
-            children: [
-              Text(title),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(6.0),
-                  ),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: missionButtons(),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: color,
-                            borderRadius: BorderRadius.circular(6.0),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                Text("within"),
-                                Text("days"),
-                              ],
-                            ),
+  Widget missionBlock(AppLocalizations text, String title, Color color) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Container(
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+        child: Column(
+          children: [
+            Text(title),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(6.0),
+                ),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: missionButtons(),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: color,
+                          borderRadius: BorderRadius.circular(6.0),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text(text.within),
+                              Container(
+                                width: 60,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(6),
+                                ),
+                                child: const Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: TextField(
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              ),
+                              Text(text.days),
+                            ],
                           ),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              title: Text(text.challenge_accepted),
+                              backgroundColor: lightGreen,
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text(
+                                    text.window_close,
+                                    style: const TextStyle(color: Colors.black),
+                                  ),
+                                )
+                              ],
+                            ),
+                          );
+                        },
+                        child: Text(text.i_can_do_this),
+                        style: tanBtn,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-      );
+      ),
+    );
+  }
 
   Widget missionButtons() => Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
