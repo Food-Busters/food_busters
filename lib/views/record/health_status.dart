@@ -34,7 +34,15 @@ class _HealthStatusPageState extends State<HealthStatusPage> {
       backgroundColor: tan,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text(text.my_record),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.baseline,
+          textBaseline: TextBaseline.alphabetic,
+          children: [
+            Text(text.my_record),
+            const Text(" PREMIUM", style: TextStyle(fontSize: 14)),
+          ],
+        ),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),

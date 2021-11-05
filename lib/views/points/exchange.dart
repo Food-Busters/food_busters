@@ -11,10 +11,8 @@ import "package:food_busters/styles/styles.dart";
 import "package:food_busters/utils/string.dart";
 
 class ExchangePage extends StatefulWidget {
-  const ExchangePage({Key? key, required this.userID, this.searchQuery})
-      : super(key: key);
+  const ExchangePage({Key? key, this.searchQuery}) : super(key: key);
 
-  final String userID;
   final String? searchQuery;
 
   @override

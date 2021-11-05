@@ -11,16 +11,22 @@ import "package:food_busters/views/points/points_shop.dart";
 import "package:form_field_validator/form_field_validator.dart";
 
 class MyPoints extends StatefulWidget {
-  const MyPoints({Key? key, required this.userID}) : super(key: key);
+  const MyPoints({Key? key, this.showPremium}) : super(key: key);
 
-  final String userID;
+  final bool? showPremium;
 
   @override
   _MyPointsState createState() => _MyPointsState();
 }
 
 class _MyPointsState extends State<MyPoints> {
-  bool _panel = false;
+  late bool _panel;
+
+  @override
+  void initState() {
+    super.initState();
+    _panel = widget.showPremium ?? false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -150,9 +156,7 @@ class _MyPointsState extends State<MyPoints> {
                     await Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ExchangePage(
-                          userID: widget.userID,
-                        ),
+                        builder: (context) => const ExchangePage(),
                       ),
                     );
                     setState(() {});
@@ -216,7 +220,6 @@ class _MyPointsState extends State<MyPoints> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => ExchangePage(
-                                      userID: widget.userID,
                                       searchQuery: searchQuery,
                                     ),
                                   ),

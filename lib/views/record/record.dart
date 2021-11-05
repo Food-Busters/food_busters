@@ -6,6 +6,7 @@ import "package:food_busters/main.dart";
 import "package:food_busters/models/app_state.dart";
 import "package:food_busters/models/food_record.dart";
 import "package:food_busters/styles/styles.dart";
+import "package:food_busters/views/points/points.dart";
 import "package:food_busters/views/record/health_status.dart";
 import "package:food_busters/views/record/other_busters.dart";
 
@@ -248,7 +249,15 @@ class _MyRecordPageState extends State<MyRecordPage> {
                           text.what_is_premium,
                           style: const TextStyle(color: green),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  const MyPoints(showPremium: true),
+                            ),
+                          );
+                        },
                       ),
                       TextButton(
                         child: Text(text.window_close),
