@@ -27,6 +27,8 @@ class _NewMissionPageState extends State<NewMissionPage> {
     pageLabel = widget.missionType == MissionType.food ? "Food" : "Carbon";
   }
 
+  int selected = 0;
+
   @override
   Widget build(BuildContext context) {
     final text = AppLocalizations.of(context)!;
@@ -42,6 +44,116 @@ class _NewMissionPageState extends State<NewMissionPage> {
       body: Stack(
         children: [
           bgImage("clouds/top_orange.png"),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: lightOrange,
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                  child: Column(
+                    children: [
+                      Text(text.eat_less),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(6.0),
+                          ),
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 8.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          selected = 0;
+                                        });
+                                      },
+                                      child: Image.asset(
+                                        "assets/images/foods/starch.png",
+                                        height: 60,
+                                      ),
+                                      style: ElevatedButton.styleFrom(
+                                        primary: selected == 0
+                                            ? lightGreen
+                                            : lightOrange,
+                                      ),
+                                    ),
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          selected = 1;
+                                        });
+                                      },
+                                      child: Image.asset(
+                                        "assets/images/foods/meat.png",
+                                        height: 60,
+                                      ),
+                                      style: ElevatedButton.styleFrom(
+                                        primary: selected == 1
+                                            ? lightGreen
+                                            : lightOrange,
+                                      ),
+                                    ),
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          selected = 2;
+                                        });
+                                      },
+                                      child: Image.asset(
+                                        "assets/images/foods/dessert.png",
+                                        height: 60,
+                                      ),
+                                      style: ElevatedButton.styleFrom(
+                                        primary: selected == 2
+                                            ? lightGreen
+                                            : lightOrange,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: lightOrange,
+                                    borderRadius: BorderRadius.circular(6.0),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: const [
+                                        Text("within"),
+                                        Text("days"),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );
