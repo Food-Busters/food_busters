@@ -73,7 +73,7 @@ class _MyMissionPageState extends State<MyMissionPage> {
                     if (snapshot.connectionState == ConnectionState.done) {
                       final data = snapshot.data!;
                       final loc = MyApp.of(context).localeStrSimp;
-                      return ListView.builder(
+                      return ListView.separated(
                         padding: EdgeInsets.zero,
                         scrollDirection: Axis.vertical,
                         shrinkWrap: true,
@@ -114,6 +114,10 @@ class _MyMissionPageState extends State<MyMissionPage> {
                             ),
                           );
                         },
+                        separatorBuilder: (context, index) => const Divider(
+                          thickness: 1.5,
+                          color: Colors.grey,
+                        ),
                       );
                     } else {
                       return const Center(child: CircularProgressIndicator());

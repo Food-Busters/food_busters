@@ -113,7 +113,7 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
     String quote,
   ) =>
       Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text("—${text.swipe_hint}—"),
           widget(text, quote),
@@ -137,6 +137,7 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
             "${percent < 40 ? text.sp_only : ""} "
             "$percent% ${text.of_the_dish}...",
           ),
+          Image.asset("assets/images/cow.png", height: 200),
           Text(
             percent < 80 ? text.oh_no : text.wow,
             style: const TextStyle(fontSize: 28),

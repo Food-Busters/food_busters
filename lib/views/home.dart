@@ -138,7 +138,7 @@ class _HomePageState extends State<HomePage> {
                         },
                         content: text.scan + "!",
                         padding: 20,
-                        icon: Icons.camera_alt,
+                        assetName: "scan.png",
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -155,7 +155,7 @@ class _HomePageState extends State<HomePage> {
                                 );
                               },
                               content: text.my_points,
-                              icon: Icons.monetization_on_outlined,
+                              assetName: "points.png",
                             ),
                           ),
                           Expanded(
@@ -170,7 +170,7 @@ class _HomePageState extends State<HomePage> {
                                 );
                               },
                               content: text.my_record,
-                              icon: Icons.timeline,
+                              assetName: "record.png",
                             ),
                           ),
                         ],
@@ -190,7 +190,7 @@ class _HomePageState extends State<HomePage> {
                                 );
                               },
                               content: text.mission,
-                              icon: Icons.notification_important,
+                              assetName: "mission.png",
                             ),
                           ),
                           Expanded(
@@ -206,7 +206,7 @@ class _HomePageState extends State<HomePage> {
                                 );
                               },
                               content: text.leaderboard,
-                              icon: Icons.badge,
+                              assetName: "leaderboard.png",
                             ),
                           )
                         ],
@@ -226,7 +226,7 @@ class _HomePageState extends State<HomePage> {
     required void Function() onPressed,
     required String content,
     required double padding,
-    required IconData icon,
+    required String assetName,
   }) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -235,7 +235,7 @@ class _HomePageState extends State<HomePage> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon),
+            Image.asset("assets/images/icons/$assetName", height: 50),
             Text(content, style: const TextStyle(fontSize: 26)),
           ],
         ),
@@ -251,7 +251,7 @@ class _HomePageState extends State<HomePage> {
   Widget smallBtn({
     required void Function() onPressed,
     required String content,
-    required IconData icon,
+    required String assetName,
   }) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -259,7 +259,7 @@ class _HomePageState extends State<HomePage> {
         onPressed: onPressed,
         child: Column(
           children: [
-            Icon(icon),
+            Image.asset("assets/images/icons/$assetName", height: 50),
             Text(content, style: const TextStyle(fontSize: 14)),
           ],
         ),
