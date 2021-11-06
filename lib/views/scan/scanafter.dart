@@ -83,10 +83,11 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
                 if (snapshot.connectionState == ConnectionState.done) {
                   final quote = snapshot.data ?? "Internal Flutter Error";
                   return DefaultTabController(
-                    length: 3,
+                    length: 4,
                     child: TabBarView(
                       children: [
                         tabPageWrapper(infoPage1, context, text, quote),
+                        tabPageWrapper(infoPage1_5, context, text, quote),
                         tabPageWrapper(infoPage2, context, text, quote),
                         tabPageWrapper(infoPage3, context, text, quote),
                       ],
@@ -144,6 +145,19 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
           ),
           Text(
             quote,
+            style: const TextStyle(fontSize: 24, color: green),
+            textAlign: TextAlign.center,
+          ),
+        ],
+      );
+
+  Widget infoPage1_5(AppLocalizations text, String quote) => Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset("assets/images/motorcycle.png", width: 200, height: 200),
+          Text(
+            "อาหารจานนี้ผลิต PM 2.5 เท่ากับการดมท่อเด็กแว๊น "
+            "${((100 - percent) * 0.3).floor()} วินาที",
             style: const TextStyle(fontSize: 24, color: green),
             textAlign: TextAlign.center,
           ),

@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:flutter_toggle_tab/flutter_toggle_tab.dart";
 import "package:food_busters/components/background.dart";
+import 'package:food_busters/components/green_leaves.dart';
 import "package:food_busters/data/dummy_busters.dart";
 import "package:food_busters/models/buster.dart";
 import "package:food_busters/styles/styles.dart";
@@ -64,18 +65,8 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
-                              Text(
-                                "78",
-                                style: TextStyle(
-                                  fontSize: 36,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              Text("th"),
-                            ],
+                            children: bigNeonLeaves(4),
                           ),
-                          Text("30% ${text.less_than_avg}"),
                         ],
                       ),
                     ),
