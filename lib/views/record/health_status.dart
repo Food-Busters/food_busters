@@ -86,8 +86,8 @@ class _HealthStatusPageState extends State<HealthStatusPage> {
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: TableCalendar(
             focusedDay: focused,
-            firstDay: DateTime.utc(2021, 10, 1),
-            lastDay: DateTime.utc(2030, 12, 31),
+            firstDay: getToday().subtract(const Duration(days: mockDays)),
+            lastDay: getToday(),
             availableCalendarFormats: const {CalendarFormat.month: "Month"},
             daysOfWeekVisible: false,
             rowHeight: 40,
@@ -157,12 +157,16 @@ class _HealthStatusPageState extends State<HealthStatusPage> {
                         ),
                       ),
                       Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Image.asset(
                             "assets/images/foods/vegetable.png",
                             height: 70,
                           ),
-                          Text(text.guide_vegetable_header, style: bold),
+                          Flexible(
+                            child:
+                                Text(text.guide_vegetable_header, style: bold),
+                          ),
                         ],
                       ),
                       Text(text.guide_vegetable_content),

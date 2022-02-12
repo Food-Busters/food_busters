@@ -10,6 +10,7 @@ import "package:food_busters/views/scan/recommend_food.dart";
 import "package:http/http.dart" as http;
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:pie_chart/pie_chart.dart";
+import "package:share_plus/share_plus.dart";
 
 class ScanAfterPage extends StatefulWidget {
   const ScanAfterPage({Key? key}) : super(key: key);
@@ -30,10 +31,10 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
 
   Map<String, double> foodData = {};
 
-  Future<String> getAnalysis(BuildContext context) async {
+  Future<Quote> getAnalysis(BuildContext context) async {
     final appState = MyApp.of(context).state;
     if (!appState.imageReady) {
-      return "Image lost in state";
+      return Quote(quote: "Image lost in state");
     }
 
     // * SIMULATE IMAGE PROCESSING
@@ -54,10 +55,10 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
     foodData = await getChickenRiceData();
 
     if (response.statusCode >= 400) {
-      return "${response.statusCode} ${response.body}";
+      return Quote(quote: "${response.statusCode} ${response.body}");
     } else {
       final resobj = quoteFromJson(response.body);
-      return resobj.quote;
+      return resobj;
     }
   }
 
@@ -77,17 +78,17 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
         children: [
           bgImage("clouds/top_orange.png"),
           Center(
-            child: FutureBuilder<String>(
+            child: FutureBuilder<Quote>(
               future: getAnalysis(context),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
-                  final quote = snapshot.data ?? "Internal Flutter Error";
+                  final quote =
+                      snapshot.data ?? Quote(quote: "Internal Flutter Error");
                   return DefaultTabController(
-                    length: 4,
+                    length: 3,
                     child: TabBarView(
                       children: [
                         tabPageWrapper(infoPage1, context, text, quote),
-                        tabPageWrapper(infoPage1_5, context, text, quote),
                         tabPageWrapper(infoPage2, context, text, quote),
                         tabPageWrapper(infoPage3, context, text, quote),
                       ],
@@ -102,16 +103,21 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.share),
-        onPressed: () {},
+        onPressed: () async {
+          await Share.share(
+            "I have just finished my meal with Food Busters and recieved points"
+            " from not leaving food wastes!",
+          );
+        },
       ),
     );
   }
 
   Widget tabPageWrapper(
-    Function widget,
+    Widget Function(AppLocalizations text, Quote quote) widget,
     BuildContext context,
     AppLocalizations text,
-    String quote,
+    Quote quote,
   ) =>
       Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -122,7 +128,7 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
         ],
       );
 
-  Widget infoPage1(AppLocalizations text, String quote) => Column(
+  Widget infoPage1(AppLocalizations text, Quote quote) => Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
@@ -138,33 +144,23 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
             "${percent < 40 ? text.sp_only : ""} "
             "$percent% ${text.of_the_dish}...",
           ),
-          Image.asset("assets/images/somwua.png", height: 200),
+          Image.asset("assets/images/${quote.image}", height: 200),
           Text(
             percent < 80 ? text.oh_no : text.wow,
             style: const TextStyle(fontSize: 28),
           ),
-          Text(
-            quote,
-            style: const TextStyle(fontSize: 24, color: green),
-            textAlign: TextAlign.center,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              quote.quote,
+              style: const TextStyle(fontSize: 24, color: green),
+              textAlign: TextAlign.center,
+            ),
           ),
         ],
       );
 
-  Widget infoPage1_5(AppLocalizations text, String quote) => Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset("assets/images/motorcycle.png", width: 200, height: 200),
-          Text(
-            "อาหารจานนี้ผลิต PM 2.5 เท่ากับการดมท่อเด็กแว๊น "
-            "${((100 - percent) * 0.3).floor()} วินาที",
-            style: const TextStyle(fontSize: 24, color: green),
-            textAlign: TextAlign.center,
-          ),
-        ],
-      );
-
-  Widget infoPage2(AppLocalizations text, String quote) => Column(
+  Widget infoPage2(AppLocalizations text, Quote quote) => Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset("assets/images/money.png", width: 150, height: 150),
@@ -192,7 +188,7 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
         ],
       );
 
-  Widget infoPage3(AppLocalizations text, String quote) => Padding(
+  Widget infoPage3(AppLocalizations text, Quote quote) => Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [

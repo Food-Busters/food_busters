@@ -1,13 +1,20 @@
 \usepackage[
     a4paper,
-    total={170mm,257mm},
+    total={170mm,237mm},
     left=20mm,
-    top=20mm
+    top=30mm
 ]{geometry}
 
 \usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{indentfirst}
 
-\hypersetup{colorlinks=true, urlcolor=blue}
+\graphicspath{{./images/}}
+
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue}
 
 \newenvironment{simplechar}{
    \catcode`\$=12
@@ -18,3 +25,37 @@
    \catcode`\~=12
    \catcode`\%=12
 }{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Food Busters Prototype Mobile App Manual}
+\rhead{Nutthapat Pongtanyavichai}
+\cfoot{\thepage}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\newcommand{\scs}[1]{\includegraphics[scale=0.5]{#1}}

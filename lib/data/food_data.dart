@@ -1,5 +1,8 @@
 import "package:food_busters/data/delay.dart";
 import "package:food_busters/models/health_record.dart";
+import "dart:math";
+
+final random = Random();
 
 Future<Map<String, double>> getOmeletData() async {
   await serverRequest();
@@ -21,41 +24,66 @@ Future<Map<String, double>> getChickenRiceData() async {
   };
 }
 
-final Map<DateTime, HealthRecord> healthRecords = {
-  DateTime.utc(2021, 11, 5): HealthRecord(
-    nutrition: {
-      "Carbohydrate": 45,
-      "Fat": 25,
-      "Protein": 30,
-    },
-    breakfast: "-",
-    lunch: "Caesar Salad @ CP Best",
-    dinner: "Stir fried Thai basil and fried egg @ Aroi Cusine",
-  ),
-  DateTime.utc(2021, 11, 6): HealthRecord(
-    nutrition: {
-      "Carbohydrate": 35,
-      "Fat": 35,
-      "Protein": 30,
-    },
-    breakfast: "Bread @ Rabbit House",
-    lunch: "Donut @ Kakyoin's Restaurant",
-    dinner: "-",
-  ),
-  DateTime.utc(2021, 11, 7): HealthRecord(
-    nutrition: {
-      "Carbohydrate": 45,
-      "Fat": 15,
-      "Protein": 40,
-    },
-    breakfast: "-",
-    lunch: "Donut @ Rengoku's Restaurant",
-    dinner: "Stir fried Thai basil and fried egg @ Aroi Cusine",
-  ),
-};
+Map<String, double> getRandomNutrition() {
+  final carbo = random.nextInt(15);
+  final fat = random.nextInt(20 - carbo);
+  final protein = 20 - fat - carbo;
+
+  return {
+    "Carbohydrate": carbo * 5,
+    "Fat": fat * 5,
+    "Protein": protein * 5,
+  };
+}
+
+const restaurants = [
+  "-",
+  "Caesar Salad @ CP Best",
+  "Stir fried Thai basil and fried egg @ Aroi Cusine",
+  "Bread @ Rabbit House",
+  "Coffee Anmitsu @ Rabbit House",
+  "Donut @ Kakyoin Restaurant",
+  "Donut @ Rengoku Restaurant",
+];
+
+String getRandomRestaurant() {
+  return restaurants[random.nextInt(restaurants.length)];
+}
+
+HealthRecord getRandomHR() {
+  return HealthRecord(
+    nutrition: getRandomNutrition(),
+    breakfast: getRandomRestaurant(),
+    lunch: getRandomRestaurant(),
+    dinner: getRandomRestaurant(),
+  );
+}
+
+Map<DateTime, HealthRecord> healthRecords = {};
+
+DateTime getToday() {
+  final now = DateTime.now();
+  return DateTime(now.year, now.month, now.day);
+}
+
+const mockDays = 120;
+
+Map<DateTime, HealthRecord> getHealthRecord() {
+  if (healthRecords.isEmpty) {
+    final today = getToday();
+
+    // * Fills last {mockDays} days with random data
+    for (int i = 0; i <= mockDays; i++) {
+      if (random.nextInt(100) >= 5) {
+        healthRecords[today.subtract(Duration(days: i))] = getRandomHR();
+      }
+    }
+  }
+  return healthRecords;
+}
 
 Future<HealthRecord?> getHealthStat(DateTime date) async {
   await serverRequest();
 
-  return healthRecords[date];
+  return getHealthRecord()[date];
 }

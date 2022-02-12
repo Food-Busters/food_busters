@@ -9,59 +9,76 @@
 \author{Nutthapat Pongtanyavichai, Developer of Food Busters}
 
 \maketitle
+
+\centerline{\Large{Manual for App Version: 1.0.303}}
+
 \tableofcontents
+
+\pagebreak
 
 \section{Disclaimer}
 
 This is prototype app focuses on concept, interface \& UI, and basic logic flow of the app.
-The goal of this prototype is to show the concept and test that concept with real users for feedback.
-Some features are not properly implemented yet.
+The goal of this prototype is to show the concept and test that concept \textbf{with real users}
+for feedback. Some features are not properly implemented yet.
 We will go along each features in this manual.
 
 \section{Installation}
+
+Current version of this prototype app only supports \textbf{Android}. Due to
+limitation given by Apple, we are unable to test this app on iOS.
 
 This prototype app by specification, supports from Android 5.
 However, I recommend using Android 11 or later.
 I need to inform you that we does not have many devices to do the testing.
 We are sorry if the app doesn't work as intended for you.
 
-\section{Download the App}
+\section*{Download the App}
 
-% todo Change download link to newer version
+\noindent
 \begin{simplechar}
-Download the apk file from the link \href{https://github.com/Food-Busters/food_busters/releases/download/1.0.301/food_busters-1.0.301-arm64-v8a.apk}{HERE} or scan below QR Code
+    Download the apk file from the link \href{https://github.com/Food-Busters/food_busters/releases/download/1.0.303/food_busters-1.0.303.apk}{HERE} or scan below QR Code
 \end{simplechar}
 
-SPACE
+% todo make it latest
+\centerline{\includegraphics{qr_1.0.302.png}}
 
-HERE
-
-IS
-
-PLACE
-
-HOLDER
-
-FOR
-
-QR
-
-CODE
-
+\noindent
 \textbf{Note}: The app is not signed, there may be a warning from Play Protect.
+
+\section*{Compatibility Test Result}
+
+\noindent
+The Android App is built with the following properties:
+\begin{lstlisting}
+compileSdkVersion 31 // Android 12
+minSdkVersion 21 // Android 5
+targetSdkVersion 30 // Android 10
+\end{lstlisting}
+
+\noindent
+Test Devices and Results:
+\begin{itemize}
+    \item Samsung Galaxy Note10+ (Android 12) - WORKING AS INTENDED
+    \item Samsung Galaxy Tab S6 (Android 11) - WORKING AS INTENDED
+\end{itemize}
 
 \section{Login \& Register}
 
 As mention earlier that some features are not properly implemented with the reason given.
-Login \& Register is one of them. \\
-
+Login \& Register is one of them.
 Any non-empty Username and Password will work here.
+
+\section{Page: Home}
+
+\scs{home.png}
 
 \section{Main Feature: SCAN}
 
+\noindent
 Press Scan to enter Scan Menu
 
-/* Images Here */
+\scs{scanportal.png}
 
 Based on current concept of our app, you will need to scan two times per meal,
 \textbf{before} and \textbf{after} the meal. The AI \textit{(that doesn't exist yet)} will
@@ -71,9 +88,13 @@ process the images and gives you insight and analysis of your meal.
 
 Points \& Rewards
 
+\scs{points_1.png}
+
 \section{Main Feature: MY RECORD}
 
 Record
+
+\scs{record.png}
 
 \section{Main Feature: MISSIONS}
 
@@ -84,4 +105,3 @@ Missions
 Compete
 
 \end{document}
-
