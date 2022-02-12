@@ -1,1 +1,3 @@
 docs/* linguist-documentation=false
+android/**/* linguist-generated=true
+ios/**/* linguist-generated=true
