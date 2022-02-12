@@ -46,3 +46,10 @@ app.*.map.json
 /android/app/release
 
 .vscode
+
+# กาว LaTeX
+
+*.aux
+*.out
+*.toc
+*.pdf

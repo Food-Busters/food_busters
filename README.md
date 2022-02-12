@@ -17,3 +17,9 @@ The app is incomplete as it's only used to show our idea.
 - iOS 🟡 (No Device to test or run)
 
 - Android 🟢 (Minimum 5.0 Recommended 11)
+
+## Develop Environment
+
+- Flutter 2.10 on Windows 11 with latest Android SDK
+
+- **LaTeX**: Compiled with `XeLaTeX` on Linux (Ubuntu 20.04)

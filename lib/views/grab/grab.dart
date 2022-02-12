@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import 'package:food_busters/views/grab/grab_info.dart';
+import "package:food_busters/views/grab/grab_info.dart";
 
 class GrabPage extends StatefulWidget {
   const GrabPage({Key? key}) : super(key: key);

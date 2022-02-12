@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import 'package:pie_chart/pie_chart.dart';
+import "package:pie_chart/pie_chart.dart";
 
 class GrabInfoPage extends StatefulWidget {
   const GrabInfoPage({Key? key}) : super(key: key);
@@ -71,7 +71,8 @@ class _GrabInfoPageState extends State<GrabInfoPage> {
                     chartType: ChartType.ring,
                     chartRadius: 100,
                     legendOptions: const LegendOptions(
-                        legendPosition: LegendPosition.bottom),
+                      legendPosition: LegendPosition.bottom,
+                    ),
                   ),
                 ],
               ),

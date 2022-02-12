@@ -1,0 +1,20 @@
+\usepackage[
+    a4paper,
+    total={170mm,257mm},
+    left=20mm,
+    top=20mm
+]{geometry}
+
+\usepackage{hyperref}
+
+\hypersetup{colorlinks=true, urlcolor=blue}
+
+\newenvironment{simplechar}{
+   \catcode`\$=12
+   \catcode`\&=12
+   \catcode`\#=12
+   \catcode`\^=12
+   \catcode`\_=12
+   \catcode`\~=12
+   \catcode`\%=12
+}{}
