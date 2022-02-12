@@ -86,6 +86,11 @@ class _SettingsPageState extends State<SettingsPage> {
               style: TextStyle(fontWeight: FontWeight.w500),
             ),
           ),
+          const ListTile(
+            title: Text(
+              "This is placeholder settings, controls the output of mocked AI",
+            ),
+          ),
           FlutterToggleTab(
             labels: const ["Chicken", "Omelet"],
             selectedLabelIndex: (index) {

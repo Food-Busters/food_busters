@@ -124,101 +124,104 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    children: [
-                      bigBtn(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const ScanPortalPage(),
-                            ),
-                          );
-                        },
-                        content: text.scan + "!",
-                        padding: 20,
-                        assetName: "scan.png",
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: smallBtn(
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const MyPoints(),
-                                  ),
-                                );
-                              },
-                              content: text.my_points,
-                              assetName: "points.png",
-                            ),
-                          ),
-                          Expanded(
-                            flex: 1,
-                            child: smallBtn(
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const MyRecordPage(),
-                                  ),
-                                );
-                              },
-                              content: text.my_record,
-                              assetName: "record.png",
-                            ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: smallBtn(
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const MyMissionPage(),
-                                  ),
-                                );
-                              },
-                              content: text.mission,
-                              assetName: "mission.png",
-                            ),
-                          ),
-                          Expanded(
-                            flex: 1,
-                            child: smallBtn(
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        const LeaderboardPage(),
-                                  ),
-                                );
-                              },
-                              content: text.leaderboard,
-                              assetName: "leaderboard.png",
-                            ),
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
+                  padding: const EdgeInsets.all(8.0),
+                  child: navButtons(text),
                 ),
               ],
             ),
           ),
         ],
       ),
+    );
+  }
+
+  Widget navButtons(AppLocalizations text) {
+    return Column(
+      children: [
+        bigBtn(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const ScanPortalPage(),
+              ),
+            );
+          },
+          content: text.scan + "!",
+          padding: 20,
+          assetName: "scan.png",
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Expanded(
+              flex: 1,
+              child: smallBtn(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const MyPoints(),
+                    ),
+                  );
+                },
+                content: text.my_points,
+                assetName: "points.png",
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: smallBtn(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const MyRecordPage(),
+                    ),
+                  );
+                },
+                content: text.my_record,
+                assetName: "record.png",
+              ),
+            ),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Expanded(
+              flex: 1,
+              child: smallBtn(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const MyMissionPage(),
+                    ),
+                  );
+                },
+                content: text.mission,
+                assetName: "mission.png",
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: smallBtn(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LeaderboardPage(),
+                    ),
+                  );
+                },
+                content: text.leaderboard,
+                assetName: "leaderboard.png",
+              ),
+            )
+          ],
+        ),
+      ],
     );
   }
 

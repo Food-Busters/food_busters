@@ -37,7 +37,7 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
     }
 
     // * SIMULATE IMAGE PROCESSING
-    await Future.delayed(const Duration(milliseconds: 500));
+    // await Future.delayed(const Duration(milliseconds: 500));
     percent = appState.percent;
     food = appState.menu;
 
@@ -138,7 +138,7 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
             "${percent < 40 ? text.sp_only : ""} "
             "$percent% ${text.of_the_dish}...",
           ),
-          Image.asset("assets/images/cow.png", height: 200),
+          Image.asset("assets/images/somwua.png", height: 200),
           Text(
             percent < 80 ? text.oh_no : text.wow,
             style: const TextStyle(fontSize: 28),
