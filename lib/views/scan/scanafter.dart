@@ -105,8 +105,8 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
         child: const Icon(Icons.share),
         onPressed: () async {
           await Share.share(
-            "I have just finished my meal with Food Busters and recieved points"
-            " from not leaving food wastes!",
+            "Check my fabulous feasting out!\n"
+            "This meal is also certified green and clean.",
           );
         },
       ),
