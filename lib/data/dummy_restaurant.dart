@@ -41,5 +41,17 @@ Future<List<RestaurantMenu>> getRestaurantData() async {
       lessCarbon: -420,
       match: 420,
     ),
+    RestaurantMenu(
+      menuName: "Golden Wind",
+      restaurantName: "???",
+      menuPicture:
+          "https://www.ubuy.co.it/productimg/?image=aHR0cHM6Ly9tLm1lZGlhLWFtYXpvbi5jb20vaW1hZ2VzL0kvODFrdlZtcWhjOEwuX0FDX1VMMTUwMF8uanBn.jpg",
+      price: 69420,
+      points: 69420,
+      healthiness: 0,
+      cheaper: -112,
+      lessCarbon: -177013,
+      match: 300,
+    )
   ];
 }

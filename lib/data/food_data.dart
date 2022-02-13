@@ -59,7 +59,7 @@ HealthRecord getRandomHR() {
   );
 }
 
-Map<DateTime, HealthRecord> healthRecords = {};
+Map<String, HealthRecord> healthRecords = {};
 
 DateTime getToday() {
   final now = DateTime.now();
@@ -68,14 +68,17 @@ DateTime getToday() {
 
 const mockDays = 120;
 
-Map<DateTime, HealthRecord> getHealthRecord() {
+Map<String, HealthRecord> getHealthRecord() {
   if (healthRecords.isEmpty) {
     final today = getToday();
 
     // * Fills last {mockDays} days with random data
     for (int i = 0; i <= mockDays; i++) {
       if (random.nextInt(100) >= 5) {
-        healthRecords[today.subtract(Duration(days: i))] = getRandomHR();
+        healthRecords[today
+            .subtract(Duration(days: i))
+            .toString()
+            .split(" ")[0]] = getRandomHR();
       }
     }
   }
@@ -85,5 +88,10 @@ Map<DateTime, HealthRecord> getHealthRecord() {
 Future<HealthRecord?> getHealthStat(DateTime date) async {
   await serverRequest();
 
-  return getHealthRecord()[date];
+  print("$healthRecords \n-------\n ${getHealthRecord()}");
+
+  print(
+      "fucking date ${date.toString()} \n-------\n ${getHealthRecord()[date]}");
+
+  return getHealthRecord()[date.toString().split(" ")[0]];
 }
