@@ -7,10 +7,12 @@
 
 \usepackage{hyperref}
 \usepackage{graphicx}
+\usepackage{caption}
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage{fancyhdr}
 \usepackage{indentfirst}
+\usepackage{wrapfig}
 
 \graphicspath{{./images/}}
 
@@ -55,7 +57,77 @@
     showtabs=false,                  
     tabsize=2
 }
-
 \lstset{style=mystyle}
 
-\newcommand{\scs}[1]{\includegraphics[scale=0.5]{#1}}
+\newcommand{\scs}[1]{\includegraphics[width=0.35\textwidth]{#1}}
+
+\newcommand{\scsf}[2]{
+    \begin{figure}[ht]
+    \centering
+    \scs{#1}
+    \caption{#2}
+    \end{figure}
+}
+
+% https://tex.stackexchange.com/questions/10245/how-to-order-3-images-horizontally
+
+\newcommand{\figtwo}[4]{
+    \begin{figure}[!htb]
+        \minipage{0.35\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{#1}
+            \caption{#3}
+        \endminipage\hfill
+        \minipage{0.35\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{#2}
+            \caption{#4}
+        \endminipage
+    \end{figure}
+}
+
+\newcommand{\figthree}[6]{
+    \begin{figure}[!htb]
+        \minipage{0.32\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{#1}
+            \caption{#4}
+        \endminipage\hfill
+        \minipage{0.32\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{#2}
+            \caption{#5}
+        \endminipage\hfill
+        \minipage{0.32\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{#3}
+            \caption{#6}
+        \endminipage
+    \end{figure}
+}
+
+
+\newcommand{\figfour}[8]{
+    \begin{figure}[!htb]
+        \minipage{0.24\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{#1}
+            \caption{#5}
+        \endminipage\hfill
+        \minipage{0.24\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{#2}
+            \caption{#6}
+        \endminipage\hfill
+        \minipage{0.24\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{#3}
+            \caption{#7}
+        \endminipage\hfill
+        \minipage{0.24\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{#4}
+            \caption{#8}
+        \endminipage
+    \end{figure}
+}

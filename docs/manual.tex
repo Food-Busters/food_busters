@@ -1,32 +1,37 @@
 \documentclass[a4paper,12pt]{article}
-
 \usepackage{style}
 
 \begin{document}
 
 \title{\textbf{Food Busters Prototype Mobile App Manual}}
-
 \author{Nutthapat Pongtanyavichai, Developer of Food Busters}
 
 \maketitle
-
-\centerline{\Large{Manual for App Version: 1.0.303}}
+\centerline{\LARGE{Manual for App Version: 1.0.304}}
 
 \tableofcontents
 
 \pagebreak
-
+% * SECTION 1
 \section{Disclaimer}
 
 This is prototype app focuses on concept, interface \& UI, and basic logic flow of the app.
 The goal of this prototype is to show the concept and test that concept \textbf{with real users}
-for feedback. Some features are not properly implemented yet.
+for feedback. Some features are not properly implemented yet and it is only capable
+of showing UIs with some few logic flow. However, it is still not easy create this big app.
 We will go along each features in this manual.
 
+This manual is for App Version 1.0.304. Just in case that newer version (bug fixes)
+may have released, please check \href{https://github.com/Food-Busters/food_busters/releases}{HERE}
+
+You can check the version of installed app by clicking \textit{info} icon in
+top right corner of the home page.
+
+% * SECTION 2
 \section{Installation}
 
 Current version of this prototype app only supports \textbf{Android}. Due to
-limitation given by Apple, we are unable to test this app on iOS.
+limitation given by Apple, we are unable to test this app on iOS or distribute.
 
 This prototype app by specification, supports from Android 5.
 However, I recommend using Android 11 or later.
@@ -37,11 +42,12 @@ We are sorry if the app doesn't work as intended for you.
 
 \noindent
 \begin{simplechar}
-    Download the apk file from the link \href{https://github.com/Food-Busters/food_busters/releases/download/1.0.303/food_busters-1.0.303.apk}{HERE} or scan below QR Code
+    Download the apk file from the link \href{https://github.com/Food-Busters/food_busters/releases/download/1.0.304/food_busters-1.0.304.apk}{HERE} or scan below QR Code
 \end{simplechar}
 
-% todo make it latest
-\centerline{\includegraphics{qr_1.0.302.png}}
+\noindent\textbf{REMINDER: THIS IS NOT LATEST QR CODE}
+
+\centerline{\includegraphics{qr_1.0.302}}
 
 \noindent
 \textbf{Note}: The app is not signed, there may be a warning from Play Protect.
@@ -63,45 +69,114 @@ Test Devices and Results:
     \item Samsung Galaxy Tab S6 (Android 11) - WORKING AS INTENDED
 \end{itemize}
 
+% * SECTION 3
 \section{Login \& Register}
+
+\figtwo{login}{register}{Login Page}{Register Page}
 
 As mention earlier that some features are not properly implemented with the reason given.
 Login \& Register is one of them.
-Any non-empty Username and Password will work here.
+You can login to the app with any non-empty Username and Password, it will work for now.
 
+The username inputed in either of these pages will reflect to the username
+displayed in the home page of the app.
+
+\pagebreak
+% * SECTION 4
 \section{Page: Home}
 
-\scs{home.png}
+\scsf{home}{Home Page}
 
+This is the home page of the app, where you can see the options to each menu.
+There is also \textit{Settings} and \textit{App Info} accessible on the top
+right corner.
+
+\pagebreak
+% * SECTION 5
 \section{Main Feature: SCAN}
 
-\noindent
-Press Scan to enter Scan Menu
+Press \textbf{SCAN} to access the Scan Menu
 
-\scs{scanportal.png}
+% TODO CHANGE THE scanfood PICTURE
+\figtwo{scanportal}{scanfood}{Scan Portal}{Scanning Food}
 
 Based on current concept of our app, you will need to scan two times per meal,
 \textbf{before} and \textbf{after} the meal. The AI \textit{(that doesn't exist yet)} will
 process the images and gives you insight and analysis of your meal.
 
+\pagebreak
+\section*{Sample Scan Result}
+
+\figfour{scanafter_1}{scanafter_2}{scanafter_3}{recommend_food}{
+    Points and Quotes}{Money Lost Data}{Meal and Menu Data}{Recommendation}
+
+In the current version of the prototype, the quote you see in fetched from our
+website. \href{https://food-waste-quotes.vercel.app/}{https://food-waste-quotes.vercel.app/}.
+The quotes here are able to be updated dynamically by our team members. Meaning that
+you will need to connect to internet to see the scan results, even most of them
+are mocked up.
+
+Once we have start next stage of Food Busters, we will make sure to do some
+researches to ensure the datas here are correct.
+
+% \scsf{recommend_food}{Recommend User Menu by their preferences}
+
+\pagebreak
+% * SECTION 6
 \section{Main Feature: POINTS \& REWARDS}
 
-Points \& Rewards
+Points \& Rewards, can be accessed by pressing \textbf{MY POINTS} on the home page.
 
-\scs{points_1.png}
+\figthree{points_1}{exchange}{points_2}{Points Menu}{Exchange Points}{Redeem Premium}
 
+In the current version of prototype app, it supports local session state management.
+Remember you get points from scanning food? You can use that points to redeem
+\textit{imaginary} foods or beverages with our \textit{imaginary} partners.
+
+A little warning here: Do not scan the QR Code that appeared in this app.
+
+You should also try click \textit{redeem} the premium, as you will need it
+in order to access premium features that I will noted in the following sections.
+
+In case you run out of purchase, we offer \textit{imaginary} in-app purchase.
+(The green \$ icons on the top-right corner)
+So that you get have unlimited points to discover and experiment this app.
+All your points will be resetted after the app is restarted.
+
+\pagebreak
+% * SECTION 7
 \section{Main Feature: MY RECORD}
 
-Record
+Can be accessed by pressing \textbf{MY RECORD} on the home page.
 
-\scs{record.png}
+\figthree{record}{health_status}{other_busters}{My Record Page: Basic Summary
+    }{Health Status: Advanced Summary}{Compared to other Busters}
 
+My Record Page consists of basic summary and advanced summary which according
+to our plan, will be only available to premium users. You will need to redeem 
+premium in \textit{My Points} page.
+Advanced Summary will give the user clearer insight. 
+The datas you will see here are mocked up.
+
+\pagebreak
+% * SECTION 8
 \section{Main Feature: MISSIONS}
 
-Missions
+Can be accessed by pressing \textbf{MISSIONS} on the home page.
 
+\figtwo{mission}{new_mission}{Current Mission}{New Mission}
+
+\textbf{Note}: Creating Missions Interface will be changed.
+
+\pagebreak
+% * SECTION 9
 \section{Main Feature: LEADERBOARD}
 
-Compete
+Can be accessed by pressing \textbf{LEADERBOARD} on the home page.
+
+\noindent
+Or by accessing \textbf{MY RECORD} > \textbf{Other Busters} > \textbf{LEADERBOARD}
+
+\figtwo{leaderboard_1}{leaderboard_2}{Global Leaderboard}{Friends Leaderboard}
 
 \end{document}
