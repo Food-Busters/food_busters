@@ -88,10 +88,5 @@ Map<String, HealthRecord> getHealthRecord() {
 Future<HealthRecord?> getHealthStat(DateTime date) async {
   await serverRequest();
 
-  print("$healthRecords \n-------\n ${getHealthRecord()}");
-
-  print(
-      "fucking date ${date.toString()} \n-------\n ${getHealthRecord()[date]}");
-
   return getHealthRecord()[date.toString().split(" ")[0]];
 }
