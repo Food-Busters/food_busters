@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:flutter/foundation.dart" show kIsWeb;
 import "package:food_busters/components/background.dart";
 import "package:food_busters/main.dart";
 import "package:food_busters/styles/styles.dart";
@@ -10,6 +11,11 @@ import "package:food_busters/views/scan/scanportal.dart";
 import "package:food_busters/views/settings.dart";
 import "package:package_info_plus/package_info_plus.dart";
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
+
+const webAppWarn =
+    "This app is not optimized for web, there may be some unexpected error, "
+    "this is temporary for who that doesn't use Android. "
+    "Will be removed in the future.";
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, required this.username}) : super(key: key);
@@ -48,14 +54,13 @@ class _HomePageState extends State<HomePage> {
             icon: const Icon(Icons.info),
             onPressed: () async {
               PackageInfo packageInfo = await PackageInfo.fromPlatform();
-              String appName = packageInfo.appName;
               String version = packageInfo.version;
               showAboutDialog(
                 context: context,
-                applicationName: appName,
+                applicationName: "Food Busters",
                 applicationVersion: version,
                 applicationIcon: Image.asset(
-                  "assets/images/logo_white.jpg",
+                  "assets/images/somwua_icon.png",
                   height: 80,
                 ),
                 children: [
@@ -107,6 +112,12 @@ class _HomePageState extends State<HomePage> {
                             text.have_a_nice_meal,
                             style: const TextStyle(fontSize: 16),
                           ),
+                          kIsWeb
+                              ? Text(
+                                  webAppWarn,
+                                  style: TextStyle(color: Colors.red[400]),
+                                )
+                              : Container(),
                         ],
                       ),
                     ),

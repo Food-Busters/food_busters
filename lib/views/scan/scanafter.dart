@@ -50,9 +50,15 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
     final url = Uri.parse(
       "https://food-waste-quotes.vercel.app/api/quote?percent=$percent&lang=${MyApp.of(context).localeStrSimp}",
     );
-    final response = await http.get(url);
 
     foodData = await getChickenRiceData();
+
+    http.Response response;
+    try {
+      response = await http.get(url);
+    } catch (err) {
+      return Quote(quote: "$err");
+    }
 
     if (response.statusCode >= 400) {
       return Quote(quote: "${response.statusCode} ${response.body}");

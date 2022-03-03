@@ -5,7 +5,6 @@ import "package:flutter_toggle_tab/flutter_toggle_tab.dart";
 import "package:food_busters/main.dart";
 import "package:food_busters/models/app_state.dart";
 import "package:food_busters/styles/styles.dart";
-import "package:food_busters/views/grab/grab.dart";
 import "package:food_busters/views/login.dart";
 
 class SettingsPage extends StatefulWidget {
@@ -88,7 +87,8 @@ class _SettingsPageState extends State<SettingsPage> {
           ),
           const ListTile(
             title: Text(
-              "This is placeholder settings, controls the output of mocked AI",
+              "This is placeholder settings, controls the output of mocked AI. "
+              "(Real AI coming soon!)",
             ),
           ),
           FlutterToggleTab(
@@ -134,21 +134,6 @@ class _SettingsPageState extends State<SettingsPage> {
               child: const Icon(Icons.add),
               style: ElevatedButton.styleFrom(primary: lightGreen),
             ),
-          ),
-          ListTile(
-            title: const Text(
-              "Grab Integration Test",
-              textAlign: TextAlign.center,
-              style: bold,
-            ),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const GrabPage(),
-                ),
-              );
-            },
           ),
         ],
       ),

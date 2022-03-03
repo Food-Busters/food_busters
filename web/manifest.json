@@ -1,0 +1,23 @@
+{
+    "name": "Food Busters",
+    "short_name": "Food Busters",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#BCDFCB",
+    "theme_color": "#FFC068",
+    "description": "App to encourage reducing Food Wastes",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "icons/somwua192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/somwua512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
