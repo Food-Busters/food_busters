@@ -1,6 +1,9 @@
+// Dart imports:
+import "dart:math";
+
+// Project imports:
 import "package:food_busters/data/delay.dart";
 import "package:food_busters/models/health_record.dart";
-import "dart:math";
 
 final random = Random();
 

@@ -1,9 +1,15 @@
-import "package:camera/camera.dart";
+// Flutter imports:
 import "package:flutter/material.dart";
+
+// Package imports:
+import "package:camera/camera.dart";
+import "package:flutter_gen/gen_l10n/app_localizations.dart";
+import "package:niku/namespace.dart" as n;
+
+// Project imports:
 import "package:food_busters/components/background.dart";
 import "package:food_busters/main.dart";
 import "package:food_busters/views/scan/scanafter.dart";
-import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:food_busters/views/scan/scanbefore.dart";
 import "package:food_busters/views/scan/scanportal.dart";
 
@@ -52,15 +58,13 @@ class _ScanPageState extends State<ScanPage> {
         title: Text(text.scan_your_food),
       ),
       body: cameraReady
-          ? Stack(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(24.0),
-                  child: Center(child: CameraPreview(controller)),
-                ),
-                bgImage("clouds/surrounding_orange.png"),
-              ],
-            )
+          ? n.Stack([
+              Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: Center(child: CameraPreview(controller)),
+              ),
+              bgImage("clouds/surrounding_orange.png"),
+            ])
           : bgImage("loading.png"),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.camera),

@@ -1,4 +1,8 @@
+// Flutter imports:
 import "package:flutter/material.dart";
+
+// Package imports:
+import "package:niku/niku.dart";
 
 final loginRegisterBtn = ElevatedButton.styleFrom(
   padding: const EdgeInsets.all(12.0),
@@ -39,3 +43,9 @@ const discordPfp =
     "https://external-preview.redd.it/4PE-nlL_PdMD5PrFNLnjurHQ1QKPnCvg368LTDnfM-M.png?auto=webp&s=ff4c3fbc1cce1a1856cff36b5d2a40a6d02cc1c3";
 
 const bold = TextStyle(fontWeight: FontWeight.w500);
+
+// * 肉 Hooks
+
+Center vCenter(Niku v) {
+  return Center(child: v);
+}

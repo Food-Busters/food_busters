@@ -1,9 +1,15 @@
+// Flutter imports:
 import "package:flutter/material.dart";
+
+// Package imports:
+import "package:flutter_gen/gen_l10n/app_localizations.dart";
+import "package:form_field_validator/form_field_validator.dart";
+import "package:niku/namespace.dart" as n;
+
+// Project imports:
 import "package:food_busters/components/background.dart";
 import "package:food_busters/styles/styles.dart";
 import "package:food_busters/views/home.dart";
-import "package:form_field_validator/form_field_validator.dart";
-import "package:flutter_gen/gen_l10n/app_localizations.dart";
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -26,44 +32,33 @@ class _RegisterPageState extends State<RegisterPage> {
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      body: Stack(
-        children: [
-          bgImage("clouds/surrounding_orange.png"),
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                headerText(),
-                registerForm(),
-              ],
-            ),
-          ),
-        ],
-      ),
+      body: n.Stack([
+        bgImage("clouds/surrounding_orange.png"),
+        n.Column([
+          headerText(),
+          registerForm(),
+        ])
+          ..mainCenter
+          ..useParent(vCenter),
+      ]),
     );
   }
 
   Widget headerText() {
     return Align(
       alignment: Alignment.centerLeft,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.baseline,
-              textBaseline: TextBaseline.alphabetic,
-              children: const [
-                Text("FOOD BUSTERS", style: bigStyle),
-                Text("'s", style: smallStyle),
-              ],
-            ),
-            const Text("Application", style: smallStyle),
-          ],
-        ),
-      ),
+      child: n.Column([
+        n.Row(const [
+          Text("FOOD BUSTERS", style: bigStyle),
+          Text("'s", style: smallStyle),
+        ])
+          ..crossBaseline
+          ..alphabetic,
+        const Text("Application", style: smallStyle),
+      ])
+        ..mainCenter
+        ..crossStart
+        ..p = 16,
     );
   }
 
@@ -73,86 +68,78 @@ class _RegisterPageState extends State<RegisterPage> {
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: Container(
-        child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Column(
-            children: [
-              Form(
-                key: formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      text.username,
-                      style: const TextStyle(fontSize: 20),
-                    ),
-                    TextFormField(
-                      validator:
-                          RequiredValidator(errorText: text.username_fail),
-                      onSaved: (String? uname) {
-                        username = uname ?? "";
-                      },
-                    ),
-                    const SizedBox(height: 12),
-                    Text(
-                      text.email,
-                      style: const TextStyle(fontSize: 20),
-                    ),
-                    TextFormField(
-                      validator: MultiValidator([
-                        RequiredValidator(
-                          errorText: text.email_null,
-                        ),
-                        EmailValidator(
-                          errorText: text.email_invalid,
-                        )
-                      ]),
-                      keyboardType: TextInputType.emailAddress,
-                      onSaved: (String? em) {
-                        email = em ?? "";
-                      },
-                    ),
-                    const SizedBox(height: 12),
-                    Text(
-                      text.password,
-                      style: const TextStyle(fontSize: 20),
-                    ),
-                    TextFormField(
-                      validator: RequiredValidator(
-                        errorText: text.password_fail,
-                      ),
-                      obscureText: true,
-                      onSaved: (String? pw) {
-                        password = pw ?? "";
-                      },
-                    ),
-                    const SizedBox(height: 12),
-                    ElevatedButton(
-                      child: Text(
-                        text.register,
-                        style: const TextStyle(fontSize: 20),
-                      ),
-                      style: loginRegisterBtn,
-                      onPressed: () async {
-                        if (formKey.currentState?.validate() ?? false) {
-                          formKey.currentState?.save();
-                          Navigator.of(context).pop();
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  HomePage(username: username),
-                            ),
-                          );
-                        }
-                      },
-                    ),
-                  ],
-                ),
+        child: n.Column([
+          Form(
+            key: formKey,
+            child: n.Column([
+              Text(
+                text.username,
+                style: const TextStyle(fontSize: 20),
               ),
-            ],
+              TextFormField(
+                validator: RequiredValidator(errorText: text.username_fail),
+                onSaved: (String? uname) {
+                  username = uname ?? "";
+                },
+              ),
+              const SizedBox(height: 12),
+              Text(
+                text.email,
+                style: const TextStyle(fontSize: 20),
+              ),
+              TextFormField(
+                validator: MultiValidator([
+                  RequiredValidator(
+                    errorText: text.email_null,
+                  ),
+                  EmailValidator(
+                    errorText: text.email_invalid,
+                  )
+                ]),
+                keyboardType: TextInputType.emailAddress,
+                onSaved: (String? em) {
+                  email = em ?? "";
+                },
+              ),
+              const SizedBox(height: 12),
+              Text(
+                text.password,
+                style: const TextStyle(fontSize: 20),
+              ),
+              TextFormField(
+                validator: RequiredValidator(
+                  errorText: text.password_fail,
+                ),
+                obscureText: true,
+                onSaved: (String? pw) {
+                  password = pw ?? "";
+                },
+              ),
+              const SizedBox(height: 12),
+              ElevatedButton(
+                child: Text(
+                  text.register,
+                  style: const TextStyle(fontSize: 20),
+                ),
+                style: loginRegisterBtn,
+                onPressed: () async {
+                  if (formKey.currentState?.validate() ?? false) {
+                    formKey.currentState?.save();
+                    Navigator.of(context).pop();
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => HomePage(username: username),
+                      ),
+                    );
+                  }
+                },
+              ),
+            ])
+              ..crossStart,
           ),
-        ),
+        ])
+          ..p = 12,
         decoration: const BoxDecoration(
           color: Color(0xFFBBDFC8),
           borderRadius: BorderRadius.all(Radius.circular(16)),

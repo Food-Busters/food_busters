@@ -1,4 +1,14 @@
+// Flutter imports:
 import "package:flutter/material.dart";
+
+// Package imports:
+import "package:flutter_gen/gen_l10n/app_localizations.dart";
+import "package:http/http.dart" as http;
+import "package:niku/namespace.dart" as n;
+import "package:pie_chart/pie_chart.dart";
+import "package:share_plus/share_plus.dart";
+
+// Project imports:
 import "package:food_busters/components/background.dart";
 import "package:food_busters/components/buttons.dart";
 import "package:food_busters/data/food_data.dart";
@@ -7,10 +17,6 @@ import "package:food_busters/models/app_state.dart";
 import "package:food_busters/models/quote.dart";
 import "package:food_busters/styles/styles.dart";
 import "package:food_busters/views/scan/recommend_food.dart";
-import "package:http/http.dart" as http;
-import "package:flutter_gen/gen_l10n/app_localizations.dart";
-import "package:pie_chart/pie_chart.dart";
-import "package:share_plus/share_plus.dart";
 
 class ScanAfterPage extends StatefulWidget {
   const ScanAfterPage({Key? key}) : super(key: key);
@@ -80,33 +86,31 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      body: Stack(
-        children: [
-          bgImage("clouds/top_orange.png"),
-          Center(
-            child: FutureBuilder<Quote>(
-              future: getAnalysis(context),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.done) {
-                  final quote =
-                      snapshot.data ?? Quote(quote: "Internal Flutter Error");
-                  return DefaultTabController(
-                    length: 3,
-                    child: TabBarView(
-                      children: [
-                        tabPageWrapper(infoPage1, context, text, quote),
-                        tabPageWrapper(infoPage2, context, text, quote),
-                        tabPageWrapper(infoPage3, context, text, quote),
-                      ],
-                    ),
-                  );
-                }
-                return const CircularProgressIndicator();
-              },
-            ),
+      body: n.Stack([
+        bgImage("clouds/top_orange.png"),
+        Center(
+          child: FutureBuilder<Quote>(
+            future: getAnalysis(context),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                final quote =
+                    snapshot.data ?? Quote(quote: "Internal Flutter Error");
+                return DefaultTabController(
+                  length: 3,
+                  child: TabBarView(
+                    children: [
+                      tabPageWrapper(infoPage1, context, text, quote),
+                      tabPageWrapper(infoPage2, context, text, quote),
+                      tabPageWrapper(infoPage3, context, text, quote),
+                    ],
+                  ),
+                );
+              }
+              return const CircularProgressIndicator();
+            },
           ),
-        ],
-      ),
+        ),
+      ]),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.share),
         onPressed: () async {
@@ -124,106 +128,87 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
     BuildContext context,
     AppLocalizations text,
     Quote quote,
-  ) =>
-      Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text("—${text.swipe_hint}—"),
-          widget(text, quote),
-          backHomeBtn(context, text)
-        ],
-      );
+  ) {
+    return n.Column([
+      Text("—${text.swipe_hint}—"),
+      widget(text, quote),
+      backHomeBtn(context, text)
+    ])
+      ..mainCenter;
+  }
 
-  Widget infoPage1(AppLocalizations text, Quote quote) => Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            "+$pointRecieved ${text.points}",
-            style: const TextStyle(
-              color: green,
-              fontSize: 30,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          Text(
-            "${text.you_have_eaten}"
-            "${percent < 40 ? text.sp_only : ""} "
-            "$percent% ${text.of_the_dish}...",
-          ),
-          Image.asset("assets/images/${quote.image}", height: 200),
-          Text(
-            percent < 80 ? text.oh_no : text.wow,
-            style: const TextStyle(fontSize: 28),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              quote.quote,
-              style: const TextStyle(fontSize: 24, color: green),
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ],
-      );
+  Widget infoPage1(AppLocalizations text, Quote quote) {
+    return n.Column([
+      n.Text("+$pointRecieved ${text.points}")
+        ..color = green
+        ..fontSize = 30
+        ..w500
+        ..freezed,
+      Text(
+        "${text.you_have_eaten}"
+        "${percent < 40 ? text.sp_only : ""} "
+        "$percent% ${text.of_the_dish}...",
+      ),
+      Image.asset("assets/images/${quote.image}", height: 200),
+      n.Text(percent < 80 ? text.oh_no : text.wow)
+        ..fontSize = 28
+        ..freezed,
+      n.Text(quote.quote)
+        ..fontSize = 24
+        ..color = green
+        ..center
+        ..useParent((v) => v..p = 8),
+    ])
+      ..mainCenter;
+  }
 
-  Widget infoPage2(AppLocalizations text, Quote quote) => Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset("assets/images/money.png", width: 150, height: 150),
-          Text(
-            "${50 - percent / 2} THB",
-            style: const TextStyle(
-              color: green,
-              fontSize: 26,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          Text(
-            text.save_money_1,
-            style: const TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          Text(
-            text.save_money_2,
-            style: const TextStyle(
-              fontSize: 18,
-            ),
-          ),
-        ],
-      );
+  Widget infoPage2(AppLocalizations text, Quote quote) {
+    return n.Column([
+      Image.asset("assets/images/money.png", width: 150, height: 150),
+      n.Text("${50 - percent / 2} THB")
+        ..color = green
+        ..fontSize = 26
+        ..w500
+        ..freezed,
+      n.Text(text.save_money_1)
+        ..fontSize = 22
+        ..w500
+        ..freezed,
+      n.Text(text.save_money_2)
+        ..fontSize = 18
+        ..freezed,
+    ])
+      ..mainCenter;
+  }
 
-  Widget infoPage3(AppLocalizations text, Quote quote) => Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Text(
-              text.your_data,
-              style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 28),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 24.0),
-              child: PieChart(
-                dataMap: foodData,
-                chartType: ChartType.ring,
-                centerText: food == Food.chicken ? text.chicken : text.omelet,
-              ),
-            ),
-            Text(text.take_home_recommendation),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const RecommendFoodPage(),
-                  ),
-                );
-              },
-              child: Text(text.any_menu_suits_me),
-              style: greenBtn,
-            ),
-          ],
+  Widget infoPage3(AppLocalizations text, Quote quote) {
+    return n.Column([
+      n.Text(text.your_data)
+        ..fontSize = 28
+        ..w500
+        ..freezed,
+      Padding(
+        padding: const EdgeInsets.symmetric(vertical: 24.0),
+        child: PieChart(
+          dataMap: foodData,
+          chartType: ChartType.ring,
+          centerText: food == Food.chicken ? text.chicken : text.omelet,
         ),
-      );
+      ),
+      Text(text.take_home_recommendation),
+      ElevatedButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const RecommendFoodPage(),
+            ),
+          );
+        },
+        child: Text(text.any_menu_suits_me),
+        style: greenBtn,
+      ),
+    ])
+      ..p = 16;
+  }
 }

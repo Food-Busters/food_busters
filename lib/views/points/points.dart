@@ -1,14 +1,20 @@
+// Flutter imports:
 import "package:flutter/material.dart";
-import "package:flutter_toggle_tab/flutter_toggle_tab.dart";
-import "package:food_busters/components/background.dart";
+
+// Package imports:
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
+import "package:flutter_toggle_tab/flutter_toggle_tab.dart";
+import "package:form_field_validator/form_field_validator.dart";
+import "package:niku/namespace.dart" as n;
+
+// Project imports:
+import "package:food_busters/components/background.dart";
 import "package:food_busters/components/exchange_dialog.dart";
 import "package:food_busters/main.dart";
 import "package:food_busters/models/app_state.dart";
 import "package:food_busters/styles/styles.dart";
 import "package:food_busters/views/points/exchange.dart";
 import "package:food_busters/views/points/points_shop.dart";
-import "package:form_field_validator/form_field_validator.dart";
 
 class MyPoints extends StatefulWidget {
   const MyPoints({Key? key, this.showPremium}) : super(key: key);
@@ -53,271 +59,244 @@ class _MyPointsState extends State<MyPoints> {
           )
         ],
       ),
-      body: Stack(
-        children: [
-          bgImage("clouds/bottom_aqua.png"),
-          bgImage("clouds/top_orange.png"),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Center(
-                child: Container(
-                  height: 200,
-                  width: 200,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(200),
-                    color: Colors.transparent,
-                    border: Border.all(
-                      width: 2,
-                      color: Colors.black,
-                    ),
-                  ),
-                  child: Column(
-                    children: [
-                      Text(
-                        appState.points.toString(),
-                        style: const TextStyle(
-                          fontSize: 64,
-                          fontWeight: FontWeight.w500,
-                          height: 1.6,
-                        ),
-                      ),
-                      Text(
-                        text.points,
-                        style: const TextStyle(
-                          fontSize: 36,
-                          height: 0.3,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(height: 30),
-              FlutterToggleTab(
-                width: 90,
-                borderRadius: 30,
-                height: 50,
-                selectedIndex: _panel ? 1 : 0,
-                selectedTextStyle: const TextStyle(
+      body: n.Stack([
+        bgImage("clouds/bottom_aqua.png"),
+        bgImage("clouds/top_orange.png"),
+        n.Column([
+          Center(
+            child: Container(
+              height: 200,
+              width: 200,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(200),
+                color: Colors.transparent,
+                border: Border.all(
+                  width: 2,
                   color: Colors.black,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w700,
                 ),
-                unSelectedTextStyle: const TextStyle(
-                  color: Colors.black87,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                ),
-                labels: [text.promotion, text.premium],
-                selectedLabelIndex: (index) {
-                  setState(() {
-                    _panel = index == 0 ? false : true;
-                  });
-                },
-                selectedBackgroundColors: _panel ? [lightGreen] : [lightOrange],
               ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
-                child: _panel
-                    ? exchangePremiumPanel(text, appState)
-                    : promotionPanel(text),
-              ),
-            ],
+              child: n.Column([
+                n.Text(appState.points.toString())
+                  ..fontSize = 64
+                  ..w500
+                  ..height = 1.6,
+                n.Text(text.points)
+                  ..fontSize = 36
+                  ..height = 0.3
+                  ..freezed,
+              ]),
+            ),
           ),
-        ],
-      ),
+          const SizedBox(height: 30),
+          FlutterToggleTab(
+            width: 90,
+            borderRadius: 30,
+            height: 50,
+            selectedIndex: _panel ? 1 : 0,
+            selectedTextStyle: const TextStyle(
+              color: Colors.black,
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+            ),
+            unSelectedTextStyle: const TextStyle(
+              color: Colors.black87,
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+            ),
+            labels: [text.promotion, text.premium],
+            selectedLabelIndex: (index) {
+              setState(() {
+                _panel = index == 0 ? false : true;
+              });
+            },
+            selectedBackgroundColors: _panel ? [lightGreen] : [lightOrange],
+          ),
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
+            child: _panel
+                ? exchangePremiumPanel(text, appState)
+                : promotionPanel(text),
+          ),
+        ])
+          ..center,
+      ]),
     );
   }
 
-  Widget promotionPanel(AppLocalizations text) => Container(
-        decoration: BoxDecoration(
-          color: lightOrange,
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Expanded(
-                flex: 1,
-                child: ElevatedButton(
-                  child: Column(
-                    children: [
-                      const Icon(Icons.star),
-                      Text(text.for_you),
-                    ],
-                  ),
-                  style: tanBtn,
-                  onPressed: () async {
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const ExchangePage(),
-                      ),
-                    );
-                    setState(() {});
-                  },
+  Widget promotionPanel(AppLocalizations text) {
+    return Container(
+      decoration: BoxDecoration(
+        color: lightOrange,
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      child: n.Row([
+        Expanded(
+          flex: 1,
+          child: ElevatedButton(
+            child: n.Column([
+              const Icon(Icons.star),
+              Text(text.for_you),
+            ]),
+            style: tanBtn,
+            onPressed: () async {
+              await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ExchangePage(),
                 ),
-              ),
-              const SizedBox(width: 10),
-              Expanded(
-                flex: 1,
-                child: ElevatedButton(
-                  child: Column(
-                    children: [
-                      const Icon(Icons.search),
-                      Text(text.search),
-                    ],
-                  ),
-                  style: tanBtn,
-                  onPressed: () {
-                    final formKey = GlobalKey<FormState>();
-                    String searchQuery = "";
-                    showDialog(
-                      barrierDismissible: false,
-                      context: context,
-                      builder: (context) => AlertDialog(
-                        backgroundColor: lightGreen,
-                        title: Text(
-                          text.search.toUpperCase(),
-                          textAlign: TextAlign.center,
+              );
+              setState(() {});
+            },
+          ),
+        ),
+        const SizedBox(width: 10),
+        Expanded(
+          flex: 1,
+          child: ElevatedButton(
+            child: n.Column([
+              const Icon(Icons.search),
+              Text(text.search),
+            ]),
+            style: tanBtn,
+            onPressed: () {
+              final formKey = GlobalKey<FormState>();
+              String searchQuery = "";
+              showDialog(
+                barrierDismissible: false,
+                context: context,
+                builder: (context) => AlertDialog(
+                  backgroundColor: lightGreen,
+                  title: n.Text(text.search.toUpperCase())
+                    ..center
+                    ..freezed,
+                  content: Form(
+                    key: formKey,
+                    child: n.Column([
+                      Text(text.search_message),
+                      TextFormField(
+                        validator: RequiredValidator(
+                          errorText: text.search_query_empty,
                         ),
-                        content: Form(
-                          key: formKey,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(text.search_message),
-                              TextFormField(
-                                validator: RequiredValidator(
-                                  errorText: text.search_query_empty,
-                                ),
-                                onSaved: (String? sQ) {
-                                  searchQuery = sQ ?? "";
-                                },
+                        onSaved: (String? sQ) {
+                          searchQuery = sQ ?? "";
+                        },
+                      ),
+                    ])
+                      ..min,
+                  ),
+                  actions: [
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Text(text.window_close),
+                      style: ElevatedButton.styleFrom(primary: lightOrange),
+                    ),
+                    ElevatedButton(
+                      onPressed: () async {
+                        if (formKey.currentState?.validate() ?? false) {
+                          formKey.currentState?.save();
+                          await Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ExchangePage(
+                                searchQuery: searchQuery,
                               ),
-                            ],
-                          ),
-                        ),
-                        actions: [
-                          ElevatedButton(
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                            child: Text(text.window_close),
-                            style:
-                                ElevatedButton.styleFrom(primary: lightOrange),
-                          ),
-                          ElevatedButton(
-                            onPressed: () async {
-                              if (formKey.currentState?.validate() ?? false) {
-                                formKey.currentState?.save();
-                                await Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => ExchangePage(
-                                      searchQuery: searchQuery,
-                                    ),
-                                  ),
-                                );
-                                setState(() {});
-                              }
-                            },
-                            child: Text(text.confirm),
-                            style: ElevatedButton.styleFrom(primary: green),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
+                            ),
+                          );
+                          setState(() {});
+                        }
+                      },
+                      child: Text(text.confirm),
+                      style: ElevatedButton.styleFrom(primary: green),
+                    ),
+                  ],
                 ),
-              ),
-            ],
+              );
+            },
           ),
         ),
-      );
+      ])
+        ..mainCenter
+        ..p = 8,
+    );
+  }
 
-  Widget exchangePremiumPanel(AppLocalizations text, AppState state) =>
-      Container(
-        decoration: BoxDecoration(
-          color: lightGreen,
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Expanded(
-                flex: 1,
-                child: ElevatedButton(
-                  child: exchangePointsButtonLabel(text, 150, 7),
-                  style: tanBtn,
-                  onPressed: () {
-                    final tscStatus = state.usePoints(150);
-                    if (tscStatus) {
-                      state.assignPremium();
-                    }
-                    showDialog(
-                      context: context,
-                      builder: (context) => tscStatus
-                          ? exchangeSuccess(text, context)
-                          : exchangeFailed(text, context),
-                    );
-                    setState(() {});
-                  },
-                ),
-              ),
-              const SizedBox(width: 10),
-              Expanded(
-                flex: 1,
-                child: ElevatedButton(
-                  child: exchangePointsButtonLabel(text, 289, 14),
-                  style: tanBtn,
-                  onPressed: () {
-                    final tscStatus = state.usePoints(289);
-                    if (tscStatus) {
-                      state.assignPremium();
-                    }
-                    showDialog(
-                      context: context,
-                      builder: (context) => tscStatus
-                          ? exchangeSuccess(text, context)
-                          : exchangeFailed(text, context),
-                    );
-                    setState(() {});
-                  },
-                ),
-              ),
-            ],
+  Widget exchangePremiumPanel(AppLocalizations text, AppState state) {
+    return Container(
+      decoration: BoxDecoration(
+        color: lightGreen,
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      child: n.Row([
+        Expanded(
+          flex: 1,
+          child: ElevatedButton(
+            child: exchangePointsButtonLabel(text, 150, 7),
+            style: tanBtn,
+            onPressed: () {
+              final tscStatus = state.usePoints(150);
+              if (tscStatus) {
+                state.assignPremium();
+              }
+              showDialog(
+                context: context,
+                builder: (context) => tscStatus
+                    ? exchangeSuccess(text, context)
+                    : exchangeFailed(text, context),
+              );
+              setState(() {});
+            },
           ),
         ),
-      );
+        const SizedBox(width: 10),
+        Expanded(
+          flex: 1,
+          child: ElevatedButton(
+            child: exchangePointsButtonLabel(text, 289, 14),
+            style: tanBtn,
+            onPressed: () {
+              final tscStatus = state.usePoints(289);
+              if (tscStatus) {
+                state.assignPremium();
+              }
+              showDialog(
+                context: context,
+                builder: (context) => tscStatus
+                    ? exchangeSuccess(text, context)
+                    : exchangeFailed(text, context),
+              );
+              setState(() {});
+            },
+          ),
+        ),
+      ])
+        ..mainCenter
+        ..p = 8,
+    );
+  }
 
   Widget exchangePointsButtonLabel(
     AppLocalizations text,
     int points,
     int days,
-  ) =>
-      Column(
-        children: [
-          Text(
-            text.n_days_pass.replaceAll("{n}", "$days"),
-            style: const TextStyle(fontSize: 22),
-          ),
-          Text(
-            "$points",
-            style: const TextStyle(color: green, fontSize: 30, height: 1),
-          ),
-          Text(
-            text.points.toUpperCase(),
-            style: const TextStyle(color: green, fontSize: 20, height: 1),
-          ),
-          Text(text.press_to_exchange),
-        ],
-      );
+  ) {
+    return n.Column([
+      n.Text(text.n_days_pass.replaceAll("{n}", "$days"))
+        ..fontSize = 22
+        ..freezed,
+      n.Text("$points")
+        ..fontSize = 30
+        ..color = green
+        ..height = 1
+        ..freezed,
+      n.Text(text.points.toUpperCase())
+        ..fontSize = 20
+        ..color = green
+        ..height = 1
+        ..freezed,
+      Text(text.press_to_exchange),
+    ]);
+  }
 }

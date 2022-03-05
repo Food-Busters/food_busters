@@ -1,5 +1,11 @@
+// Flutter imports:
 import "package:flutter/material.dart";
+
+// Package imports:
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
+import "package:niku/namespace.dart" as n;
+
+// Project imports:
 import "package:food_busters/components/background.dart";
 import "package:food_busters/components/green_leaves.dart";
 import "package:food_busters/data/dummy_restaurant.dart";
@@ -25,122 +31,102 @@ class _RecommendFoodPageState extends State<RecommendFoodPage> {
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      body: Stack(
-        children: [
-          bgImage("clouds/top_orange.png"),
-          FutureBuilder<List<RestaurantMenu>>(
-            future: getRestaurantData(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                List<RestaurantMenu> data = snapshot.data!;
-                data = data
-                    .where((res) => res.cheaper > 0 && res.lessCarbon > 0)
-                    .toList();
+      body: n.Stack([
+        bgImage("clouds/top_orange.png"),
+        FutureBuilder<List<RestaurantMenu>>(
+          future: getRestaurantData(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              List<RestaurantMenu> data = snapshot.data!;
+              data = data
+                  .where((res) => res.cheaper > 0 && res.lessCarbon > 0)
+                  .toList();
 
-                List<Widget> menuTabs = [];
+              List<Widget> menuTabs = [];
 
-                for (int i = 0; i < data.length; i++) {
-                  final menu = data[i];
+              for (int i = 0; i < data.length; i++) {
+                final menu = data[i];
 
-                  menuTabs.add(
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "${menu.match}% match",
-                          style: const TextStyle(fontSize: 26),
+                menuTabs.add(
+                  n.Column([
+                    n.Text("${menu.match}% match")
+                      ..fontSize = 26
+                      ..freezed,
+                    n.Row([
+                      n.Text(i == 0 ? " " : "<")
+                        ..fontSize = 32
+                        ..w500
+                        ..freezed,
+                      Container(
+                        height: 200,
+                        width: 200,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: NetworkImage(
+                              menu.menuPicture,
+                            ),
+                          ),
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      ),
+                      n.Text(i == data.length - 1 ? " " : ">")
+                        ..fontSize = 32
+                        ..w500
+                        ..freezed,
+                    ])
+                      ..mainEvenly,
+                    Text(menu.menuName),
+                    Text(menu.restaurantName),
+                    n.Row(bigGreenLeaves(menu.healthiness))..mainCenter,
+                    n.Row([
+                      Expanded(
+                        flex: 1,
+                        child: n.Column([
+                          Text("${menu.cheaper}%"),
+                          Text(text.food_cheaper),
+                        ])
+                          ..crossEnd,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16.0,
+                        ),
+                        child: Container(
+                          width: 2,
+                          height: 100,
+                          color: Colors.black,
+                        ),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              i == 0 ? " " : "<",
-                              style: const TextStyle(
-                                fontSize: 32,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            Container(
-                              height: 200,
-                              width: 200,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: NetworkImage(
-                                    menu.menuPicture,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Text(
-                              i == data.length - 1 ? " " : ">",
-                              style: const TextStyle(
-                                fontSize: 32,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
+                            Text("${menu.lessCarbon}%"),
+                            Text(text.food_less_carbon),
                           ],
                         ),
-                        Text(menu.menuName),
-                        Text(menu.restaurantName),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: bigGreenLeaves(menu.healthiness),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  Text("${menu.cheaper}%"),
-                                  Text(text.food_cheaper),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 16.0,
-                              ),
-                              child: Container(
-                                width: 2,
-                                height: 100,
-                                color: Colors.black,
-                              ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text("${menu.lessCarbon}%"),
-                                  Text(text.food_less_carbon),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  );
-                }
-
-                return DefaultTabController(
-                  length: data.length,
-                  child: TabBarView(
-                    children: menuTabs,
-                  ),
+                      ),
+                    ])
+                      ..mainCenter,
+                  ])
+                    ..mainCenter,
                 );
-              } else {
-                return const Center(child: CircularProgressIndicator());
               }
-            },
-          ),
-        ],
-      ),
+
+              return DefaultTabController(
+                length: data.length,
+                child: TabBarView(
+                  children: menuTabs,
+                ),
+              );
+            } else {
+              return const Center(child: CircularProgressIndicator());
+            }
+          },
+        ),
+      ]),
     );
   }
 }

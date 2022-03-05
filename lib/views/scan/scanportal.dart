@@ -1,6 +1,12 @@
-import "package:camera/camera.dart";
+// Flutter imports:
 import "package:flutter/material.dart";
+
+// Package imports:
+import "package:camera/camera.dart";
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
+import "package:niku/namespace.dart" as n;
+
+// Project imports:
 import "package:food_busters/components/background.dart";
 import "package:food_busters/main.dart";
 import "package:food_busters/styles/styles.dart";
@@ -47,67 +53,60 @@ class _ScanPortalPageState extends State<ScanPortalPage> {
         elevation: 0,
         title: Text(text.scan),
       ),
-      body: Stack(
-        children: [
-          bgImage("clouds/bottom_aqua.png"),
-          bgImage("clouds/top_orange.png"),
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      onPressed: appState.imageBeforeAvailable
-                          ? null
-                          : () {
-                              goToScanPage(context, scanDestination.before);
-                            },
-                      child: Text(
-                        text.before,
-                        style: const TextStyle(fontSize: 24),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        primary: lightOrange,
-                        padding: const EdgeInsets.all(8.0),
-                      ),
-                    ),
-                    const SizedBox(width: 16),
-                    ElevatedButton(
-                      onPressed: appState.imageBeforeAvailable
-                          ? () {
-                              setState(() {
-                                appState.deleteImageBefore();
-                              });
-                            }
-                          : null,
-                      child: const Icon(Icons.delete),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 48),
-                ElevatedButton(
-                  onPressed: appState.imageBeforeAvailable
-                      ? () {
-                          goToScanPage(context, scanDestination.after);
-                        }
-                      : null,
-                  child: Text(
-                    text.after,
-                    style: const TextStyle(fontSize: 24),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    primary: lightGreen,
-                    padding: const EdgeInsets.all(8.0),
-                    minimumSize: const Size(220, 0),
-                  ),
-                ),
-              ],
+      body: n.Stack([
+        bgImage("clouds/bottom_aqua.png"),
+        bgImage("clouds/top_orange.png"),
+        n.Column([
+          n.Row([
+            ElevatedButton(
+              onPressed: appState.imageBeforeAvailable
+                  ? null
+                  : () {
+                      goToScanPage(context, scanDestination.before);
+                    },
+              child: Text(
+                text.before,
+                style: const TextStyle(fontSize: 24),
+              ),
+              style: ElevatedButton.styleFrom(
+                primary: lightOrange,
+                padding: const EdgeInsets.all(8.0),
+              ),
             ),
-          )
-        ],
-      ),
+            const SizedBox(width: 16),
+            ElevatedButton(
+              onPressed: appState.imageBeforeAvailable
+                  ? () {
+                      setState(() {
+                        appState.deleteImageBefore();
+                      });
+                    }
+                  : null,
+              child: const Icon(Icons.delete),
+            ),
+          ])
+            ..mainCenter,
+          const SizedBox(height: 48),
+          ElevatedButton(
+            onPressed: appState.imageBeforeAvailable
+                ? () {
+                    goToScanPage(context, scanDestination.after);
+                  }
+                : null,
+            child: Text(
+              text.after,
+              style: const TextStyle(fontSize: 24),
+            ),
+            style: ElevatedButton.styleFrom(
+              primary: lightGreen,
+              padding: const EdgeInsets.all(8.0),
+              minimumSize: const Size(220, 0),
+            ),
+          ),
+        ])
+          ..mainCenter
+          ..useParent(vCenter)
+      ]),
     );
   }
 }

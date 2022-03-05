@@ -1,3 +1,4 @@
+// Package imports:
 import "package:camera/camera.dart";
 
 class AppState {

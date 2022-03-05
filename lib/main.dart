@@ -1,9 +1,14 @@
+// Flutter imports:
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
+
+// Package imports:
+import "package:flutter_gen/gen_l10n/app_localizations.dart";
+import "package:flutter_localizations/flutter_localizations.dart";
+
+// Project imports:
 import "package:food_busters/models/app_state.dart";
 import "package:food_busters/views/login.dart";
-import "package:flutter_localizations/flutter_localizations.dart";
-import "package:flutter_gen/gen_l10n/app_localizations.dart";
 
 // * BEGIN OF APP PROPS
 const appBranch = "PROTOTYPE";
