@@ -27,7 +27,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: n.Stack([
-        bgImage("clouds/surrounding_orange.png"),
+        bgImage("clouds/surrounding_orange.webp"),
         n.Column([
           welcomeText(),
           loginForm(),

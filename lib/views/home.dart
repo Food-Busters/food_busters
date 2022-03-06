@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
                 applicationName: "Food Busters",
                 applicationVersion: version,
                 applicationIcon: Image.asset(
-                  "assets/images/somwua_icon.png",
+                  "assets/images/somwua_icon.webp",
                   height: 80,
                 ),
                 children: [
@@ -89,8 +89,8 @@ class _HomePageState extends State<HomePage> {
       ),
       body: n.Stack([
         // * Background
-        bgImage("clouds/top_green.png"),
-        bgImage("clouds/bottom_tan.png"),
+        bgImage("clouds/top_green.webp"),
+        bgImage("clouds/bottom_tan.webp"),
         // * Actual Contents
         n.Column([
           n.Column([
@@ -141,7 +141,7 @@ class _HomePageState extends State<HomePage> {
         },
         content: text.scan + "!",
         padding: 20,
-        assetName: "scan.png",
+        assetName: "scan.webp",
       ),
       n.Row([
         Expanded(
@@ -156,7 +156,7 @@ class _HomePageState extends State<HomePage> {
               );
             },
             content: text.my_points,
-            assetName: "points.png",
+            assetName: "points.webp",
           ),
         ),
         Expanded(
@@ -171,7 +171,7 @@ class _HomePageState extends State<HomePage> {
               );
             },
             content: text.my_record,
-            assetName: "record.png",
+            assetName: "record.webp",
           ),
         ),
       ])
@@ -190,7 +190,7 @@ class _HomePageState extends State<HomePage> {
               );
             },
             content: text.mission,
-            assetName: "mission.png",
+            assetName: "mission.webp",
           ),
         ),
         Expanded(
@@ -205,7 +205,7 @@ class _HomePageState extends State<HomePage> {
               );
             },
             content: text.leaderboard,
-            assetName: "leaderboard.png",
+            assetName: "leaderboard.webp",
           ),
         )
       ])

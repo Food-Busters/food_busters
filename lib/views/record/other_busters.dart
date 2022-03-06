@@ -31,8 +31,8 @@ class _OtherBustersPageState extends State<OtherBustersPage> {
         elevation: 0,
       ),
       body: n.Stack([
-        bgImage("clouds/bottom_aqua.png"),
-        bgImage("clouds/top_orange.png"),
+        bgImage("clouds/bottom_aqua.webp"),
+        bgImage("clouds/top_orange.webp"),
         Center(
           child: n.Column([
             Padding(

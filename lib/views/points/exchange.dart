@@ -45,7 +45,7 @@ class _ExchangePageState extends State<ExchangePage> {
         ],
       ),
       body: n.Stack([
-        bgImage("clouds/top_orange.png"),
+        bgImage("clouds/top_orange.webp"),
         FutureBuilder<List<RestaurantMenu>>(
           future: getRestaurantData(),
           builder: (context, snapshot) {

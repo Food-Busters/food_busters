@@ -60,8 +60,8 @@ class _MyPointsState extends State<MyPoints> {
         ],
       ),
       body: n.Stack([
-        bgImage("clouds/bottom_aqua.png"),
-        bgImage("clouds/top_orange.png"),
+        bgImage("clouds/bottom_aqua.webp"),
+        bgImage("clouds/top_orange.webp"),
         n.Column([
           Center(
             child: Container(

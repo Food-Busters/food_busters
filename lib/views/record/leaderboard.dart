@@ -37,7 +37,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
         elevation: 0,
       ),
       body: n.Stack([
-        bgImage("clouds/top_orange.png"),
+        bgImage("clouds/top_orange.webp"),
         n.Column([
           const SizedBox(height: 50),
           Padding(

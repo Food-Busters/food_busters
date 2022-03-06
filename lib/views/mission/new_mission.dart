@@ -48,7 +48,7 @@ class _NewMissionPageState extends State<NewMissionPage> {
         elevation: 0,
       ),
       body: n.Stack([
-        bgImage("clouds/top_orange.png"),
+        bgImage("clouds/top_orange.webp"),
         Center(
           child: SingleChildScrollView(
             child: n.Column([
@@ -153,7 +153,7 @@ class _NewMissionPageState extends State<NewMissionPage> {
           });
         },
         child: Image.asset(
-          "assets/images/foods/starch.png",
+          "assets/images/foods/starch.webp",
           height: 60,
         ),
         style: ElevatedButton.styleFrom(
@@ -167,7 +167,7 @@ class _NewMissionPageState extends State<NewMissionPage> {
           });
         },
         child: Image.asset(
-          "assets/images/foods/meat.png",
+          "assets/images/foods/meat.webp",
           height: 60,
         ),
         style: ElevatedButton.styleFrom(
@@ -181,7 +181,7 @@ class _NewMissionPageState extends State<NewMissionPage> {
           });
         },
         child: Image.asset(
-          "assets/images/foods/dessert.png",
+          "assets/images/foods/dessert.webp",
           height: 60,
         ),
         style: ElevatedButton.styleFrom(

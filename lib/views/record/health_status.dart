@@ -53,8 +53,8 @@ class _HealthStatusPageState extends State<HealthStatusPage> {
         elevation: 0,
       ),
       body: n.Stack([
-        bgImage("clouds/bottom_aqua.png"),
-        bgImage("clouds/top_orange.png"),
+        bgImage("clouds/bottom_aqua.webp"),
+        bgImage("clouds/top_orange.webp"),
         Padding(
           padding: const EdgeInsets.symmetric(
             vertical: 100.0,
@@ -156,7 +156,7 @@ class _HealthStatusPageState extends State<HealthStatusPage> {
                     ),
                     n.Row([
                       Image.asset(
-                        "assets/images/foods/vegetable.png",
+                        "assets/images/foods/vegetable.webp",
                         height: 70,
                       ),
                       Flexible(

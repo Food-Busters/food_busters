@@ -33,7 +33,7 @@ class _RegisterPageState extends State<RegisterPage> {
         elevation: 0,
       ),
       body: n.Stack([
-        bgImage("clouds/surrounding_orange.png"),
+        bgImage("clouds/surrounding_orange.webp"),
         n.Column([
           headerText(),
           registerForm(),

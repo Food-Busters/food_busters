@@ -32,7 +32,7 @@ class _RecommendFoodPageState extends State<RecommendFoodPage> {
         elevation: 0,
       ),
       body: n.Stack([
-        bgImage("clouds/top_orange.png"),
+        bgImage("clouds/top_orange.webp"),
         FutureBuilder<List<RestaurantMenu>>(
           future: getRestaurantData(),
           builder: (context, snapshot) {

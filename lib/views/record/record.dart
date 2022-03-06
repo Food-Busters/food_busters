@@ -41,7 +41,7 @@ class _MyRecordPageState extends State<MyRecordPage> {
         elevation: 0,
       ),
       body: n.Stack([
-        bgImage("clouds/top_orange.png"),
+        bgImage("clouds/top_orange.webp"),
         n.Column([
           Padding(
             padding: const EdgeInsets.all(32.0),
@@ -153,7 +153,7 @@ class _MyRecordPageState extends State<MyRecordPage> {
         ),
       ),
       n.Row([
-        Image.asset("assets/images/foods/$label.png", height: 50),
+        Image.asset("assets/images/foods/$label.webp", height: 50),
         n.Text("$percent%")
           ..height = 2.5
           ..freezed
@@ -185,7 +185,7 @@ class _MyRecordPageState extends State<MyRecordPage> {
         ),
       ),
       n.Row([
-        Image.asset("assets/images/foods/$label.png", height: 50),
+        Image.asset("assets/images/foods/$label.webp", height: 50),
         Text("$percent%"),
       ])
         ..mainStart,

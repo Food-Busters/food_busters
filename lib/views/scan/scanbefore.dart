@@ -30,7 +30,7 @@ class _ScanBeforePageState extends State<ScanBeforePage> {
         elevation: 0,
       ),
       body: n.Stack([
-        bgImage("clouds/top_hybrid.png"),
+        bgImage("clouds/top_hybrid.webp"),
         n.Column([
           n.Text(text.scan_before_title)
             ..fontSize = 32

@@ -74,6 +74,12 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
     }
   }
 
+  String toWebp(String name) {
+    var tokens = name.split(".");
+    tokens.removeLast();
+    return tokens.join(".") + ".webp";
+  }
+
   @override
   Widget build(BuildContext context) {
     final text = AppLocalizations.of(context)!;
@@ -87,7 +93,7 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
         elevation: 0,
       ),
       body: n.Stack([
-        bgImage("clouds/top_orange.png"),
+        bgImage("clouds/top_orange.webp"),
         Center(
           child: FutureBuilder<Quote>(
             future: getAnalysis(context),
@@ -149,7 +155,7 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
         "${percent < 40 ? text.sp_only : ""} "
         "$percent% ${text.of_the_dish}...",
       ),
-      Image.asset("assets/images/${quote.image}", height: 200),
+      Image.asset("assets/images/${toWebp(quote.image)}", height: 200),
       n.Text(percent < 80 ? text.oh_no : text.wow)
         ..fontSize = 28
         ..freezed,
@@ -164,7 +170,7 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
 
   Widget infoPage2(AppLocalizations text, Quote quote) {
     return n.Column([
-      Image.asset("assets/images/money.png", width: 150, height: 150),
+      Image.asset("assets/images/money.webp", width: 150, height: 150),
       n.Text("${50 - percent / 2} THB")
         ..color = green
         ..fontSize = 26

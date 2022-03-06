@@ -32,7 +32,7 @@ final leaf = Container(
     shape: BoxShape.rectangle,
     image: DecorationImage(
       fit: BoxFit.cover,
-      image: AssetImage("assets/images/leaf.png"),
+      image: AssetImage("assets/images/leaf.webp"),
     ),
   ),
 );
@@ -44,7 +44,7 @@ final bigLeaf = Container(
     shape: BoxShape.rectangle,
     image: DecorationImage(
       fit: BoxFit.cover,
-      image: AssetImage("assets/images/leaf.png"),
+      image: AssetImage("assets/images/leaf.webp"),
     ),
   ),
 );
@@ -56,7 +56,7 @@ final bigNeonLeaf = Container(
     shape: BoxShape.rectangle,
     image: DecorationImage(
       fit: BoxFit.cover,
-      image: AssetImage("assets/images/neon_leaf.png"),
+      image: AssetImage("assets/images/neon_leaf.webp"),
     ),
   ),
 );
