@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 
 // 📦 Package imports:
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
+import 'package:food_busters/hooks.dart';
 import "package:niku/namespace.dart" as n;
 
 // 🌎 Project imports:
@@ -20,7 +21,7 @@ class ScanBeforePage extends StatefulWidget {
 class _ScanBeforePageState extends State<ScanBeforePage> {
   @override
   Widget build(BuildContext context) {
-    final text = AppLocalizations.of(context)!;
+    final t = useTranslation(context);
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -32,18 +33,18 @@ class _ScanBeforePageState extends State<ScanBeforePage> {
       body: n.Stack([
         bgImage("clouds/top_hybrid.webp"),
         n.Column([
-          n.Text(text.scan_before_title)
+          n.Text(t.scan_before_title)
             ..fontSize = 32
             ..color = Colors.white
             ..w500
             ..freezed,
-          n.Text(text.scan_before_content)
+          n.Text(t.scan_before_content)
             ..fontSize = 24
             ..color = Colors.white
             ..center
             ..useParent((v) => v..p = 24)
             ..freezed,
-          backHomeBtn(context, text),
+          backHomeBtn(context),
         ])
           ..mainCenter
           ..freezed,

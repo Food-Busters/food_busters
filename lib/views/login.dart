@@ -2,7 +2,7 @@
 import "package:flutter/material.dart";
 
 // 📦 Package imports:
-import "package:flutter_gen/gen_l10n/app_localizations.dart";
+import "package:food_busters/hooks.dart";
 import "package:niku/namespace.dart" as n;
 
 // 🌎 Project imports:
@@ -10,6 +10,7 @@ import "package:food_busters/components/background.dart";
 import "package:food_busters/styles/styles.dart";
 import "package:food_busters/views/home.dart";
 import "package:food_busters/views/register.dart";
+import "package:food_busters/main.dart";
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -57,7 +58,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget loginForm() {
-    final text = AppLocalizations.of(context)!;
+    final t = useTranslation(context);
 
     return Padding(
       padding: const EdgeInsets.all(12.0),
@@ -66,7 +67,7 @@ class _LoginPageState extends State<LoginPage> {
           Form(
             key: formKey,
             child: n.Column([
-              n.Text(text.username)
+              n.Text(t.username)
                 ..fontSize = 20
                 ..freezed,
               TextFormField(
@@ -78,7 +79,7 @@ class _LoginPageState extends State<LoginPage> {
                 },
               ),
               const SizedBox(height: 12),
-              n.Text(text.password)
+              n.Text(t.password)
                 ..fontSize = 20
                 ..freezed,
               TextFormField(
@@ -91,25 +92,24 @@ class _LoginPageState extends State<LoginPage> {
                 },
               ),
               n.Text(
-                text.forget_password,
+                t.forget_password,
               )
                 ..fontSize = 12
                 ..useParent((v) => v..py = 8),
               ElevatedButton(
-                child: n.Text(text.login)
+                child: n.Text(t.login)
                   ..fontSize = 20
                   ..freezed,
                 style: loginRegisterBtn,
                 onPressed: () async {
                   if (formKey.currentState?.validate() ?? false) {
                     formKey.currentState?.save();
+                    MyApp.of(context).state.username =
+                        username.isNotEmpty ? username : "undefined";
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => HomePage(
-                          username:
-                              username.isNotEmpty ? username : "undefined",
-                        ),
+                        builder: (context) => const HomePage(),
                       ),
                     );
                   }
@@ -132,7 +132,7 @@ class _LoginPageState extends State<LoginPage> {
               );
             },
             style: loginRegisterBtn,
-            child: Text(text.create_new_account),
+            child: Text(t.create_new_account),
           ),
         ])
           ..p = 12,

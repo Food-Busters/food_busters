@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 
 // 📦 Package imports:
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
+import 'package:food_busters/hooks.dart';
 import "package:niku/namespace.dart" as n;
 
 // 🌎 Project imports:
@@ -23,13 +24,13 @@ class MyMissionPage extends StatefulWidget {
 class _MyMissionPageState extends State<MyMissionPage> {
   @override
   Widget build(BuildContext context) {
-    final text = AppLocalizations.of(context)!;
+    final t = useTranslation(context);
 
     return Scaffold(
       backgroundColor: tan,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text(text.mission),
+        title: Text(t.mission),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
@@ -39,11 +40,11 @@ class _MyMissionPageState extends State<MyMissionPage> {
         n.Column([
           Padding(
             padding: const EdgeInsets.all(24.0),
-            child: currentMission(text),
+            child: currentMission(),
           ),
           Padding(
             padding: const EdgeInsets.all(24.0),
-            child: cravingMissions(text),
+            child: cravingMissions(),
           ),
         ])
           ..mainCenter,
@@ -51,7 +52,9 @@ class _MyMissionPageState extends State<MyMissionPage> {
     );
   }
 
-  Widget currentMission(AppLocalizations text) {
+  Widget currentMission() {
+    final t = useTranslation(context);
+
     return Container(
       height: 300,
       width: double.infinity,
@@ -60,7 +63,7 @@ class _MyMissionPageState extends State<MyMissionPage> {
         color: const Color(0xFFFFCA66),
       ),
       child: n.Column([
-        Text(text.current_missions),
+        Text(t.current_missions),
         Container(
           height: 230,
           decoration: BoxDecoration(
@@ -84,7 +87,7 @@ class _MyMissionPageState extends State<MyMissionPage> {
                       title: n.Column([
                         Text(ms.obj.toStr(loc)),
                         Text(
-                          "${ms.award.toString()} ${text.points}",
+                          "${ms.award.toString()} ${t.points}",
                           style: const TextStyle(
                             fontWeight: FontWeight.w500,
                           ),
@@ -120,14 +123,16 @@ class _MyMissionPageState extends State<MyMissionPage> {
     );
   }
 
-  Widget cravingMissions(AppLocalizations text) {
+  Widget cravingMissions() {
+    final t = useTranslation(context);
+
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8.0),
         color: lightGreen,
       ),
       child: n.Column([
-        Text(text.craving_missions),
+        Text(t.craving_missions),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 12.0),
           child: n.Row([
@@ -173,7 +178,7 @@ class _MyMissionPageState extends State<MyMissionPage> {
           ])
             ..mainBetween,
         ),
-        n.Text(text.hard_missions_desc)
+        n.Text(t.hard_missions_desc)
           ..fontSize = 12
           ..center
           ..freezed,

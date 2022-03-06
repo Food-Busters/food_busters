@@ -3,7 +3,7 @@ import "package:flutter/material.dart";
 
 // 📦 Package imports:
 import "package:camera/camera.dart";
-import "package:flutter_gen/gen_l10n/app_localizations.dart";
+import "package:food_busters/hooks.dart";
 import "package:niku/namespace.dart" as n;
 
 // 🌎 Project imports:
@@ -47,7 +47,7 @@ class _ScanPageState extends State<ScanPage> {
 
   @override
   Widget build(BuildContext context) {
-    final text = AppLocalizations.of(context)!;
+    final t = useTranslation(context);
     final appState = MyApp.of(context).state;
 
     return Scaffold(
@@ -55,7 +55,7 @@ class _ScanPageState extends State<ScanPage> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: Text(text.scan_your_food),
+        title: Text(t.scan_your_food),
       ),
       body: cameraReady
           ? n.Stack([

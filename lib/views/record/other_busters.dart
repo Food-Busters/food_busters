@@ -2,7 +2,7 @@
 import "package:flutter/material.dart";
 
 // 📦 Package imports:
-import "package:flutter_gen/gen_l10n/app_localizations.dart";
+import "package:food_busters/hooks.dart";
 import "package:niku/namespace.dart" as n;
 
 // 🌎 Project imports:
@@ -20,13 +20,13 @@ class OtherBustersPage extends StatefulWidget {
 class _OtherBustersPageState extends State<OtherBustersPage> {
   @override
   Widget build(BuildContext context) {
-    final text = AppLocalizations.of(context)!;
+    final t = useTranslation(context);
 
     return Scaffold(
       backgroundColor: tan,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text(text.other_busters),
+        title: Text(t.other_busters),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
@@ -37,7 +37,7 @@ class _OtherBustersPageState extends State<OtherBustersPage> {
           child: n.Column([
             Padding(
               padding: const EdgeInsets.all(32.0),
-              child: thanksBuster(text),
+              child: thanksBuster(),
             ),
             ElevatedButton(
               onPressed: () {
@@ -48,12 +48,12 @@ class _OtherBustersPageState extends State<OtherBustersPage> {
                   ),
                 );
               },
-              child: Text(text.leaderboard),
+              child: Text(t.leaderboard),
               style: lightGreenBtn,
             ),
             Padding(
               padding: const EdgeInsets.all(24.0),
-              child: kurzInfo(text, -7, -52, 19),
+              child: kurzInfo(-7, -52, 19),
             ),
           ])
             ..mainCenter
@@ -63,30 +63,33 @@ class _OtherBustersPageState extends State<OtherBustersPage> {
     );
   }
 
-  Widget thanksBuster(AppLocalizations text) {
+  Widget thanksBuster() {
+    final t = useTranslation(context);
+
     return n.Column([
-      Text(text.thanks_buster_1),
-      Text(text.thanks_buster_2),
+      Text(t.thanks_buster_1),
+      Text(t.thanks_buster_2),
     ])
       ..crossStart;
   }
 
   Widget kurzInfo(
-    AppLocalizations text,
     int carbonDiff,
     int ch4Diff,
     int calDiff,
   ) {
+    final t = useTranslation(context);
+
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12.0),
       ),
       child: n.Column([
-        Text(text.you_produced + "..."),
-        superRichText(carbonDiff, text.more_carbon, text.less_carbon),
-        superRichText(ch4Diff, text.more_methane, text.less_methane),
-        superRichText(calDiff, text.more_calories, text.less_calories),
+        Text(t.you_produced + "..."),
+        superRichText(carbonDiff, t.more_carbon, t.less_carbon),
+        superRichText(ch4Diff, t.more_methane, t.less_methane),
+        superRichText(calDiff, t.more_calories, t.less_calories),
       ])
         ..crossStart
         ..p = 24,

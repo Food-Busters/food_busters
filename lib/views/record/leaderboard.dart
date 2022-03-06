@@ -2,8 +2,8 @@
 import "package:flutter/material.dart";
 
 // 📦 Package imports:
-import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:flutter_toggle_tab/flutter_toggle_tab.dart";
+import "package:food_busters/hooks.dart";
 import "package:niku/namespace.dart" as n;
 
 // 🌎 Project imports:
@@ -26,13 +26,13 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
 
   @override
   Widget build(BuildContext context) {
-    final text = AppLocalizations.of(context)!;
+    final t = useTranslation(context);
 
     return Scaffold(
       backgroundColor: tan,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text(text.leaderboard),
+        title: Text(t.leaderboard),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
@@ -93,7 +93,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
                         ),
-                        labels: [text.top_busters, text.friends],
+                        labels: [t.top_busters, t.friends],
                         selectedLabelIndex: (index) {
                           setState(() {
                             _panel = index == 0 ? false : true;
@@ -104,7 +104,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                     ),
                     SizedBox(
                       height: 260,
-                      child: topBusters(text),
+                      child: topBusters(),
                     ),
                   ],
                 ),
@@ -118,7 +118,9 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
     );
   }
 
-  Widget topBusters(AppLocalizations text) {
+  Widget topBusters() {
+    final t = useTranslation(context);
+
     return FutureBuilder<List<Buster>>(
       future: _panel ? getFriendsData() : getTopBustersData(),
       builder: (context, snapshot) {
@@ -148,7 +150,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                   n.Text("${buster.percentileRank}%")
                     ..fontSize = 14
                     ..freezed,
-                  n.Text(text.less_than_avg)
+                  n.Text(t.less_than_avg)
                     ..fontSize = 8
                     ..freezed,
                 ]),

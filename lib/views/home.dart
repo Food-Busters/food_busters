@@ -4,13 +4,14 @@ import "package:flutter/material.dart";
 
 // 📦 Package imports:
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
+import 'package:food_busters/hooks.dart';
 import "package:niku/namespace.dart" as n;
 import "package:package_info_plus/package_info_plus.dart";
 
 // 🌎 Project imports:
 import "package:food_busters/components/background.dart";
 import "package:food_busters/components/profile_picture.dart";
-import "package:food_busters/main.dart";
+import "package:food_busters/constants/app_props.dart";
 import "package:food_busters/styles/styles.dart";
 import "package:food_busters/views/mission/mission.dart";
 import "package:food_busters/views/points/points.dart";
@@ -18,6 +19,7 @@ import "package:food_busters/views/record/leaderboard.dart";
 import "package:food_busters/views/record/record.dart";
 import "package:food_busters/views/scan/scanportal.dart";
 import "package:food_busters/views/settings.dart";
+import "package:food_busters/main.dart";
 
 const webAppWarn =
     "This app is not optimized for web, there may be some unexpected error, "
@@ -27,9 +29,7 @@ const webAppWarn =
     "change your window size.";
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key, required this.username}) : super(key: key);
-
-  final String username;
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -38,19 +38,16 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    final text = AppLocalizations.of(context)!;
+    final t = useTranslation(context);
+    final appState = MyApp.of(context).state;
 
-    // Niku Reduced 25% Of Codes (Mostly Thicc Indent lol)
-    // Lines of Code Reduced by ~10
     return Scaffold(
       backgroundColor: const Color(0xFFBCDFCB),
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: n.Text(text.home)
-          ..color = Colors.black
-          ..freezed,
+        title: n.Text(t.home)..color = Colors.black,
         actions: [
           n.IconButton(Icons.settings)
             ..onPressed = () {
@@ -74,7 +71,7 @@ class _HomePageState extends State<HomePage> {
                   height: 80,
                 ),
                 children: [
-                  n.Text("BRANCH: $appBranch")
+                  n.Text("BRANCH: ${AppProps.branch}")
                     ..center
                     ..freezed,
                   const SizedBox(height: 24),
@@ -96,17 +93,17 @@ class _HomePageState extends State<HomePage> {
           n.Column([
             n.Column([
               n.Row([
-                n.Text("\"${text.greetings}, ")
+                n.Text("\"${t.greetings}, ")
                   ..fontSize = 18
                   ..freezed,
-                n.Text("${widget.username}\"")
+                n.Text("${appState.username}\"")
                   ..fontSize = 26
                   ..freezed,
               ])
                 ..mainStart
                 ..crossBaseline
                 ..alphabetic,
-              n.Text(text.have_a_nice_meal)
+              n.Text(t.have_a_nice_meal)
                 ..fontSize = 16
                 ..freezed,
               kIsWeb
@@ -120,7 +117,7 @@ class _HomePageState extends State<HomePage> {
               ..p = 16,
             profilePic(discordPfp, 100),
           ]),
-          navButtons(text)..p = 8,
+          navButtons()..p = 8,
         ])
           ..mainEvenly
           ..useParent(vCenter),
@@ -128,7 +125,8 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  n.Column navButtons(AppLocalizations text) {
+  n.Column navButtons() {
+    final t = useTranslation(context);
     return n.Column([
       bigBtn(
         onPressed: () {
@@ -139,7 +137,7 @@ class _HomePageState extends State<HomePage> {
             ),
           );
         },
-        content: text.scan + "!",
+        content: t.scan + "!",
         padding: 20,
         assetName: "scan.webp",
       ),
@@ -155,7 +153,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               );
             },
-            content: text.my_points,
+            content: t.my_points,
             assetName: "points.webp",
           ),
         ),
@@ -170,13 +168,12 @@ class _HomePageState extends State<HomePage> {
                 ),
               );
             },
-            content: text.my_record,
+            content: t.my_record,
             assetName: "record.webp",
           ),
         ),
       ])
-        ..mainCenter
-        ..freezed,
+        ..mainCenter,
       n.Row([
         Expanded(
           flex: 1,
@@ -189,7 +186,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               );
             },
-            content: text.mission,
+            content: t.mission,
             assetName: "mission.webp",
           ),
         ),
@@ -204,13 +201,12 @@ class _HomePageState extends State<HomePage> {
                 ),
               );
             },
-            content: text.leaderboard,
+            content: t.leaderboard,
             assetName: "leaderboard.webp",
           ),
         )
       ])
-        ..mainCenter
-        ..freezed,
+        ..mainCenter,
     ]);
   }
 
@@ -226,9 +222,7 @@ class _HomePageState extends State<HomePage> {
         onPressed: onPressed,
         child: n.Row([
           Image.asset("assets/images/icons/$assetName", height: 50),
-          n.Text(content)
-            ..fontSize = 26
-            ..freezed,
+          n.Text(content)..fontSize = 26,
         ])
           ..mainCenter,
         style: ElevatedButton.styleFrom(
@@ -251,9 +245,7 @@ class _HomePageState extends State<HomePage> {
         onPressed: onPressed,
         child: n.Column([
           Image.asset("assets/images/icons/$assetName", height: 50),
-          n.Text(content)
-            ..fontSize = 14
-            ..freezed,
+          n.Text(content)..fontSize = 14,
         ]),
         style: ElevatedButton.styleFrom(
           padding: const EdgeInsets.all(15),

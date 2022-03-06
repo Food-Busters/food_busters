@@ -3,7 +3,7 @@ import "package:flutter/material.dart";
 
 // 📦 Package imports:
 import "package:camera/camera.dart";
-import "package:flutter_gen/gen_l10n/app_localizations.dart";
+import "package:food_busters/hooks.dart";
 import "package:niku/namespace.dart" as n;
 
 // 🌎 Project imports:
@@ -43,7 +43,7 @@ class _ScanPortalPageState extends State<ScanPortalPage> {
 
   @override
   Widget build(BuildContext context) {
-    final text = AppLocalizations.of(context)!;
+    final t = useTranslation(context);
     final appState = MyApp.of(context).state;
 
     return Scaffold(
@@ -51,7 +51,7 @@ class _ScanPortalPageState extends State<ScanPortalPage> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: Text(text.scan),
+        title: Text(t.scan),
       ),
       body: n.Stack([
         bgImage("clouds/bottom_aqua.webp"),
@@ -65,7 +65,7 @@ class _ScanPortalPageState extends State<ScanPortalPage> {
                       goToScanPage(context, scanDestination.before);
                     },
               child: Text(
-                text.before,
+                t.before,
                 style: const TextStyle(fontSize: 24),
               ),
               style: ElevatedButton.styleFrom(
@@ -94,7 +94,7 @@ class _ScanPortalPageState extends State<ScanPortalPage> {
                   }
                 : null,
             child: Text(
-              text.after,
+              t.after,
               style: const TextStyle(fontSize: 24),
             ),
             style: ElevatedButton.styleFrom(

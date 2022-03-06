@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 
 // 📦 Package imports:
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
+import 'package:food_busters/hooks.dart';
 import "package:niku/namespace.dart" as n;
 
 // 🌎 Project imports:
@@ -12,8 +13,8 @@ import "package:food_busters/components/green_leaves.dart";
 import "package:food_busters/components/profile_picture.dart";
 import "package:food_busters/data/dummy_restaurant.dart";
 import "package:food_busters/main.dart";
-import "package:food_busters/models/app_state.dart";
 import "package:food_busters/models/restaurant_menu.dart";
+import "package:food_busters/models/state/app_state.dart";
 import "package:food_busters/styles/styles.dart";
 import "package:food_busters/utils/string.dart";
 
@@ -29,19 +30,18 @@ class ExchangePage extends StatefulWidget {
 class _ExchangePageState extends State<ExchangePage> {
   @override
   Widget build(BuildContext context) {
-    final text = AppLocalizations.of(context)!;
+    final t = useTranslation(context);
     final appState = MyApp.of(context).state;
 
     return Scaffold(
       backgroundColor: const Color(0xFFF4E4D8),
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text(text.my_points),
+        title: Text(t.my_points),
         backgroundColor: Colors.transparent,
         elevation: 0,
         actions: [
-          n.Text("${appState.points} ${text.points}")
-            ..useParent((v) => v..p = 16)
+          n.Text("${appState.points} ${t.points}")..useParent((v) => v..p = 16)
         ],
       ),
       body: n.Stack([
@@ -66,9 +66,9 @@ class _ExchangePageState extends State<ExchangePage> {
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 30.0),
                 child: data.isNotEmpty
-                    ? foodList(data, text, appState)
+                    ? foodList(data)
                     : Center(
-                        child: n.Text(text.no_data_found)
+                        child: n.Text(t.no_data_found)
                           ..fontSize = 20
                           ..w500
                           ..freezed,
@@ -85,9 +85,10 @@ class _ExchangePageState extends State<ExchangePage> {
 
   Widget foodList(
     List<RestaurantMenu> data,
-    AppLocalizations text,
-    AppState state,
   ) {
+    final t = useTranslation(context);
+    final state = MyApp.of(context).state;
+
     return ListView.builder(
       itemCount: data.length,
       itemBuilder: (context, index) {
@@ -111,7 +112,7 @@ class _ExchangePageState extends State<ExchangePage> {
                   Text(res.menuName),
                   Text(res.restaurantName),
                   Text("${res.price} THB"),
-                  Text("${res.points} ${text.points}"),
+                  Text("${res.points} ${t.points}"),
                 ]),
               ),
             )
@@ -130,13 +131,13 @@ class _ExchangePageState extends State<ExchangePage> {
                 context: context,
                 builder: (context) {
                   return state.usePoints(res.points)
-                      ? exchangeSuccess(text, context, showQR: true)
-                      : exchangeFailed(text, context);
+                      ? exchangeSuccess(context, showQR: true)
+                      : exchangeFailed(context);
                 },
               );
               setState(() {});
             },
-            child: Text(text.exchange),
+            child: Text(t.exchange),
           ),
         ]);
       },

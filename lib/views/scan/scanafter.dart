@@ -2,7 +2,7 @@
 import "package:flutter/material.dart";
 
 // 📦 Package imports:
-import "package:flutter_gen/gen_l10n/app_localizations.dart";
+import "package:food_busters/hooks.dart";
 import "package:http/http.dart" as http;
 import "package:niku/namespace.dart" as n;
 import "package:pie_chart/pie_chart.dart";
@@ -13,8 +13,8 @@ import "package:food_busters/components/background.dart";
 import "package:food_busters/components/buttons.dart";
 import "package:food_busters/data/food_data.dart";
 import "package:food_busters/main.dart";
-import "package:food_busters/models/app_state.dart";
 import "package:food_busters/models/quote.dart";
+import "package:food_busters/models/state/app_state.dart";
 import "package:food_busters/styles/styles.dart";
 import "package:food_busters/views/scan/recommend_food.dart";
 
@@ -82,13 +82,13 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
 
   @override
   Widget build(BuildContext context) {
-    final text = AppLocalizations.of(context)!;
+    final t = useTranslation(context);
 
     return Scaffold(
       backgroundColor: const Color(0xFFF1E5D9),
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text(text.scan_result),
+        title: Text(t.scan_result),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
@@ -105,9 +105,9 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
                   length: 3,
                   child: TabBarView(
                     children: [
-                      tabPageWrapper(infoPage1, context, text, quote),
-                      tabPageWrapper(infoPage2, context, text, quote),
-                      tabPageWrapper(infoPage3, context, text, quote),
+                      tabPageWrapper(infoPage1, quote),
+                      tabPageWrapper(infoPage2, quote),
+                      tabPageWrapper(infoPage3, quote),
                     ],
                   ),
                 );
@@ -130,33 +130,32 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
   }
 
   Widget tabPageWrapper(
-    Widget Function(AppLocalizations text, Quote quote) widget,
-    BuildContext context,
-    AppLocalizations text,
+    Widget Function(Quote quote) widget,
     Quote quote,
   ) {
-    return n.Column([
-      Text("—${text.swipe_hint}—"),
-      widget(text, quote),
-      backHomeBtn(context, text)
-    ])
-      ..mainCenter;
+    final t = useTranslation(context);
+
+    return n.Column(
+      [Text("—${t.swipe_hint}—"), widget(quote), backHomeBtn(context)],
+    )..mainCenter;
   }
 
-  Widget infoPage1(AppLocalizations text, Quote quote) {
+  Widget infoPage1(Quote quote) {
+    final t = useTranslation(context);
+
     return n.Column([
-      n.Text("+$pointRecieved ${text.points}")
+      n.Text("+$pointRecieved ${t.points}")
         ..color = green
         ..fontSize = 30
         ..w500
         ..freezed,
       Text(
-        "${text.you_have_eaten}"
-        "${percent < 40 ? text.sp_only : ""} "
-        "$percent% ${text.of_the_dish}...",
+        "${t.you_have_eaten}"
+        "${percent < 40 ? t.sp_only : ""} "
+        "$percent% ${t.of_the_dish}...",
       ),
       Image.asset("assets/images/${toWebp(quote.image)}", height: 200),
-      n.Text(percent < 80 ? text.oh_no : text.wow)
+      n.Text(percent < 80 ? t.oh_no : t.wow)
         ..fontSize = 28
         ..freezed,
       n.Text(quote.quote)
@@ -168,7 +167,9 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
       ..mainCenter;
   }
 
-  Widget infoPage2(AppLocalizations text, Quote quote) {
+  Widget infoPage2(Quote quote) {
+    final t = useTranslation(context);
+
     return n.Column([
       Image.asset("assets/images/money.webp", width: 150, height: 150),
       n.Text("${50 - percent / 2} THB")
@@ -176,20 +177,22 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
         ..fontSize = 26
         ..w500
         ..freezed,
-      n.Text(text.save_money_1)
+      n.Text(t.save_money_1)
         ..fontSize = 22
         ..w500
         ..freezed,
-      n.Text(text.save_money_2)
+      n.Text(t.save_money_2)
         ..fontSize = 18
         ..freezed,
     ])
       ..mainCenter;
   }
 
-  Widget infoPage3(AppLocalizations text, Quote quote) {
+  Widget infoPage3(Quote quote) {
+    final t = useTranslation(context);
+
     return n.Column([
-      n.Text(text.your_data)
+      n.Text(t.your_data)
         ..fontSize = 28
         ..w500
         ..freezed,
@@ -198,10 +201,10 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
         child: PieChart(
           dataMap: foodData,
           chartType: ChartType.ring,
-          centerText: food == Food.chicken ? text.chicken : text.omelet,
+          centerText: food == Food.chicken ? t.chicken : t.omelet,
         ),
       ),
-      Text(text.take_home_recommendation),
+      Text(t.take_home_recommendation),
       ElevatedButton(
         onPressed: () {
           Navigator.push(
@@ -211,7 +214,7 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
             ),
           );
         },
-        child: Text(text.any_menu_suits_me),
+        child: Text(t.any_menu_suits_me),
         style: greenBtn,
       ),
     ])

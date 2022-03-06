@@ -2,12 +2,13 @@
 import "package:flutter/material.dart";
 
 // 📦 Package imports:
-import "package:flutter_gen/gen_l10n/app_localizations.dart";
+import "package:food_busters/hooks.dart";
 import "package:form_field_validator/form_field_validator.dart";
 import "package:niku/namespace.dart" as n;
 
 // 🌎 Project imports:
 import "package:food_busters/components/background.dart";
+import "package:food_busters/main.dart";
 import "package:food_busters/styles/styles.dart";
 import "package:food_busters/views/home.dart";
 
@@ -63,7 +64,7 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   Widget registerForm() {
-    final text = AppLocalizations.of(context)!;
+    final t = useTranslation(context);
 
     return Padding(
       padding: const EdgeInsets.all(12.0),
@@ -73,27 +74,27 @@ class _RegisterPageState extends State<RegisterPage> {
             key: formKey,
             child: n.Column([
               Text(
-                text.username,
+                t.username,
                 style: const TextStyle(fontSize: 20),
               ),
               TextFormField(
-                validator: RequiredValidator(errorText: text.username_fail),
+                validator: RequiredValidator(errorText: t.username_fail),
                 onSaved: (String? uname) {
                   username = uname ?? "";
                 },
               ),
               const SizedBox(height: 12),
               Text(
-                text.email,
+                t.email,
                 style: const TextStyle(fontSize: 20),
               ),
               TextFormField(
                 validator: MultiValidator([
                   RequiredValidator(
-                    errorText: text.email_null,
+                    errorText: t.email_null,
                   ),
                   EmailValidator(
-                    errorText: text.email_invalid,
+                    errorText: t.email_invalid,
                   )
                 ]),
                 keyboardType: TextInputType.emailAddress,
@@ -103,12 +104,12 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               const SizedBox(height: 12),
               Text(
-                text.password,
+                t.password,
                 style: const TextStyle(fontSize: 20),
               ),
               TextFormField(
                 validator: RequiredValidator(
-                  errorText: text.password_fail,
+                  errorText: t.password_fail,
                 ),
                 obscureText: true,
                 onSaved: (String? pw) {
@@ -118,7 +119,7 @@ class _RegisterPageState extends State<RegisterPage> {
               const SizedBox(height: 12),
               ElevatedButton(
                 child: Text(
-                  text.register,
+                  t.register,
                   style: const TextStyle(fontSize: 20),
                 ),
                 style: loginRegisterBtn,
@@ -126,10 +127,11 @@ class _RegisterPageState extends State<RegisterPage> {
                   if (formKey.currentState?.validate() ?? false) {
                     formKey.currentState?.save();
                     Navigator.of(context).pop();
+                    MyApp.of(context).state.username = username;
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => HomePage(username: username),
+                        builder: (context) => const HomePage(),
                       ),
                     );
                   }

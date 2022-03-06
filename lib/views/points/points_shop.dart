@@ -2,7 +2,7 @@
 import "package:flutter/material.dart";
 
 // 📦 Package imports:
-import "package:flutter_gen/gen_l10n/app_localizations.dart";
+import "package:food_busters/hooks.dart";
 import "package:niku/namespace.dart" as n;
 
 // 🌎 Project imports:
@@ -22,14 +22,14 @@ class PointsShopPage extends StatefulWidget {
 class _PointsShopPageState extends State<PointsShopPage> {
   @override
   Widget build(BuildContext context) {
-    final text = AppLocalizations.of(context)!;
+    final t = useTranslation(context);
     final appState = MyApp.of(context).state;
 
     return Scaffold(
       backgroundColor: tan,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text(text.points_shop),
+        title: Text(t.points_shop),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
@@ -53,7 +53,7 @@ class _PointsShopPageState extends State<PointsShopPage> {
                           color: lightGreen,
                           borderRadius: BorderRadius.circular(6),
                         ),
-                        child: n.Text("${menu.points} ${text.points}")
+                        child: n.Text("${menu.points} ${t.points}")
                           ..fontSize = 22
                           ..w500
                           ..useParent((v) => v..p = 8)
@@ -65,15 +65,15 @@ class _PointsShopPageState extends State<PointsShopPage> {
                           showDialog(
                             context: context,
                             builder: (context) => AlertDialog(
-                              title: Text(text.purchase_success),
-                              content: Text(text.purchase_thanks),
+                              title: Text(t.purchase_success),
+                              content: Text(t.purchase_thanks),
                               backgroundColor: lightGreen,
                               actions: [
                                 ElevatedButton(
                                   onPressed: () {
                                     Navigator.of(context).pop();
                                   },
-                                  child: Text(text.window_close),
+                                  child: Text(t.window_close),
                                   style: ElevatedButton.styleFrom(
                                     primary: lightOrange,
                                   ),

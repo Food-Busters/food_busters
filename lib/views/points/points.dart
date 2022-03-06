@@ -2,8 +2,8 @@
 import "package:flutter/material.dart";
 
 // 📦 Package imports:
-import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:flutter_toggle_tab/flutter_toggle_tab.dart";
+import "package:food_busters/hooks.dart";
 import "package:form_field_validator/form_field_validator.dart";
 import "package:niku/namespace.dart" as n;
 
@@ -11,7 +11,6 @@ import "package:niku/namespace.dart" as n;
 import "package:food_busters/components/background.dart";
 import "package:food_busters/components/exchange_dialog.dart";
 import "package:food_busters/main.dart";
-import "package:food_busters/models/app_state.dart";
 import "package:food_busters/styles/styles.dart";
 import "package:food_busters/views/points/exchange.dart";
 import "package:food_busters/views/points/points_shop.dart";
@@ -36,14 +35,14 @@ class _MyPointsState extends State<MyPoints> {
 
   @override
   Widget build(BuildContext context) {
-    final text = AppLocalizations.of(context)!;
+    final t = useTranslation(context);
     final appState = MyApp.of(context).state;
 
     return Scaffold(
       backgroundColor: tan,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text(text.my_points),
+        title: Text(t.my_points),
         backgroundColor: Colors.transparent,
         elevation: 0,
         actions: [
@@ -80,7 +79,7 @@ class _MyPointsState extends State<MyPoints> {
                   ..fontSize = 64
                   ..w500
                   ..height = 1.6,
-                n.Text(text.points)
+                n.Text(t.points)
                   ..fontSize = 36
                   ..height = 0.3
                   ..freezed,
@@ -103,7 +102,7 @@ class _MyPointsState extends State<MyPoints> {
               fontSize: 14,
               fontWeight: FontWeight.w500,
             ),
-            labels: [text.promotion, text.premium],
+            labels: [t.promotion, t.premium],
             selectedLabelIndex: (index) {
               setState(() {
                 _panel = index == 0 ? false : true;
@@ -114,9 +113,7 @@ class _MyPointsState extends State<MyPoints> {
           Padding(
             padding:
                 const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
-            child: _panel
-                ? exchangePremiumPanel(text, appState)
-                : promotionPanel(text),
+            child: _panel ? exchangePremiumPanel() : promotionPanel(),
           ),
         ])
           ..center,
@@ -124,7 +121,9 @@ class _MyPointsState extends State<MyPoints> {
     );
   }
 
-  Widget promotionPanel(AppLocalizations text) {
+  Widget promotionPanel() {
+    final t = useTranslation(context);
+
     return Container(
       decoration: BoxDecoration(
         color: lightOrange,
@@ -136,7 +135,7 @@ class _MyPointsState extends State<MyPoints> {
           child: ElevatedButton(
             child: n.Column([
               const Icon(Icons.star),
-              Text(text.for_you),
+              Text(t.for_you),
             ]),
             style: tanBtn,
             onPressed: () async {
@@ -156,7 +155,7 @@ class _MyPointsState extends State<MyPoints> {
           child: ElevatedButton(
             child: n.Column([
               const Icon(Icons.search),
-              Text(text.search),
+              Text(t.search),
             ]),
             style: tanBtn,
             onPressed: () {
@@ -167,16 +166,16 @@ class _MyPointsState extends State<MyPoints> {
                 context: context,
                 builder: (context) => AlertDialog(
                   backgroundColor: lightGreen,
-                  title: n.Text(text.search.toUpperCase())
+                  title: n.Text(t.search.toUpperCase())
                     ..center
                     ..freezed,
                   content: Form(
                     key: formKey,
                     child: n.Column([
-                      Text(text.search_message),
+                      Text(t.search_message),
                       TextFormField(
                         validator: RequiredValidator(
-                          errorText: text.search_query_empty,
+                          errorText: t.search_query_empty,
                         ),
                         onSaved: (String? sQ) {
                           searchQuery = sQ ?? "";
@@ -190,7 +189,7 @@ class _MyPointsState extends State<MyPoints> {
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
-                      child: Text(text.window_close),
+                      child: Text(t.window_close),
                       style: ElevatedButton.styleFrom(primary: lightOrange),
                     ),
                     ElevatedButton(
@@ -208,7 +207,7 @@ class _MyPointsState extends State<MyPoints> {
                           setState(() {});
                         }
                       },
-                      child: Text(text.confirm),
+                      child: Text(t.confirm),
                       style: ElevatedButton.styleFrom(primary: green),
                     ),
                   ],
@@ -223,7 +222,9 @@ class _MyPointsState extends State<MyPoints> {
     );
   }
 
-  Widget exchangePremiumPanel(AppLocalizations text, AppState state) {
+  Widget exchangePremiumPanel() {
+    final state = MyApp.of(context).state;
+
     return Container(
       decoration: BoxDecoration(
         color: lightGreen,
@@ -233,7 +234,7 @@ class _MyPointsState extends State<MyPoints> {
         Expanded(
           flex: 1,
           child: ElevatedButton(
-            child: exchangePointsButtonLabel(text, 150, 7),
+            child: exchangePointsButtonLabel(150, 7),
             style: tanBtn,
             onPressed: () {
               final tscStatus = state.usePoints(150);
@@ -243,8 +244,8 @@ class _MyPointsState extends State<MyPoints> {
               showDialog(
                 context: context,
                 builder: (context) => tscStatus
-                    ? exchangeSuccess(text, context)
-                    : exchangeFailed(text, context),
+                    ? exchangeSuccess(context)
+                    : exchangeFailed(context),
               );
               setState(() {});
             },
@@ -254,7 +255,7 @@ class _MyPointsState extends State<MyPoints> {
         Expanded(
           flex: 1,
           child: ElevatedButton(
-            child: exchangePointsButtonLabel(text, 289, 14),
+            child: exchangePointsButtonLabel(289, 14),
             style: tanBtn,
             onPressed: () {
               final tscStatus = state.usePoints(289);
@@ -264,8 +265,8 @@ class _MyPointsState extends State<MyPoints> {
               showDialog(
                 context: context,
                 builder: (context) => tscStatus
-                    ? exchangeSuccess(text, context)
-                    : exchangeFailed(text, context),
+                    ? exchangeSuccess(context)
+                    : exchangeFailed(context),
               );
               setState(() {});
             },
@@ -278,12 +279,13 @@ class _MyPointsState extends State<MyPoints> {
   }
 
   Widget exchangePointsButtonLabel(
-    AppLocalizations text,
     int points,
     int days,
   ) {
+    final t = useTranslation(context);
+
     return n.Column([
-      n.Text(text.n_days_pass.replaceAll("{n}", "$days"))
+      n.Text(t.n_days_pass.replaceAll("{n}", "$days"))
         ..fontSize = 22
         ..freezed,
       n.Text("$points")
@@ -291,12 +293,12 @@ class _MyPointsState extends State<MyPoints> {
         ..color = green
         ..height = 1
         ..freezed,
-      n.Text(text.points.toUpperCase())
+      n.Text(t.points.toUpperCase())
         ..fontSize = 20
         ..color = green
         ..height = 1
         ..freezed,
-      Text(text.press_to_exchange),
+      Text(t.press_to_exchange),
     ]);
   }
 }

@@ -2,14 +2,13 @@
 import "package:flutter/material.dart";
 
 // 📦 Package imports:
-import "package:flutter_gen/gen_l10n/app_localizations.dart";
+import "package:food_busters/hooks.dart";
 import "package:niku/namespace.dart" as n;
 
 // 🌎 Project imports:
 import "package:food_busters/components/background.dart";
 import "package:food_busters/data/dummy_record.dart";
 import "package:food_busters/main.dart";
-import "package:food_busters/models/app_state.dart";
 import "package:food_busters/models/food_record.dart";
 import "package:food_busters/styles/styles.dart";
 import "package:food_busters/views/points/points.dart";
@@ -29,8 +28,7 @@ class _MyRecordPageState extends State<MyRecordPage> {
 
   @override
   Widget build(BuildContext context) {
-    final text = AppLocalizations.of(context)!;
-    final appState = MyApp.of(context).state;
+    final text = useTranslation(context);
 
     return Scaffold(
       backgroundColor: tan,
@@ -45,12 +43,12 @@ class _MyRecordPageState extends State<MyRecordPage> {
         n.Column([
           Padding(
             padding: const EdgeInsets.all(32.0),
-            child: recordHeader(text),
+            child: recordHeader(),
           ),
-          foodChart(text),
+          foodChart(),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: btnGroup(context, text, appState),
+            child: btnGroup(),
           ),
         ])
           ..mainCenter,
@@ -58,28 +56,30 @@ class _MyRecordPageState extends State<MyRecordPage> {
     );
   }
 
-  Widget recordHeader(AppLocalizations text) {
+  Widget recordHeader() {
+    final t = useTranslation(context);
+
     return n.Column([
       n.Column([
         n.Row([
-          Text(text.record_header_1),
+          Text(t.record_header_1),
           n.Text(" $foodwaste kg")
             ..color = green
             ..w500
             ..freezed,
         ])
           ..mainStart,
-        Text(text.record_header_2),
+        Text(t.record_header_2),
       ])
         ..crossStart,
       n.Column([
-        Text(text.record_header_3),
+        Text(t.record_header_3),
         n.Row([
           n.Text("$lessmethane% ")
             ..color = green
             ..w500
             ..freezed,
-          Text(text.record_header_4),
+          Text(t.record_header_4),
         ])
           ..mainEnd,
       ])
@@ -88,9 +88,11 @@ class _MyRecordPageState extends State<MyRecordPage> {
       ..mainCenter;
   }
 
-  Widget foodChart(AppLocalizations text) {
+  Widget foodChart() {
+    final t = useTranslation(context);
+
     return n.Column([
-      n.Text("${text.what_you_eaten}...")
+      n.Text("${t.what_you_eaten}...")
         ..fontSize = 25
         ..w500
         ..freezed,
@@ -104,18 +106,17 @@ class _MyRecordPageState extends State<MyRecordPage> {
               final tiles = <Widget>[];
 
               tiles.addAll([
-                bigFoodTile(context, "vegetable", record.vegetable),
-                bigFoodTile(context, "meat", record.meat),
-                bigFoodTile(context, "starch", record.starch),
+                bigFoodTile("vegetable", record.vegetable),
+                bigFoodTile("meat", record.meat),
+                bigFoodTile("starch", record.starch),
                 n.Row([
                   Expanded(
                     flex: 1,
-                    child: smallFoodTile(context, "fruit", record.fruit),
+                    child: smallFoodTile("fruit", record.fruit),
                   ),
                   Expanded(
                     flex: 1,
                     child: smallFoodTile(
-                      context,
                       "dessert",
                       record.dessert,
                     ),
@@ -136,7 +137,7 @@ class _MyRecordPageState extends State<MyRecordPage> {
     ]);
   }
 
-  Widget bigFoodTile(BuildContext context, String label, int percent) {
+  Widget bigFoodTile(String label, int percent) {
     return n.Stack([
       Padding(
         padding: const EdgeInsets.symmetric(
@@ -164,7 +165,6 @@ class _MyRecordPageState extends State<MyRecordPage> {
   }
 
   Widget smallFoodTile(
-    BuildContext context,
     String label,
     int percent,
   ) {
@@ -193,11 +193,10 @@ class _MyRecordPageState extends State<MyRecordPage> {
       ..useParent((v) => v..px = 16);
   }
 
-  Widget btnGroup(
-    BuildContext context,
-    AppLocalizations text,
-    AppState state,
-  ) {
+  Widget btnGroup() {
+    final t = useTranslation(context);
+    final state = MyApp.of(context).state;
+
     return n.Row([
       ElevatedButton(
         onPressed: () {
@@ -212,12 +211,12 @@ class _MyRecordPageState extends State<MyRecordPage> {
             showDialog(
               context: context,
               builder: (context) => AlertDialog(
-                title: Text(text.oops),
-                content: Text(text.premium_only),
+                title: Text(t.oops),
+                content: Text(t.premium_only),
                 backgroundColor: rose,
                 actions: [
                   TextButton(
-                    child: n.Text(text.what_is_premium)
+                    child: n.Text(t.what_is_premium)
                       ..color = green
                       ..freezed,
                     onPressed: () {
@@ -231,7 +230,7 @@ class _MyRecordPageState extends State<MyRecordPage> {
                     },
                   ),
                   TextButton(
-                    child: Text(text.window_close),
+                    child: Text(t.window_close),
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
@@ -241,7 +240,7 @@ class _MyRecordPageState extends State<MyRecordPage> {
             );
           }
         },
-        child: Text(text.health_status),
+        child: Text(t.health_status),
         style: greenBtn,
       ),
       const SizedBox(width: 16.0),
@@ -254,7 +253,7 @@ class _MyRecordPageState extends State<MyRecordPage> {
             ),
           );
         },
-        child: Text(text.other_busters),
+        child: Text(t.other_busters),
         style: lightOrangeBtn,
       ),
     ])

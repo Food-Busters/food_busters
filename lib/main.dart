@@ -7,19 +7,15 @@ import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:flutter_localizations/flutter_localizations.dart";
 
 // 🌎 Project imports:
-import "package:food_busters/models/app_state.dart";
+import "package:food_busters/models/state/app_state.dart";
 import "package:food_busters/views/login.dart";
 
-// * BEGIN OF APP PROPS
-const appBranch = "PROTOTYPE";
-// * END OF APP PROPS
+void main() => _main();
 
-void main() {
+Future<void> _main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
-      .then((_) {
-    runApp(const MyApp());
-  });
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {

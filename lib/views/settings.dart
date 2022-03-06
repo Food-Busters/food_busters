@@ -5,13 +5,13 @@ import "dart:math";
 import "package:flutter/material.dart";
 
 // 📦 Package imports:
-import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:flutter_toggle_tab/flutter_toggle_tab.dart";
+import "package:food_busters/hooks.dart";
 import "package:niku/namespace.dart" as n;
 
 // 🌎 Project imports:
 import "package:food_busters/main.dart";
-import "package:food_busters/models/app_state.dart";
+import "package:food_busters/models/state/app_state.dart";
 import "package:food_busters/styles/styles.dart";
 import "package:food_busters/views/login.dart";
 
@@ -28,28 +28,28 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
-    final text = AppLocalizations.of(context)!;
+    final t = useTranslation(context);
     final appState = MyApp.of(context).state;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(text.settings),
+        title: Text(t.settings),
         backgroundColor: const Color(0xFF42AE93),
       ),
       body: ListView(
         children: [
           ListTile(
             leading: const Icon(Icons.language),
-            title: Text(text.language),
+            title: Text(t.language),
             trailing: DropdownButton(
-              value: text.current_language,
-              items: [text.english, text.thai]
+              value: t.current_language,
+              items: [t.english, t.thai]
                   .map(
                     (item) => DropdownMenuItem(value: item, child: Text(item)),
                   )
                   .toList(),
               onChanged: (value) {
-                if (value == text.current_language) return;
+                if (value == t.current_language) return;
                 setState(() {
                   if (value == "Thai") {
                     MyApp.of(context).setLocale("th");
@@ -70,12 +70,12 @@ class _SettingsPageState extends State<SettingsPage> {
               });
             },
             secondary: const Icon(Icons.notifications),
-            title: Text(text.notification),
+            title: Text(t.notification),
             activeColor: green,
           ),
           ListTile(
             leading: const Icon(Icons.logout),
-            title: Text(text.logout),
+            title: Text(t.logout),
             onTap: () {
               Navigator.of(context).pop();
               Navigator.pushReplacement(

@@ -2,7 +2,7 @@
 import "package:flutter/material.dart";
 
 // 📦 Package imports:
-import "package:flutter_gen/gen_l10n/app_localizations.dart";
+import "package:food_busters/hooks.dart";
 import "package:niku/namespace.dart" as n;
 
 // 🌎 Project imports:
@@ -21,13 +21,13 @@ class RecommendFoodPage extends StatefulWidget {
 class _RecommendFoodPageState extends State<RecommendFoodPage> {
   @override
   Widget build(BuildContext context) {
-    final text = AppLocalizations.of(context)!;
+    final t = useTranslation(context);
 
     return Scaffold(
       backgroundColor: const Color(0xFFF1E5D9),
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text(text.recommended),
+        title: Text(t.recommended),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
@@ -84,7 +84,7 @@ class _RecommendFoodPageState extends State<RecommendFoodPage> {
                         flex: 1,
                         child: n.Column([
                           Text("${menu.cheaper}%"),
-                          Text(text.food_cheaper),
+                          Text(t.food_cheaper),
                         ])
                           ..crossEnd,
                       ),
@@ -104,7 +104,7 @@ class _RecommendFoodPageState extends State<RecommendFoodPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text("${menu.lessCarbon}%"),
-                            Text(text.food_less_carbon),
+                            Text(t.food_less_carbon),
                           ],
                         ),
                       ),
