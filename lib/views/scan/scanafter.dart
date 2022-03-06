@@ -1,14 +1,14 @@
-// Flutter imports:
+// 🐦 Flutter imports:
 import "package:flutter/material.dart";
 
-// Package imports:
+// 📦 Package imports:
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:http/http.dart" as http;
 import "package:niku/namespace.dart" as n;
 import "package:pie_chart/pie_chart.dart";
 import "package:share_plus/share_plus.dart";
 
-// Project imports:
+// 🌎 Project imports:
 import "package:food_busters/components/background.dart";
 import "package:food_busters/components/buttons.dart";
 import "package:food_busters/data/food_data.dart";

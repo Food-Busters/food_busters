@@ -1,4 +1,4 @@
-// Project imports:
+// 🌎 Project imports:
 import "package:food_busters/models/label10n.dart";
 
 class Mission {

@@ -61,6 +61,11 @@ dev_dependencies:
   flutter_launcher_icons: ^0.9.2
   import_sorter: ^4.6.0
 
+import_sorter:
+  emojis: true
+  ignored_files:
+    - \/lib\/generated_plugin_registrant.dart
+
 flutter_icons:
   android: true
   ios: true

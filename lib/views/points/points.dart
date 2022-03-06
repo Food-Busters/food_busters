@@ -1,13 +1,13 @@
-// Flutter imports:
+// 🐦 Flutter imports:
 import "package:flutter/material.dart";
 
-// Package imports:
+// 📦 Package imports:
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:flutter_toggle_tab/flutter_toggle_tab.dart";
 import "package:form_field_validator/form_field_validator.dart";
 import "package:niku/namespace.dart" as n;
 
-// Project imports:
+// 🌎 Project imports:
 import "package:food_busters/components/background.dart";
 import "package:food_busters/components/exchange_dialog.dart";
 import "package:food_busters/main.dart";

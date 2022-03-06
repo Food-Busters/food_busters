@@ -1,7 +1,7 @@
-// Dart imports:
+// 🎯 Dart imports:
 import "dart:math";
 
-// Project imports:
+// 🌎 Project imports:
 import "package:food_busters/data/delay.dart";
 import "package:food_busters/models/health_record.dart";
 

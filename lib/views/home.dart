@@ -1,13 +1,13 @@
-// Flutter imports:
+// 🐦 Flutter imports:
 import "package:flutter/foundation.dart" show kIsWeb;
 import "package:flutter/material.dart";
 
-// Package imports:
+// 📦 Package imports:
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:niku/namespace.dart" as n;
 import "package:package_info_plus/package_info_plus.dart";
 
-// Project imports:
+// 🌎 Project imports:
 import "package:food_busters/components/background.dart";
 import "package:food_busters/components/profile_picture.dart";
 import "package:food_busters/main.dart";

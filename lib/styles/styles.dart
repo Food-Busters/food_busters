@@ -1,7 +1,7 @@
-// Flutter imports:
+// 🐦 Flutter imports:
 import "package:flutter/material.dart";
 
-// Package imports:
+// 📦 Package imports:
 import "package:niku/niku.dart";
 
 final loginRegisterBtn = ElevatedButton.styleFrom(

@@ -3,7 +3,7 @@
 // To parse this JSON data, do
 // final quote = quoteFromJson(jsonString);
 
-// Dart imports:
+// 🎯 Dart imports:
 import "dart:convert";
 
 Quote quoteFromJson(String str) => Quote.fromJson(json.decode(str));
