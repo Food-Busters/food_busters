@@ -8,6 +8,7 @@ import "package:flutter_localizations/flutter_localizations.dart";
 
 // 🌎 Project imports:
 import "package:food_busters/models/state/app_state.dart";
+import 'package:food_busters/styles/styles.dart';
 import "package:food_busters/views/login.dart";
 
 void main() => _main();
@@ -59,6 +60,7 @@ class _MyAppState extends State<MyApp> {
       title: "Food Busters",
       theme: ThemeData(
         primarySwatch: Colors.orange,
+        appBarTheme: const AppBarTheme(color: lightOrange),
         scaffoldBackgroundColor: const Color(0xFFF4E3D8),
         fontFamily: "Kanit",
       ),

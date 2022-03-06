@@ -119,6 +119,7 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
       ]),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.share),
+        backgroundColor: lightOrange,
         onPressed: () async {
           await Share.share(
             "Check my fabulous feasting out!\n"
