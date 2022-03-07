@@ -108,5 +108,7 @@
     "dinner": "Dinner",
     "easy_guide": "Easy Guide for you",
     "guide_vegetable_header": "Left over VEGETABLE = METHANE",
-    "guide_vegetable_content": "Don't like vegetables? If you don't like it, tell chef to not put in becaus 30% of your food waste are vegetables!"
+    "guide_vegetable_content": "Don't like vegetables? If you don't like it, tell chef to not put in becaus 30% of your food waste are vegetables!",
+    "cannot_share_loading": "You cannot share right now because it is loading or error occured",
+    "detected_by_sfc": "We automatically fill the menu for you from result of Smart Food Scanner 🌟✨ with confidence of"
 }

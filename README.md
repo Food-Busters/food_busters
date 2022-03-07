@@ -11,7 +11,7 @@ Mobile App to encourage reducing food wastes for environment and develop healthy
 This app is prototype of Food Busters, started as part of AIS Jump Thailand Hackathon (2021).
 
 Despite being Prototype App, this app has over 100K Bytes of Dart Code (Mostly Tab)
-and 5000 Lines of Code
+and 4000 Lines of Code
 
 The app is currently incomplete as it's only used to show our idea.
 

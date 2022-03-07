@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import "package:flutter/services.dart";
 
 // 📦 Package imports:
+import "package:flutter_dotenv/flutter_dotenv.dart";
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:flutter_localizations/flutter_localizations.dart";
 
@@ -14,6 +15,7 @@ import "package:food_busters/views/login.dart";
 void main() => _main();
 
 Future<void> _main() async {
+  await dotenv.load();
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(const MyApp());
@@ -37,6 +39,8 @@ class _MyAppState extends State<MyApp> {
   Locale get locale => _locale;
 
   late String _localeStr;
+
+  /// Either "en" or "th"
   String get localeStrSimp => _localeStr.contains("th") ? "th" : "en";
 
   void setLocale(String value) {

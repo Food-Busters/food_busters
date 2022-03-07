@@ -7,26 +7,6 @@ import "package:food_busters/models/health_record.dart";
 
 final random = Random();
 
-Future<Map<String, double>> getOmeletData() async {
-  await serverRequest();
-
-  return {
-    "Carbohydrate": 65,
-    "Fat": 15,
-    "Protein": 20,
-  };
-}
-
-Future<Map<String, double>> getChickenRiceData() async {
-  await serverRequest();
-
-  return {
-    "Carbohydrate": 45,
-    "Fat": 25,
-    "Protein": 30,
-  };
-}
-
 Map<String, double> getRandomNutrition() {
   final carbo = random.nextInt(15);
   final fat = random.nextInt(20 - carbo);

@@ -5,13 +5,11 @@ import "dart:math";
 import "package:flutter/material.dart";
 
 // 📦 Package imports:
-import "package:flutter_toggle_tab/flutter_toggle_tab.dart";
 import "package:niku/namespace.dart" as n;
 
 // 🌎 Project imports:
 import "package:food_busters/hooks.dart";
 import "package:food_busters/main.dart";
-import "package:food_busters/models/state/app_state.dart";
 import "package:food_busters/styles/styles.dart";
 import "package:food_busters/views/login.dart";
 
@@ -93,31 +91,13 @@ class _SettingsPageState extends State<SettingsPage> {
               style: TextStyle(fontWeight: FontWeight.w500),
             ),
           ),
-          const ListTile(
-            title: Text(
-              "This is placeholder settings, controls the output of mocked AI. "
-              "(Real AI coming soon!)",
-            ),
-          ),
-          FlutterToggleTab(
-            labels: const ["Chicken", "Omelet"],
-            selectedLabelIndex: (index) {
-              setState(() {
-                appState.menu = index == 0 ? Food.chicken : Food.omelet;
-              });
-            },
-            selectedIndex: appState.menuIndex,
-            selectedTextStyle: const TextStyle(
-              color: Colors.black,
-              fontSize: 18,
-              fontWeight: FontWeight.w700,
-            ),
-            unSelectedTextStyle: const TextStyle(
-              color: Colors.black87,
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-            ),
-            selectedBackgroundColors: const [lightGreen],
+          ListTile(
+            title: n.Text(
+              "This is placeholder settings, controls the output of "
+              "unimplemented Smart Food Scanner Features.",
+            )
+              ..center
+              ..freezed,
           ),
           ListTile(
             title: n.Text("Percent: ${appState.percent}")..center,

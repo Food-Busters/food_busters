@@ -12,7 +12,7 @@ class Quote {
   Quote({
     required this.quote,
     this.lang = "en",
-    this.image = "somwua.png",
+    this.image = "somwua.webp",
   });
 
   final String quote;

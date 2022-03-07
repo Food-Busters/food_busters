@@ -53,3 +53,5 @@ app.*.map.json
 *.out
 *.toc
 *.pdf
+
+.env
