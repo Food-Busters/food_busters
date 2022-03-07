@@ -3,11 +3,11 @@ import "package:flutter/material.dart";
 
 // 📦 Package imports:
 import "package:camera/camera.dart";
-import "package:food_busters/hooks.dart";
 import "package:niku/namespace.dart" as n;
 
 // 🌎 Project imports:
 import "package:food_busters/components/background.dart";
+import "package:food_busters/hooks.dart";
 import "package:food_busters/main.dart";
 import "package:food_busters/styles/styles.dart";
 import "package:food_busters/views/scan/scanfood.dart";

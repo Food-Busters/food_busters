@@ -2,7 +2,6 @@
 import "package:flutter/material.dart";
 
 // 📦 Package imports:
-import "package:food_busters/hooks.dart";
 import "package:niku/namespace.dart" as n;
 import "package:pie_chart/pie_chart.dart";
 import "package:table_calendar/table_calendar.dart";
@@ -10,6 +9,7 @@ import "package:table_calendar/table_calendar.dart";
 // 🌎 Project imports:
 import "package:food_busters/components/background.dart";
 import "package:food_busters/data/food_data.dart";
+import "package:food_busters/hooks.dart";
 import "package:food_busters/models/health_record.dart";
 import "package:food_busters/styles/styles.dart";
 

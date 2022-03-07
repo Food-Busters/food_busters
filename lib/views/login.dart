@@ -2,15 +2,15 @@
 import "package:flutter/material.dart";
 
 // 📦 Package imports:
-import "package:food_busters/hooks.dart";
 import "package:niku/namespace.dart" as n;
 
 // 🌎 Project imports:
 import "package:food_busters/components/background.dart";
+import "package:food_busters/hooks.dart";
+import "package:food_busters/main.dart";
 import "package:food_busters/styles/styles.dart";
 import "package:food_busters/views/home.dart";
 import "package:food_busters/views/register.dart";
-import "package:food_busters/main.dart";
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);

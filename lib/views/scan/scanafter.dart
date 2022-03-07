@@ -2,7 +2,6 @@
 import "package:flutter/material.dart";
 
 // 📦 Package imports:
-import "package:food_busters/hooks.dart";
 import "package:http/http.dart" as http;
 import "package:niku/namespace.dart" as n;
 import "package:pie_chart/pie_chart.dart";
@@ -12,6 +11,7 @@ import "package:share_plus/share_plus.dart";
 import "package:food_busters/components/background.dart";
 import "package:food_busters/components/buttons.dart";
 import "package:food_busters/data/food_data.dart";
+import "package:food_busters/hooks.dart";
 import "package:food_busters/main.dart";
 import "package:food_busters/models/quote.dart";
 import "package:food_busters/models/state/app_state.dart";

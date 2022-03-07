@@ -6,10 +6,10 @@ import "package:flutter/material.dart";
 
 // 📦 Package imports:
 import "package:flutter_toggle_tab/flutter_toggle_tab.dart";
-import "package:food_busters/hooks.dart";
 import "package:niku/namespace.dart" as n;
 
 // 🌎 Project imports:
+import "package:food_busters/hooks.dart";
 import "package:food_busters/main.dart";
 import "package:food_busters/models/state/app_state.dart";
 import "package:food_busters/styles/styles.dart";

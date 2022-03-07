@@ -3,8 +3,6 @@ import "package:flutter/foundation.dart" show kIsWeb;
 import "package:flutter/material.dart";
 
 // 📦 Package imports:
-import "package:flutter_gen/gen_l10n/app_localizations.dart";
-import 'package:food_busters/hooks.dart';
 import "package:niku/namespace.dart" as n;
 import "package:package_info_plus/package_info_plus.dart";
 
@@ -12,6 +10,8 @@ import "package:package_info_plus/package_info_plus.dart";
 import "package:food_busters/components/background.dart";
 import "package:food_busters/components/profile_picture.dart";
 import "package:food_busters/constants/app_props.dart";
+import "package:food_busters/hooks.dart";
+import "package:food_busters/main.dart";
 import "package:food_busters/styles/styles.dart";
 import "package:food_busters/views/mission/mission.dart";
 import "package:food_busters/views/points/points.dart";
@@ -19,7 +19,6 @@ import "package:food_busters/views/record/leaderboard.dart";
 import "package:food_busters/views/record/record.dart";
 import "package:food_busters/views/scan/scanportal.dart";
 import "package:food_busters/views/settings.dart";
-import "package:food_busters/main.dart";
 
 const webAppWarn =
     "This app is not optimized for web, there may be some unexpected error, "

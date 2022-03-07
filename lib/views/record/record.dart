@@ -2,12 +2,12 @@
 import "package:flutter/material.dart";
 
 // 📦 Package imports:
-import "package:food_busters/hooks.dart";
 import "package:niku/namespace.dart" as n;
 
 // 🌎 Project imports:
 import "package:food_busters/components/background.dart";
 import "package:food_busters/data/dummy_record.dart";
+import "package:food_busters/hooks.dart";
 import "package:food_busters/main.dart";
 import "package:food_busters/models/food_record.dart";
 import "package:food_busters/styles/styles.dart";

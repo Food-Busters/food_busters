@@ -8,7 +8,7 @@ import "package:flutter_localizations/flutter_localizations.dart";
 
 // 🌎 Project imports:
 import "package:food_busters/models/state/app_state.dart";
-import 'package:food_busters/styles/styles.dart';
+import "package:food_busters/styles/styles.dart";
 import "package:food_busters/views/login.dart";
 
 void main() => _main();

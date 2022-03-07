@@ -1,11 +1,8 @@
 // 🐦 Flutter imports:
 import "package:flutter/material.dart";
 
-// 📦 Package imports:
-import "package:flutter_gen/gen_l10n/app_localizations.dart";
-import "package:food_busters/hooks.dart";
-
 // 🌎 Project imports:
+import "package:food_busters/hooks.dart";
 import "package:food_busters/styles/styles.dart";
 
 AlertDialog exchangeSuccess(

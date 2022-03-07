@@ -2,8 +2,6 @@
 import "package:flutter/material.dart";
 
 // 📦 Package imports:
-import "package:flutter_gen/gen_l10n/app_localizations.dart";
-import 'package:food_busters/hooks.dart';
 import "package:niku/namespace.dart" as n;
 
 // 🌎 Project imports:
@@ -12,9 +10,9 @@ import "package:food_busters/components/exchange_dialog.dart";
 import "package:food_busters/components/green_leaves.dart";
 import "package:food_busters/components/profile_picture.dart";
 import "package:food_busters/data/dummy_restaurant.dart";
+import "package:food_busters/hooks.dart";
 import "package:food_busters/main.dart";
 import "package:food_busters/models/restaurant_menu.dart";
-import "package:food_busters/models/state/app_state.dart";
 import "package:food_busters/styles/styles.dart";
 import "package:food_busters/utils/string.dart";
 
