@@ -114,7 +114,7 @@ class _HomePageState extends State<HomePage> {
             ])
               ..crossStart
               ..p = 16,
-            profilePic(discordPfp, 100),
+            profilePic("assets/images/somwua_icon.webp", 100),
           ]),
           navButtons()..p = 8,
         ])

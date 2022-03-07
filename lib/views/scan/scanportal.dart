@@ -26,7 +26,6 @@ class ScanPortalPage extends StatefulWidget {
 
 class _ScanPortalPageState extends State<ScanPortalPage> {
   Future<void> goToScanPage(
-    BuildContext context,
     scanDestination destination,
   ) async {
     final cameras = await availableCameras();
@@ -62,7 +61,7 @@ class _ScanPortalPageState extends State<ScanPortalPage> {
               onPressed: appState.imageBeforeAvailable
                   ? null
                   : () {
-                      goToScanPage(context, scanDestination.before);
+                      goToScanPage(scanDestination.before);
                     },
               child: Text(
                 t.before,
@@ -90,7 +89,7 @@ class _ScanPortalPageState extends State<ScanPortalPage> {
           ElevatedButton(
             onPressed: appState.imageBeforeAvailable
                 ? () {
-                    goToScanPage(context, scanDestination.after);
+                    goToScanPage(scanDestination.after);
                   }
                 : null,
             child: Text(

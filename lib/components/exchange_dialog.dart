@@ -21,7 +21,7 @@ AlertDialog exchangeSuccess(
               Text(t.exchange_complete),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: Image.asset("assets/images/dummy_QR.png"),
+                child: Image.asset("assets/images/dummy_QR.webp"),
               ),
               Text(t.use_this_qr, style: const TextStyle(fontSize: 12)),
             ],

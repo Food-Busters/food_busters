@@ -12,11 +12,9 @@ import "package:food_busters/models/state/app_state.dart";
 import "package:food_busters/styles/styles.dart";
 import "package:food_busters/views/login.dart";
 
-void main() => _main();
-
-Future<void> _main() async {
-  await dotenv.load();
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(const MyApp());
 }

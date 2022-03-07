@@ -75,13 +75,15 @@ class _SettingsPageState extends State<SettingsPage> {
             leading: const Icon(Icons.logout),
             title: Text(t.logout),
             onTap: () {
-              Navigator.of(context).pop();
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const LoginPage(),
-                ),
-              );
+              logOut();
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.restart_alt_outlined),
+            title: const Text("Reset App Data"),
+            onTap: () async {
+              appState.reset();
+              logOut();
             },
           ),
           const ListTile(
@@ -121,6 +123,16 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  void logOut() {
+    Navigator.of(context).pop();
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const LoginPage(),
       ),
     );
   }

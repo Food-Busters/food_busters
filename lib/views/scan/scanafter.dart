@@ -16,6 +16,7 @@ import "package:share_plus/share_plus.dart";
 // 🌎 Project imports:
 import "package:food_busters/components/background.dart";
 import "package:food_busters/components/buttons.dart";
+import "package:food_busters/constants/fun_facts.dart";
 import "package:food_busters/hooks.dart";
 import "package:food_busters/main.dart";
 import "package:food_busters/models/ml_error.dart";
@@ -183,7 +184,23 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
                   ),
                 );
               }
-              return const CircularProgressIndicator();
+              return n.Column([
+                const CircularProgressIndicator(color: lightOrange),
+                n.Column([
+                  n.Text(t.fun_fact)
+                    ..w500
+                    ..fontSize = 26,
+                  n.Text(getRandomFact(context))
+                    ..center
+                    ..freezed,
+                ])
+                  ..center
+                  ..px = 6
+                  ..freezed,
+              ])
+                ..center
+                ..gap = 48
+                ..freezed;
             },
           ),
         ),

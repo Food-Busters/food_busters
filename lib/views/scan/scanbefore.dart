@@ -45,7 +45,7 @@ class _ScanBeforePageState extends State<ScanBeforePage> {
             ..freezed,
           backHomeBtn(context),
         ])
-          ..mainCenter
+          ..center
           ..freezed,
       ]),
     );

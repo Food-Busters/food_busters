@@ -2,7 +2,7 @@
 import "package:flutter/material.dart";
 
 // 📦 Package imports:
-import "package:flutter_gen/gen_l10n/app_localizations.dart";
+import "package:food_busters/hooks.dart";
 import "package:niku/namespace.dart" as n;
 
 // 🌎 Project imports:
@@ -37,13 +37,13 @@ class _NewMissionPageState extends State<NewMissionPage> {
 
   @override
   Widget build(BuildContext context) {
-    final text = AppLocalizations.of(context)!;
+    final t = useTranslation(context);
 
     return Scaffold(
       backgroundColor: tan,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text("${text.mission} ($pageLabel)"),
+        title: Text("${t.mission} ($pageLabel)"),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
@@ -52,8 +52,8 @@ class _NewMissionPageState extends State<NewMissionPage> {
         Center(
           child: SingleChildScrollView(
             child: n.Column([
-              missionBlock(text, text.eat_less, lightOrange),
-              missionBlock(text, text.eat_more, lightGreen),
+              missionBlock(t.eat_less, lightOrange),
+              missionBlock(t.eat_more, lightGreen),
             ])
               ..mainCenter,
           ),
@@ -62,7 +62,9 @@ class _NewMissionPageState extends State<NewMissionPage> {
     );
   }
 
-  Widget missionBlock(AppLocalizations text, String title, Color color) {
+  Widget missionBlock(String title, Color color) {
+    final t = useTranslation(context);
+
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Container(
@@ -89,7 +91,7 @@ class _NewMissionPageState extends State<NewMissionPage> {
                       borderRadius: BorderRadius.circular(6.0),
                     ),
                     child: n.Row([
-                      Text(text.within),
+                      Text(t.within),
                       Container(
                         width: 60,
                         height: 40,
@@ -104,7 +106,7 @@ class _NewMissionPageState extends State<NewMissionPage> {
                           ),
                         ),
                       ),
-                      Text(text.days),
+                      Text(t.days),
                     ])
                       ..mainEvenly
                       ..p = 8,
@@ -117,14 +119,14 @@ class _NewMissionPageState extends State<NewMissionPage> {
                       showDialog(
                         context: context,
                         builder: (context) => AlertDialog(
-                          title: Text(text.challenge_accepted),
+                          title: Text(t.challenge_accepted),
                           backgroundColor: lightGreen,
                           actions: [
                             TextButton(
                               onPressed: () {
                                 Navigator.of(context).pop();
                               },
-                              child: n.Text(text.window_close)
+                              child: n.Text(t.window_close)
                                 ..color = Colors.black
                                 ..freezed,
                             )
@@ -132,7 +134,7 @@ class _NewMissionPageState extends State<NewMissionPage> {
                         ),
                       );
                     },
-                    child: Text(text.i_can_do_this),
+                    child: Text(t.i_can_do_this),
                     style: tanBtn,
                   ),
                 ),

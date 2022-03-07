@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 
 // 📦 Package imports:
 import "package:camera/camera.dart";
+import "package:food_busters/styles/styles.dart";
 import "package:niku/namespace.dart" as n;
 
 // 🌎 Project imports:
@@ -66,27 +67,33 @@ class _ScanPageState extends State<ScanPage> {
               bgImage("clouds/surrounding_orange.webp"),
             ])
           : bgImage("loading.webp"),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.camera),
-        onPressed: cameraReady
-            ? () async {
-                if (controller.value.isTakingPicture) return;
-                final XFile image = await controller.takePicture();
-                widget.destination == scanDestination.before
-                    ? appState.setImageBefore(image)
-                    : appState.setImageAfter(image);
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        widget.destination == scanDestination.before
-                            ? const ScanBeforePage()
-                            : const ScanAfterPage(),
-                  ),
-                );
-              }
-            : null,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 18.0),
+        child: FloatingActionButton.extended(
+          icon: const Icon(Icons.camera),
+          label: const Text("SNAP"),
+          backgroundColor: green,
+          onPressed: cameraReady
+              ? () async {
+                  if (controller.value.isTakingPicture) return;
+                  final XFile image = await controller.takePicture();
+                  widget.destination == scanDestination.before
+                      ? appState.setImageBefore(image)
+                      : appState.setImageAfter(image);
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          widget.destination == scanDestination.before
+                              ? const ScanBeforePage()
+                              : const ScanAfterPage(),
+                    ),
+                  );
+                }
+              : null,
+        ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

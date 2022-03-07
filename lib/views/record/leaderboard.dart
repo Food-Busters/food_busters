@@ -51,7 +51,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                 borderRadius: BorderRadius.circular(16.0),
               ),
               child: n.Column([
-                profilePic(discordPfp, 100),
+                profilePic("assets/images/somwua_icon.webp", 100),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: bigNeonLeaves(4),
