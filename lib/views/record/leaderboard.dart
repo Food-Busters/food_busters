@@ -69,46 +69,40 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                 color: lightGreen,
                 borderRadius: BorderRadius.circular(16.0),
               ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 8.0,
-                  horizontal: 4.0,
-                ),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: FlutterToggleTab(
-                        width: 80,
-                        borderRadius: 30,
-                        height: 50,
-                        selectedIndex: _panel ? 1 : 0,
-                        selectedTextStyle: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w700,
-                        ),
-                        unSelectedTextStyle: const TextStyle(
-                          color: Colors.black87,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                        ),
-                        labels: [t.top_busters, t.friends],
-                        selectedLabelIndex: (index) {
-                          setState(() {
-                            _panel = index == 0 ? false : true;
-                          });
-                        },
-                        selectedBackgroundColors: const [tan],
-                      ),
+              child: n.Column([
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: FlutterToggleTab(
+                    width: 80,
+                    borderRadius: 30,
+                    height: 50,
+                    selectedIndex: _panel ? 1 : 0,
+                    selectedTextStyle: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w700,
                     ),
-                    SizedBox(
-                      height: 260,
-                      child: topBusters(),
+                    unSelectedTextStyle: const TextStyle(
+                      color: Colors.black87,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
                     ),
-                  ],
+                    labels: [t.top_busters, t.friends],
+                    selectedLabelIndex: (index) {
+                      setState(() {
+                        _panel = index == 0 ? false : true;
+                      });
+                    },
+                    selectedBackgroundColors: const [tan],
+                  ),
                 ),
-              ),
+                SizedBox(
+                  height: 260,
+                  child: topBusters(),
+                ),
+              ])
+                ..py = 8
+                ..px = 4,
             ),
           ),
         ])
@@ -127,6 +121,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
         if (snapshot.connectionState == ConnectionState.done) {
           final data = snapshot.data!;
           return ListView.builder(
+            physics: const BouncingScrollPhysics(),
             padding: EdgeInsets.zero,
             scrollDirection: Axis.vertical,
             itemCount: data.length,
