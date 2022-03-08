@@ -1,6 +1,6 @@
 # Food Busters
 
-Mobile App to encourage reducing food wastes for environment and develop healthy diet.
+Mobile App to encourage reducing pollution from food waste and develop healthy diet.
 
 - [More About Food Busters](https://github.com/Food-Busters)
 

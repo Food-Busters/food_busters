@@ -8,7 +8,6 @@ import "package:niku/namespace.dart" as n;
 import "package:food_busters/components/background.dart";
 import "package:food_busters/data/dummy_current_missions.dart";
 import "package:food_busters/hooks.dart";
-import "package:food_busters/main.dart";
 import "package:food_busters/models/mission.dart";
 import "package:food_busters/styles/styles.dart";
 import "package:food_busters/views/mission/new_mission.dart";
@@ -74,7 +73,6 @@ class _MyMissionPageState extends State<MyMissionPage> {
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.done) {
                 final data = snapshot.data!;
-                final loc = MyApp.of(context).localeStrSimp;
                 return ListView.separated(
                   padding: EdgeInsets.zero,
                   scrollDirection: Axis.vertical,
@@ -84,7 +82,7 @@ class _MyMissionPageState extends State<MyMissionPage> {
                     final ms = data[index];
                     return ListTile(
                       title: n.Column([
-                        Text(ms.obj.toStr(loc)),
+                        Text(ms.obj.get(context)),
                         Text(
                           "${ms.award.toString()} ${t.points}",
                           style: const TextStyle(

@@ -3,11 +3,8 @@
 // 🎯 Dart imports:
 import "dart:convert";
 
-// 🐦 Flutter imports:
-import "package:flutter/material.dart";
-
 // 🌎 Project imports:
-import "package:food_busters/main.dart";
+import "package:food_busters/models/label10n.dart";
 
 class MLAPIResult {
   MLAPIResult({
@@ -17,7 +14,7 @@ class MLAPIResult {
     required this.version,
   });
 
-  final FoodName foodName;
+  final Label10n foodName;
   final FoodNutrition foodNutrition;
   final double confidence;
   final String version;
@@ -28,7 +25,7 @@ class MLAPIResult {
   String toRawJson() => json.encode(toJson());
 
   factory MLAPIResult.fromJson(Map<String, dynamic> json) => MLAPIResult(
-        foodName: FoodName.fromJson(json["foodName"]),
+        foodName: Label10n.fromJson(json["foodName"]),
         foodNutrition: FoodNutrition.fromJson(json["foodNutrition"]),
         confidence: json["confidence"].toDouble(),
         version: json["version"],
@@ -39,43 +36,6 @@ class MLAPIResult {
         "foodNutrition": foodNutrition.toJson(),
         "confidence": confidence,
         "version": version,
-      };
-}
-
-class FoodName {
-  FoodName({
-    required this.en,
-    this.th,
-  });
-
-  final String en;
-  final String? th;
-
-  String get(BuildContext context) {
-    if (th == null) return en;
-
-    final lang = MyApp.of(context).localeStrSimp;
-
-    if (lang == "th") {
-      return th!;
-    } else {
-      return en;
-    }
-  }
-
-  factory FoodName.fromRawJson(String str) =>
-      FoodName.fromJson(json.decode(str));
-
-  String toRawJson() => json.encode(toJson());
-
-  factory FoodName.fromJson(Map<String, dynamic> json) => FoodName(
-        en: json["en"],
-        th: json["th"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "en": en,
-        "th": th,
       };
 }
 

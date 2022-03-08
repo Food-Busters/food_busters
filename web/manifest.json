@@ -5,7 +5,7 @@
     "display": "standalone",
     "background_color": "#BCDFCB",
     "theme_color": "#FFC068",
-    "description": "App to encourage reducing Food Wastes",
+    "description": "Mobile App to encourage reducing pollution from food waste and develop healthy diet.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
