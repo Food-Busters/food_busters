@@ -34,3 +34,4 @@ linter:
 analyzer:
   exclude:
     - lib/generated_plugin_registrant.dart
+    - lib/**/*.g.dart

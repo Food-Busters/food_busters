@@ -3,13 +3,13 @@ import "package:flutter/material.dart";
 
 // 📦 Package imports:
 import "package:camera/camera.dart";
-import "package:food_busters/styles/styles.dart";
 import "package:niku/namespace.dart" as n;
 
 // 🌎 Project imports:
 import "package:food_busters/components/background.dart";
 import "package:food_busters/hooks.dart";
 import "package:food_busters/main.dart";
+import "package:food_busters/styles/styles.dart";
 import "package:food_busters/views/scan/scanafter.dart";
 import "package:food_busters/views/scan/scanbefore.dart";
 import "package:food_busters/views/scan/scanportal.dart";
@@ -49,7 +49,6 @@ class _ScanPageState extends State<ScanPage> {
   @override
   Widget build(BuildContext context) {
     final t = useTranslation(context);
-    final appState = MyApp.of(context).state;
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -73,27 +72,33 @@ class _ScanPageState extends State<ScanPage> {
           icon: const Icon(Icons.camera),
           label: const Text("SNAP"),
           backgroundColor: green,
-          onPressed: cameraReady
-              ? () async {
-                  if (controller.value.isTakingPicture) return;
-                  final XFile image = await controller.takePicture();
-                  widget.destination == scanDestination.before
-                      ? appState.setImageBefore(image)
-                      : appState.setImageAfter(image);
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          widget.destination == scanDestination.before
-                              ? const ScanBeforePage()
-                              : const ScanAfterPage(),
-                    ),
-                  );
-                }
-              : null,
+          onPressed: cameraReady ? handleSnap : null,
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+    );
+  }
+
+  Future<void> handleSnap() async {
+    final appState = MyApp.of(context).state;
+
+    if (controller.value.isTakingPicture) return;
+
+    final XFile image = await controller.takePicture();
+    if (widget.destination == scanDestination.before) {
+      appState.imageBefore = image;
+    } else {
+      appState.imageAfter = image;
+    }
+    appState.save();
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => widget.destination == scanDestination.before
+            ? const ScanBeforePage()
+            : const ScanAfterPage(),
+      ),
     );
   }
 }

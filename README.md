@@ -21,7 +21,7 @@ The app is currently incomplete as it's only used to show our idea.
 
 - iOS 🟡 (No Device to test or run)
 
-- Android 🟢 (Minimum 5.0 Recommended 12)
+- Android 🟢 (Minimum 5.0 Recommended 7.1.1+ Highly Recommended 11+)
 
 - Web ❓ Not directly target, but with magic of Flutter, it works
 
@@ -33,7 +33,7 @@ See [Release](https://github.com/Food-Busters/food_busters/releases) to Download
 
 Or Visit [Web App Version](https://food-busters-web.vercel.app/)
 
-*Note*: Web App Version is temporary, once our app lands on store (if it does),
+_Note_: Web App Version is temporary, once our app lands on store (if it does),
 this version will be removed.
 
 ## Develop Environment

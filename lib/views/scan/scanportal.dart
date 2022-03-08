@@ -77,7 +77,7 @@ class _ScanPortalPageState extends State<ScanPortalPage> {
               onPressed: appState.imageBeforeAvailable
                   ? () {
                       setState(() {
-                        appState.deleteImageBefore();
+                        appState.imageBefore = null;
                       });
                     }
                   : null,

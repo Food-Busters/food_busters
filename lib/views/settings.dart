@@ -5,11 +5,13 @@ import "dart:math";
 import "package:flutter/material.dart";
 
 // 📦 Package imports:
+import "package:hive_flutter/hive_flutter.dart";
 import "package:niku/namespace.dart" as n;
 
 // 🌎 Project imports:
 import "package:food_busters/hooks.dart";
 import "package:food_busters/main.dart";
+import "package:food_busters/models/app_state.dart";
 import "package:food_busters/styles/styles.dart";
 import "package:food_busters/views/login.dart";
 
@@ -21,9 +23,6 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  // * Stateful Stateless State
-  bool notification = true;
-
   @override
   Widget build(BuildContext context) {
     final t = useTranslation(context);
@@ -61,10 +60,10 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
           ),
           SwitchListTile(
-            value: notification,
+            value: appState.notification,
             onChanged: (newValue) {
               setState(() {
-                notification = newValue;
+                appState.notification = newValue;
               });
             },
             secondary: const Icon(Icons.notifications),
@@ -75,6 +74,7 @@ class _SettingsPageState extends State<SettingsPage> {
             leading: const Icon(Icons.logout),
             title: Text(t.logout),
             onTap: () {
+              appState.username = null;
               logOut();
             },
           ),
@@ -82,7 +82,8 @@ class _SettingsPageState extends State<SettingsPage> {
             leading: const Icon(Icons.restart_alt_outlined),
             title: const Text("Reset App Data"),
             onTap: () async {
-              appState.reset();
+              await Hive.box<AppState>(boxName).putAt(0, AppState());
+              MyApp.of(context).resetLocale(doSetState: true);
               logOut();
             },
           ),
@@ -102,11 +103,12 @@ class _SettingsPageState extends State<SettingsPage> {
               ..freezed,
           ),
           ListTile(
-            title: n.Text("Percent: ${appState.percent}")..center,
+            title: n.Text("Percent: ${appState.godModePercent}")..center,
             leading: ElevatedButton(
               onPressed: () {
                 setState(() {
-                  appState.percent = max(0, appState.percent - 5);
+                  appState.godModePercent = max(0, appState.godModePercent - 5);
+                  appState.save();
                 });
               },
               child: const Icon(Icons.remove),
@@ -115,7 +117,9 @@ class _SettingsPageState extends State<SettingsPage> {
             trailing: ElevatedButton(
               onPressed: () {
                 setState(() {
-                  appState.percent = min(100, appState.percent + 5);
+                  appState.godModePercent =
+                      min(100, appState.godModePercent + 5);
+                  appState.save();
                 });
               },
               child: const Icon(Icons.add),

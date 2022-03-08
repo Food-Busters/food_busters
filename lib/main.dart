@@ -6,16 +6,29 @@ import "package:flutter/services.dart";
 import "package:flutter_dotenv/flutter_dotenv.dart";
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:flutter_localizations/flutter_localizations.dart";
+import "package:hive_flutter/hive_flutter.dart";
 
 // 🌎 Project imports:
-import "package:food_busters/models/state/app_state.dart";
+import "package:food_busters/models/app_state.dart";
 import "package:food_busters/styles/styles.dart";
+import "package:food_busters/views/home.dart";
 import "package:food_busters/views/login.dart";
 
+const boxName = "appData";
+
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await dotenv.load();
-  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  await Future.wait([
+    dotenv.load(),
+    Hive.initFlutter(),
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+  ]);
+  Hive.registerAdapter(AppStateAdapter());
+
+  var box = await Hive.openBox<AppState>(boxName);
+  if (box.values.isEmpty) {
+    box.add(AppState());
+  }
+
   runApp(const MyApp());
 }
 
@@ -31,11 +44,14 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  Locale _locale =
-      // https://stackoverflow.com/questions/50923906/how-to-get-timezone-language-and-county-id-in-flutter-by-the-location-of-device
-      WidgetsBinding.instance?.window.locales[0] ?? const Locale("en", "US");
-  Locale get locale => _locale;
+  @override
+  void initState() {
+    super.initState();
+    resetLocale();
+  }
 
+  late Locale _locale;
+  Locale get locale => _locale;
   late String _localeStr;
 
   /// Either "en" or "th"
@@ -43,18 +59,28 @@ class _MyAppState extends State<MyApp> {
 
   void setLocale(String value) {
     setState(() {
-      _localeStr = value;
+      state.language = _localeStr = value;
       _locale = Locale(value);
     });
   }
 
-  final state = AppState();
+  void resetLocale({bool doSetState = false}) {
+    // https://stackoverflow.com/questions/50923906/how-to-get-timezone-language-and-county-id-in-flutter-by-the-location-of-device
 
-  @override
-  void initState() {
-    super.initState();
+    if (state.language != null) {
+      _locale = Locale(state.language!);
+    } else {
+      _locale =
+          WidgetsBinding.instance?.window.locales[0] ?? const Locale("en");
+    }
+
     _localeStr = _locale.toString();
+    state.language = _localeStr;
+
+    if (doSetState) setState(() {});
   }
+
+  AppState get state => Hive.box<AppState>(boxName).getAt(0)!;
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +92,9 @@ class _MyAppState extends State<MyApp> {
         scaffoldBackgroundColor: const Color(0xFFF4E3D8),
         fontFamily: "Kanit",
       ),
-      home: const LoginPage(),
+      home: state.username == null
+          ? const LoginPage()
+          : const HomePage(welcomeBack: true),
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,

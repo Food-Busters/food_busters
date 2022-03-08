@@ -2,11 +2,11 @@
 import "package:flutter/material.dart";
 
 // 📦 Package imports:
-import "package:food_busters/hooks.dart";
 import "package:niku/namespace.dart" as n;
 
 // 🌎 Project imports:
 import "package:food_busters/components/background.dart";
+import "package:food_busters/hooks.dart";
 import "package:food_busters/styles/styles.dart";
 
 enum MissionType {

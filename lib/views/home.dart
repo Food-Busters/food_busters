@@ -28,7 +28,9 @@ const webAppWarn =
     "change your window size.";
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key, this.welcomeBack = false}) : super(key: key);
+
+  final bool welcomeBack;
 
   @override
   _HomePageState createState() => _HomePageState();

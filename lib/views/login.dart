@@ -39,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget welcomeText() {
+  Align welcomeText() {
     return Align(
       alignment: Alignment.centerLeft,
       child: Padding(
@@ -57,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget loginForm() {
+  Padding loginForm() {
     final t = useTranslation(context);
 
     return Padding(
