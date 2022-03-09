@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
 
@@ -16,7 +17,18 @@ import "package:food_busters/views/login.dart";
 
 const boxName = "appData";
 
+void addFontLicense(String fontName) {
+  LicenseRegistry.addLicense(() async* {
+    final license =
+        await rootBundle.loadString("assets/fonts/$fontName-OFL.txt");
+    yield LicenseEntryWithLineBreaks(["google_fonts"], license);
+  });
+}
+
 Future<void> main() async {
+  // addFontLicense("Kanit");
+  addFontLicense("Sarabun");
+
   await Future.wait([
     dotenv.load(),
     Hive.initFlutter(),
@@ -90,7 +102,7 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: Colors.orange,
         appBarTheme: const AppBarTheme(color: lightOrange),
         scaffoldBackgroundColor: const Color(0xFFF4E3D8),
-        fontFamily: "Kanit",
+        fontFamily: "Sarabun",
       ),
       home: state.username == null
           ? const LoginPage()

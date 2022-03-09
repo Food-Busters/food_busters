@@ -34,6 +34,7 @@ class _SettingsPageState extends State<SettingsPage> {
         backgroundColor: const Color(0xFF42AE93),
       ),
       body: ListView(
+        physics: const BouncingScrollPhysics(),
         children: [
           ListTile(
             leading: const Icon(Icons.language),
@@ -80,19 +81,18 @@ class _SettingsPageState extends State<SettingsPage> {
           ),
           ListTile(
             leading: const Icon(Icons.restart_alt_outlined),
-            title: const Text("Reset App Data"),
+            title: Text(t.reset_settings),
             onTap: () async {
               await Hive.box<AppState>(boxName).putAt(0, AppState());
               MyApp.of(context).resetLocale(doSetState: true);
               logOut();
             },
           ),
-          const ListTile(
-            title: Text(
-              "GOD MODE",
-              textAlign: TextAlign.center,
-              style: TextStyle(fontWeight: FontWeight.w500),
-            ),
+          ListTile(
+            title: n.Text("GOD MODE")
+              ..center
+              ..w500
+              ..freezed,
           ),
           ListTile(
             title: n.Text(

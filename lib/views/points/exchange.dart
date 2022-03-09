@@ -88,6 +88,7 @@ class _ExchangePageState extends State<ExchangePage> {
     final state = MyApp.of(context).state;
 
     return ListView.builder(
+      physics: const BouncingScrollPhysics(),
       itemCount: data.length,
       itemBuilder: (context, index) {
         final res = data[index];

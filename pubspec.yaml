@@ -15,7 +15,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.385
+version: 1.0.401
 
 environment:
   sdk: ">=2.16.0 <3.0.0"
@@ -83,10 +83,14 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - .env
+
     - assets/images/
     - assets/images/clouds/
     - assets/images/foods/
     - assets/images/icons/
+
+    # - assets/fonts/Kanit-OFL.txt
+    - assets/fonts/Sarabun-OFL.txt
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -100,21 +104,31 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    # - family: Anakotmai
+    # - family: Montserrat
     #   fonts:
-    #     - asset: assets/fonts/Anakotmai-Light.ttf
+    #     - asset: assets/fonts/Montserrat-Light.ttf
     #       weight: 300
-    #     - asset: assets/fonts/Anakotmai-Medium.ttf
-    #       weight: 400
-    #     - asset: assets/fonts/Anakotmai-Bold.ttf
+    #     - asset: assets/fonts/Montserrat-Medium.ttf
+    #       weight: 500
+    #     - asset: assets/fonts/Montserrat-Bold.ttf
     #       weight: 700
-    - family: Kanit
+
+    # - family: Kanit
+    #   fonts:
+    #     - asset: assets/fonts/Kanit-Light.ttf
+    #       weight: 300
+    #     - asset: assets/fonts/Kanit-Medium.ttf
+    #       weight: 500
+    #     - asset: assets/fonts/Kanit-Bold.ttf
+    #       weight: 700
+
+    - family: Sarabun
       fonts:
-        - asset: assets/fonts/Kanit-Light.ttf
+        - asset: assets/fonts/Sarabun-Light.ttf
           weight: 300
-        - asset: assets/fonts/Kanit-Medium.ttf
-          weight: 400
-        - asset: assets/fonts/Kanit-Bold.ttf
+        - asset: assets/fonts/Sarabun-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Sarabun-Bold.ttf
           weight: 700
 
   # For details regarding fonts from package dependencies,

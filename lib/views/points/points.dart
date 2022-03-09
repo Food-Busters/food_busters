@@ -78,10 +78,10 @@ class _MyPointsState extends State<MyPoints> {
                 n.Text(appState.points.toString())
                   ..fontSize = 64
                   ..w500
-                  ..height = 1.6,
+                  ..height = 1.4,
                 n.Text(t.points)
                   ..fontSize = 36
-                  ..height = 0.3
+                  ..height = 0.5
                   ..freezed,
               ]),
             ),

@@ -34,7 +34,7 @@ class _ScanPageState extends State<ScanPage> {
   @override
   void initState() {
     super.initState();
-    controller = CameraController(widget.cameras[0], ResolutionPreset.veryHigh);
+    controller = CameraController(widget.cameras[0], ResolutionPreset.high);
     controller.initialize().then((_) {
       setState(() {});
     });
@@ -90,7 +90,6 @@ class _ScanPageState extends State<ScanPage> {
     } else {
       appState.imageAfter = image;
     }
-    appState.save();
 
     Navigator.pushReplacement(
       context,

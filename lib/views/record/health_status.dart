@@ -44,6 +44,7 @@ class _HealthStatusPageState extends State<HealthStatusPage> {
           Text(t.my_record),
           n.Text(" PREMIUM")
             ..fontSize = 14
+            ..color = green
             ..freezed,
         ])
           ..mainStart
@@ -56,11 +57,14 @@ class _HealthStatusPageState extends State<HealthStatusPage> {
         bgImage("clouds/bottom_aqua.webp"),
         bgImage("clouds/top_orange.webp"),
         Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 100.0,
-            horizontal: 24.0,
+          padding: const EdgeInsets.only(
+            left: 24,
+            right: 24,
+            top: 96,
+            bottom: 48,
           ),
           child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
             child: n.Column([
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -88,6 +92,7 @@ class _HealthStatusPageState extends State<HealthStatusPage> {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: TableCalendar(
+          headerStyle: const HeaderStyle(titleCentered: true),
           focusedDay: focused,
           firstDay: getToday().subtract(const Duration(days: mockDays)),
           lastDay: getToday(),
@@ -133,6 +138,7 @@ class _HealthStatusPageState extends State<HealthStatusPage> {
                     dataMap: data.nutrition,
                     chartType: ChartType.ring,
                   ),
+                  const SizedBox(height: 12),
                   n.Text(t.recorded_menu)
                     ..w500
                     ..freezed,
@@ -173,7 +179,9 @@ class _HealthStatusPageState extends State<HealthStatusPage> {
                 ]);
               }
             } else {
-              return const Center(child: CircularProgressIndicator());
+              return const Center(
+                child: CircularProgressIndicator(color: lightOrange),
+              );
             }
           },
         ),

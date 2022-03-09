@@ -30,17 +30,8 @@ class AppState extends HiveObject {
     save();
   }
 
-  XFile? _imageBefore;
-  XFile? get imageBefore => _imageBefore;
-  set imageBefore(XFile? newImage) {
-    imageBefore = newImage;
-  }
-
-  XFile? _imageAfter;
-  XFile? get imageAfter => _imageAfter;
-  set imageAfter(XFile? newImage) {
-    imageAfter = newImage;
-  }
+  XFile? imageBefore;
+  XFile? imageAfter;
 
   @HiveField(3, defaultValue: 398)
   int _points = 398;
@@ -70,8 +61,8 @@ class AppState extends HiveObject {
   bool get imageReady => imageBeforeAvailable && imageAfterAvailable;
 
   void resetImages() {
-    _imageBefore = null;
-    _imageAfter = null;
+    imageBefore = null;
+    imageAfter = null;
   }
 
   void addPoints(int points) {

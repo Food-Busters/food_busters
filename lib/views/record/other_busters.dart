@@ -35,10 +35,7 @@ class _OtherBustersPageState extends State<OtherBustersPage> {
         bgImage("clouds/top_orange.webp"),
         Center(
           child: n.Column([
-            Padding(
-              padding: const EdgeInsets.all(32.0),
-              child: thanksBuster(),
-            ),
+            thanksBuster()..p = 32,
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -63,17 +60,23 @@ class _OtherBustersPageState extends State<OtherBustersPage> {
     );
   }
 
-  Widget thanksBuster() {
+  n.Column thanksBuster() {
     final t = useTranslation(context);
 
     return n.Column([
-      Text(t.thanks_buster_1),
-      Text(t.thanks_buster_2),
+      n.Text(t.thanks_buster_1)
+        ..fontSize = 18
+        ..w500
+        ..center,
+      n.Text(t.thanks_buster_2)
+        ..fontSize = 18
+        ..w500
+        ..center,
     ])
-      ..crossStart;
+      ..center;
   }
 
-  Widget kurzInfo(
+  Container kurzInfo(
     int carbonDiff,
     int ch4Diff,
     int calDiff,
@@ -96,13 +99,13 @@ class _OtherBustersPageState extends State<OtherBustersPage> {
     );
   }
 
-  Widget superRichText(int diff, String contentMore, String contentLess) {
+  RichText superRichText(int diff, String contentMore, String contentLess) {
     return RichText(
       text: TextSpan(
         style: const TextStyle(
           fontSize: 18.0,
           color: Colors.black,
-          fontFamily: "Kanit",
+          fontFamily: "Sarabun",
         ),
         children: [
           const TextSpan(text: "- "),

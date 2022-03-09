@@ -50,7 +50,7 @@ class _MyMissionPageState extends State<MyMissionPage> {
     );
   }
 
-  Widget currentMission() {
+  Container currentMission() {
     final t = useTranslation(context);
 
     return Container(
@@ -74,6 +74,7 @@ class _MyMissionPageState extends State<MyMissionPage> {
               if (snapshot.connectionState == ConnectionState.done) {
                 final data = snapshot.data!;
                 return ListView.separated(
+                  physics: const BouncingScrollPhysics(),
                   padding: EdgeInsets.zero,
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
@@ -98,7 +99,7 @@ class _MyMissionPageState extends State<MyMissionPage> {
                           ..freezed,
                         n.Text(ms.deadlineMonth)
                           ..fontSize = 12
-                          ..height = 0.5
+                          ..height = 1
                           ..freezed,
                       ])
                         ..mainCenter,
@@ -120,7 +121,7 @@ class _MyMissionPageState extends State<MyMissionPage> {
     );
   }
 
-  Widget cravingMissions() {
+  Container cravingMissions() {
     final t = useTranslation(context);
 
     return Container(
@@ -148,6 +149,7 @@ class _MyMissionPageState extends State<MyMissionPage> {
                 },
                 child: n.Text("FOOD")
                   ..fontSize = 24
+                  ..center
                   ..freezed,
                 style: tanBtn,
               ),
@@ -168,6 +170,7 @@ class _MyMissionPageState extends State<MyMissionPage> {
                 },
                 child: n.Text("CARBON FOOTPRINT")
                   ..fontSize = 16
+                  ..center
                   ..freezed,
                 style: tanBtn,
               ),

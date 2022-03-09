@@ -50,6 +50,9 @@ class _HomePageState extends State<HomePage> {
         elevation: 0,
         title: n.Text(t.home)..color = Colors.black,
         actions: [
+          n.IconButton(Icons.gamepad)
+            ..onPressed = () {}
+            ..freezed,
           n.IconButton(Icons.settings)
             ..onPressed = () {
               Navigator.push(
@@ -58,7 +61,8 @@ class _HomePageState extends State<HomePage> {
                   builder: (context) => const SettingsPage(),
                 ),
               );
-            },
+            }
+            ..freezed,
           n.IconButton(Icons.info)
             ..onPressed = () async {
               PackageInfo packageInfo = await PackageInfo.fromPlatform();
@@ -82,7 +86,8 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ],
               );
-            },
+            }
+            ..freezed,
         ],
       ),
       body: n.Stack([
@@ -94,19 +99,13 @@ class _HomePageState extends State<HomePage> {
           n.Column([
             n.Column([
               n.Row([
-                n.Text("\"${t.greetings}, ")
-                  ..fontSize = 18
-                  ..freezed,
-                n.Text("${appState.username}\"")
-                  ..fontSize = 26
-                  ..freezed,
+                n.Text("\"${t.greetings}, ")..fontSize = 18,
+                n.Text("${appState.username}\"")..fontSize = 26,
               ])
                 ..mainStart
                 ..crossBaseline
                 ..alphabetic,
-              n.Text(t.have_a_nice_meal)
-                ..fontSize = 16
-                ..freezed,
+              n.Text(t.have_a_nice_meal)..fontSize = 16,
               kIsWeb
                   ? Text(
                       webAppWarn,
