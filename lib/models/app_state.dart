@@ -54,6 +54,14 @@ class AppState extends HiveObject {
     save();
   }
 
+  @HiveField(6, defaultValue: 4)
+  int _askForFeedback = 4;
+  int get askForFeedback => _askForFeedback;
+  set askForFeedback(int value) {
+    _askForFeedback = value;
+    save();
+  }
+
   // * Most of getters and setters is automatically filled by GitHub Copilot✨✨
 
   bool get imageBeforeAvailable => imageBefore != null;

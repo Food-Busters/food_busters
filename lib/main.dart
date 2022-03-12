@@ -65,7 +65,7 @@ class _MyAppState extends State<MyApp> {
   Locale get locale => _locale;
   late String _localeStr;
 
-  /// Either "en" or "th"
+  /// Either `"en"` or `"th"`
   String get localeStrSimp => _localeStr.contains("th") ? "th" : "en";
 
   void setLocale(String value) {
@@ -75,7 +75,7 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
-  void resetLocale({bool doSetState = false}) {
+  void resetLocale() {
     // https://stackoverflow.com/questions/50923906/how-to-get-timezone-language-and-county-id-in-flutter-by-the-location-of-device
 
     if (state.language != null) {
@@ -88,7 +88,7 @@ class _MyAppState extends State<MyApp> {
     _localeStr = _locale.toString();
     state.language = _localeStr;
 
-    if (doSetState) setState(() {});
+    setState(() {});
   }
 
   AppState get state => Hive.box<AppState>(boxName).getAt(0)!;

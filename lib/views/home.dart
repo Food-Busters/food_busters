@@ -150,14 +150,7 @@ class _HomePageState extends State<HomePage> {
         Expanded(
           flex: 1,
           child: smallBtn(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const MyPoints(),
-                ),
-              );
-            },
+            onPressed: feedbackGoto(() => const MyPoints()),
             content: t.my_points,
             assetName: "points.webp",
           ),
@@ -165,14 +158,7 @@ class _HomePageState extends State<HomePage> {
         Expanded(
           flex: 1,
           child: smallBtn(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const MyRecordPage(),
-                ),
-              );
-            },
+            onPressed: feedbackGoto(() => const MyRecordPage()),
             content: t.my_record,
             assetName: "record.webp",
           ),
@@ -183,14 +169,7 @@ class _HomePageState extends State<HomePage> {
         Expanded(
           flex: 1,
           child: smallBtn(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const MyMissionPage(),
-                ),
-              );
-            },
+            onPressed: feedbackGoto(() => const MyMissionPage()),
             content: t.mission,
             assetName: "mission.webp",
           ),
@@ -198,14 +177,7 @@ class _HomePageState extends State<HomePage> {
         Expanded(
           flex: 1,
           child: smallBtn(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const LeaderboardPage(),
-                ),
-              );
-            },
+            onPressed: feedbackGoto(() => const LeaderboardPage()),
             content: t.leaderboard,
             assetName: "leaderboard.webp",
           ),
@@ -215,48 +187,103 @@ class _HomePageState extends State<HomePage> {
     ]);
   }
 
-  Widget bigBtn({
-    required void Function() onPressed,
-    required String content,
-    required double padding,
-    required String assetName,
-  }) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: ElevatedButton(
-        onPressed: onPressed,
-        child: n.Row([
-          Image.asset("assets/images/icons/$assetName", height: 50),
-          n.Text(content)..fontSize = 26,
-        ])
-          ..mainCenter,
-        style: ElevatedButton.styleFrom(
-          padding: EdgeInsets.all(padding),
-          primary: lightOrange,
-          minimumSize: const Size(275, 0),
-        ),
-      ),
-    );
-  }
+  void Function() feedbackGoto(Widget Function() page) {
+    return () async {
+      await Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => page()),
+      );
 
-  Widget smallBtn({
-    required void Function() onPressed,
-    required String content,
-    required String assetName,
-  }) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: ElevatedButton(
-        onPressed: onPressed,
-        child: n.Column([
-          Image.asset("assets/images/icons/$assetName", height: 50),
-          n.Text(content)..fontSize = 14,
-        ]),
-        style: ElevatedButton.styleFrom(
-          padding: const EdgeInsets.all(15),
-          primary: lightGreen,
-        ),
-      ),
-    );
+      final appState = MyApp.of(context).state;
+      final t = useTranslation(context);
+      appState.askForFeedback--;
+
+      if (appState.askForFeedback <= 0) {
+        await showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            backgroundColor: lightGreen,
+            title: n.Text(t.feedback_title)
+              ..center
+              ..freezed,
+            content: n.Text(t.feedback_content)
+              ..center
+              ..freezed,
+            actionsAlignment: MainAxisAlignment.center,
+            actions: [
+              n.Column([
+                n.Button(const Text("✨OK✨"))
+                  ..onPressed = () {
+                    appState.askForFeedback = 0xffffffff;
+                    launch(feedbackUrl);
+                    Navigator.pop(context);
+                  }
+                  ..center
+                  ..style = (n.ButtonStyle()..foregroundColor = brown),
+                n.Button(Text(t.not_now))
+                  ..onPressed = () {
+                    appState.askForFeedback = 5;
+                    Navigator.pop(context);
+                  }
+                  ..style = (n.ButtonStyle()..foregroundColor = meguRose),
+                n.Button(Text(t.dont_ask_again))
+                  ..onPressed = () {
+                    appState.askForFeedback = 0xffffffff;
+                    Navigator.pop(context);
+                  }
+                  ..style = (n.ButtonStyle()..foregroundColor = meguRose),
+              ])
+                ..center
+                ..freezed,
+            ],
+          ),
+        );
+      }
+    };
   }
+}
+
+Padding bigBtn({
+  required void Function() onPressed,
+  required String content,
+  required double padding,
+  required String assetName,
+}) {
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: ElevatedButton(
+      onPressed: onPressed,
+      child: n.Row([
+        Image.asset("assets/images/icons/$assetName", height: 50),
+        n.Text(content)..fontSize = 26,
+      ])
+        ..mainCenter,
+      style: ElevatedButton.styleFrom(
+        padding: EdgeInsets.all(padding),
+        primary: lightOrange,
+        minimumSize: const Size(275, 0),
+      ),
+    ),
+  );
+}
+
+Padding smallBtn({
+  required void Function() onPressed,
+  required String content,
+  required String assetName,
+}) {
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: ElevatedButton(
+      onPressed: onPressed,
+      child: n.Column([
+        Image.asset("assets/images/icons/$assetName", height: 50),
+        n.Text(content)..fontSize = 14,
+      ]),
+      style: ElevatedButton.styleFrom(
+        padding: const EdgeInsets.all(15),
+        primary: lightGreen,
+      ),
+    ),
+  );
 }

@@ -40,6 +40,7 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
   int pointRecieved = 0;
   Map<String, double> foodData = {"undefined": 100};
   double pollution = 0;
+  double totalCalories = 0;
   MLAPIResult? apiResult;
   Quote? quote;
   int successedPromise = 0;
@@ -88,6 +89,11 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
     pollution = apiResult!.foodNutrition.pollution;
     foodData = apiResult!.foodNutrition.toJson();
     foodData.remove("pollution");
+
+    foodData.forEach((key, value) {
+      totalCalories += value;
+    });
+
     successedPromise++;
   }
 
@@ -222,10 +228,14 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
           }
 
           await Share.share(
-            "Check my fabulous feasting out!\n"
-            "Menu: ${apiResult!.foodName.get(context)}, "
-            "Ate $percent% of the dish!\n"
-            "This meal is also certified green and clean.",
+            t.scan_share
+                    .replaceFirst("{menu}", apiResult!.foodName.get(context))
+                    .replaceFirst("{percent}", "$percent")
+                    .replaceFirst(
+                      "{calories}",
+                      "${(percent * totalCalories / 100).round()}",
+                    ) +
+                (percent > 80 ? t.scan_share_certified : ""),
           );
         },
       ),
@@ -311,12 +321,16 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
           centerText: apiResult?.foodName.get(context),
         ),
       ),
+      n.Text(t.menu_co2.replaceFirst("{0}", "$pollution"))
+        ..center
+        ..w500
+        ..freezed,
       n.Text(
         "${t.detected_by_sfc} "
         "${(apiResult!.confidence * 100).toStringAsFixed(2)}%",
       )
         ..center
-        ..w500
+        ..w600
         ..freezed,
       n.Text(t.take_home_recommendation)
         ..center

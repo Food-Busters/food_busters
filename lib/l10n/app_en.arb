@@ -42,7 +42,7 @@
     "save_money_2": "If you have eaten all.",
     "swipe_hint": "Swipe Left or Right",
     "learn_more": "Learn more",
-    "pollution_produced": "Pollution produced is {pollution} grams of CO2!",
+    "pollution_produced": "Pollution produced is {pollution} grams of CO₂!",
     "your_data": "YOUR MEAL DATA",
     "chart_desc": "Following Pie Chart represents calories in each nutrition category of meal",
     "take_home_recommendation": "Take your leftover back home may be a good choice!",
@@ -111,5 +111,12 @@
     "guide_vegetable_content": "Don't like vegetables? If you don't like it, tell chef to not put in becaus 30% of your food waste are vegetables!",
     "cannot_share_loading": "You cannot share right now because it is loading or error occured",
     "detected_by_sfc": "We automatically fill the menu for you from result of Smart Food Scanner 🌟✨ with confidence of",
-    "fun_fact": "Fun Fact"
+    "fun_fact": "Fun Fact",
+    "feedback_title": "Your Feedback Matters",
+    "feedback_content": "Do you want to do a survey about our prototype app? You can access survey at anytime using top-right actions in the home page.",
+    "not_now": "Not now",
+    "dont_ask_again": "Don't ask again",
+    "menu_co2": "This menu created {0} grams of CO₂",
+    "scan_share": "Check out my fabolous feasting out!\nMenu: {menu}, Ate {percent}% of the dish amd gained total of {calories} calories!\n",
+    "scan_share_certified": "This meal is also certified green and clean by Food Busters!"
 }

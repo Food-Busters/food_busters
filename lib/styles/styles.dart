@@ -38,6 +38,7 @@ const green = Color(0xFF5DC7AB);
 const tan = Color(0xFFF4E4D8);
 const brown = Color(0xFF533F2C);
 const rose = Color(0xFFF1D0C5);
+const meguRose = Color(0xFF8B1A15);
 
 const bold = TextStyle(fontWeight: FontWeight.w500);
 

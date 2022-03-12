@@ -84,7 +84,7 @@ class _SettingsPageState extends State<SettingsPage> {
             title: Text(t.reset_settings),
             onTap: () async {
               await Hive.box<AppState>(boxName).putAt(0, AppState());
-              MyApp.of(context).resetLocale(doSetState: true);
+              MyApp.of(context).resetLocale();
               logOut();
             },
           ),
