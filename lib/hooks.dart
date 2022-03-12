@@ -8,4 +8,5 @@ AppLocalizations useTranslation(BuildContext context) {
   return AppLocalizations.of(context)!;
 }
 
+/// Alias for `AppLocalizations`
 typedef Translation = AppLocalizations;

@@ -39,6 +39,7 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
   int percent = 0;
   int pointRecieved = 0;
   Map<String, double> foodData = {"undefined": 100};
+  double pollution = 0;
   MLAPIResult? apiResult;
   Quote? quote;
   int successedPromise = 0;
@@ -84,7 +85,9 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
     }
 
     apiResult = MLAPIResult.fromRawJson(mlResponse.body);
+    pollution = apiResult!.foodNutrition.pollution;
     foodData = apiResult!.foodNutrition.toJson();
+    foodData.remove("pollution");
     successedPromise++;
   }
 
@@ -295,6 +298,11 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
         ..fontSize = 28
         ..w500
         ..freezed,
+      n.Text(t.chart_desc)
+        ..fontSize = 12
+        ..center
+        ..w400
+        ..freezed,
       Padding(
         padding: const EdgeInsets.symmetric(vertical: 24.0),
         child: PieChart(
@@ -310,7 +318,9 @@ class _ScanAfterPageState extends State<ScanAfterPage> {
         ..center
         ..w500
         ..freezed,
-      Text(t.take_home_recommendation),
+      n.Text(t.take_home_recommendation)
+        ..center
+        ..freezed,
       const SizedBox(height: 16),
       ElevatedButton(
         onPressed: () {

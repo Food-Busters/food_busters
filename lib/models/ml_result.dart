@@ -44,11 +44,13 @@ class FoodNutrition {
     required this.carbohydrate,
     required this.fat,
     required this.protein,
+    required this.pollution,
   });
 
   final double carbohydrate;
   final double fat;
   final double protein;
+  final double pollution;
 
   factory FoodNutrition.fromRawJson(String str) =>
       FoodNutrition.fromJson(json.decode(str));
@@ -62,10 +64,10 @@ class FoodNutrition {
   }
 
   factory FoodNutrition.fromJson(Map<String, dynamic> json) => FoodNutrition(
-        carbohydrate: td(json["carbohydrate"]),
-        fat: td(json["fat"]),
-        protein: td(json["protein"]),
-      );
+      carbohydrate: td(json["carbohydrate"]),
+      fat: td(json["fat"]),
+      protein: td(json["protein"]),
+      pollution: td(json["pollution"]));
 
   Map<String, double> toJson() => {
         "carbohydrate": carbohydrate,

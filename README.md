@@ -25,7 +25,7 @@ The app is currently incomplete as it's only used to show our idea.
 
 - Web ❓ Not directly target, but with magic of Flutter, it works
 
-Testing detailed is noted in the Manual
+Testing detail is noted in the Manual
 
 ## Download & Manual
 

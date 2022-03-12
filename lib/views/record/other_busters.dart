@@ -105,7 +105,7 @@ class _OtherBustersPageState extends State<OtherBustersPage> {
         style: const TextStyle(
           fontSize: 18.0,
           color: Colors.black,
-          fontFamily: "Sarabun",
+          fontFamily: "Kanit",
         ),
         children: [
           const TextSpan(text: "- "),

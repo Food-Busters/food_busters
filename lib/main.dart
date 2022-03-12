@@ -26,8 +26,7 @@ void addFontLicense(String fontName) {
 }
 
 Future<void> main() async {
-  // addFontLicense("Kanit");
-  addFontLicense("Sarabun");
+  addFontLicense("Kanit");
 
   await Future.wait([
     dotenv.load(),
@@ -102,7 +101,7 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: Colors.orange,
         appBarTheme: const AppBarTheme(color: lightOrange),
         scaffoldBackgroundColor: const Color(0xFFF4E3D8),
-        fontFamily: "Sarabun",
+        fontFamily: "Kanit",
       ),
       home: state.username == null
           ? const LoginPage()

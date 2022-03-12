@@ -5,6 +5,7 @@ import "package:flutter/material.dart";
 // 📦 Package imports:
 import "package:niku/namespace.dart" as n;
 import "package:package_info_plus/package_info_plus.dart";
+import "package:url_launcher/url_launcher.dart";
 
 // 🌎 Project imports:
 import "package:food_busters/components/background.dart";
@@ -26,6 +27,8 @@ const webAppWarn =
     "Will be removed in the future. "
     "Our UI is designed for Portrait mode, please rotate or "
     "change your window size.";
+
+const feedbackUrl = "https://forms.gle/sKw883rMThW2tykB9";
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, this.welcomeBack = false}) : super(key: key);
@@ -50,8 +53,10 @@ class _HomePageState extends State<HomePage> {
         elevation: 0,
         title: n.Text(t.home)..color = Colors.black,
         actions: [
-          n.IconButton(Icons.gamepad)
-            ..onPressed = () {}
+          n.IconButton(Icons.feedback)
+            ..onPressed = () {
+              launch(feedbackUrl);
+            }
             ..freezed,
           n.IconButton(Icons.settings)
             ..onPressed = () {
