@@ -7,7 +7,7 @@
 \author{Nutthapat Pongtanyavichai, Developer of Food Busters}
 
 \maketitle
-\centerline{\LARGE{Manual for App Version: 1.0.305}}
+\centerline{\LARGE{Manual for App Version: 1.0.412}}
 
 \tableofcontents
 
@@ -19,38 +19,47 @@ The prototype that you are about to see is a laborious program written to
 illustrate our basic ideas and concepts of what Food Busters is about.
 This is prototype app that aims to focus on concept, interface \& UI,
 and basic logic flow of the app. The goal of this prototype is to show the concept
-and test that concept with real users for feedbacks. Some features are not properly implemented yet, thus this prototype is only capable of showing UIs with some logic flows.
+and test that concept with real users for feedbacks.
+Some features may not be properly implemented yet.
 We will go along each features in this manual.
 
-This manual is for App Version 1.0.305. Just in case that newer version (bug fixes) may
-have released, please check \href{https://github.com/Food-Busters/food_busters/releases}{HERE}
+This manual is for App Version \textbf{1.0.412}.
+Just in case that newer version may have been released,
+please check \href{https://github.com/Food-Busters/food_busters/releases}{HERE}
 
 You can check the version of installed app by clicking \textit{info icon}
 in top right corner of the home page.
 
+Known issues for current version will be listed in
+\href{https://github.com/Food-Busters/food_busters/releases/tag/1.0.412}{Release Note}.
+
+\textbf{Note: Some screenshots in this manual may come from previous version
+if no significant changes.}
+
 % * SECTION 2
 \section{Installation}
 
-Current version of this prototype app only supports \textbf{Android}. Due to
-limitation given by Apple, we are unable to test this app on iOS or distribute.
+Current version of this prototype app only supports \textbf{Android} via side-loading.
+Due to limitation given by Apple, side-loading cannot be easily done on iPhone.
 
 However, you can still access the prototype app via \textbf{your web browser},
 we will talk about this in next sections.
 
 This prototype app is supported by Android 5 or any newer generations.
-However, I recommend using Android 11 or later.
-I need to inform you that we does not have many devices to do the testing.
-We are sorry if the app doesn't work as intended for you.
+However, I recommend using Android 7.1.1 and highly recommend to use version
+that is as latest as possible.
+Our app is tested on few devices, we are sorry if it does not work on your device.
 
 \section*{Download the Android App (APK)}
 
 \noindent
 \begin{simplechar}
-    Download the apk file from our link portal \href{https://food-busters.github.io/prototype}{HERE}
+Download the apk file from our links portal \href{https://food-busters.github.io/prototype}{HERE}
 \end{simplechar}
 
 \noindent
-\textbf{Note}: The app is not signed, there may be a warning from Play Protect.
+\textbf{Note}: The app is not signed nor verified, there may be a warning from Play Protect.
+If you face issues side-loading or do not wish to, you can still access our web app version.
 
 \section*{Compatibility Test Result}
 
@@ -90,7 +99,7 @@ this is temporary for who that doesn't use Android. Will be removed in the futur
 \noindent
 Test Browser and Results:
 \begin{itemize}
-    \item Microsoft Edge 98 (Windows 11) - WORKING AS INTENDED
+    \item Microsoft Edge 98 \& 99 (Windows 11) - WORKING AS INTENDED
     \item Samsung Internet 16 (Android 12) - WORKING AS INTENDED
     \item Google Chrome 99  (Android 12) - WORKING AS INTENDED
 \end{itemize}
@@ -105,11 +114,11 @@ Test Browser and Results:
 \figtwo{login}{register}{Login Page}{Register Page}
 
 As mention earlier that some features are not properly implemented with the reason given.
-Login \& Register is one of them. You can login to the app with any non-empty Username and
-Password, it will work for now.
+Login \& Register is one of them. You can login to the app with any Username and
+Password, I recommended you to just click Login for simplicity, it will work for now.
 
-The username inputted in either of these pages will be displayed later on
-the homepage of the app.
+The username inputed in either of these pages will be displayed later on
+the homepage of the app and saved.
 
 \pagebreak
 % * SECTION 4
@@ -140,12 +149,9 @@ the images and gives you insight and analysis of your meal.
 \figfour{scanafter_1}{scanafter_2}{scanafter_3}{recommend_food}{
     Points and Quotes}{Money Lost Data}{Meal and Menu Data}{Recommendation}
 
-In the current version of the prototype, the quote you see is fetched from our website.
-\href{https://food-waste-quotes.vercel.app}{https://food-waste-quotes.vercel.app}.
-The quotes here are able to be updated dynamically by our team members,
-meaning that you will need to connect to internet to see the results of
-the \textbf{SMART Food Scanner}. Currently, the results in the other pages are mocked up,
-however, the internet connection is still needed to gain access to this screen.
+Our current \textbf{Smart Food Scanner} can classify type of your meal.
+Currently, only fews are known. The percentage of eaten food is not yet implemented.
+You can try changing the percentage of eaten food in settings and see how things changed!
 
 Once we have started the next stage of Food Busters, we will make sure to do
 some researches to ensure the data here are correct.
@@ -158,7 +164,6 @@ Points \& Rewards can be accessed by pressing \textbf{MY POINTS} on the home pag
 
 \figthree{points_1}{exchange}{points_2}{Points Menu}{Exchange Points}{Redeem Premium}
 
-In the current version of prototype app, it supports basic state management.
 Remember you get points from scanning food? You can use those points to redeem
 some \textit{mocked-up} rewards.
 
